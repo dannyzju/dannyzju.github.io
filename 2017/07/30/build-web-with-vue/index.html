@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"dannyzhang.run","root":"/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="1. Installing Vue.js3 ways to install Vue.js  CDN(Content Delivery Network):  NPM(Node Package Manager): npm install vue sudo npm install –global vue-cli   Visit nodejs.org and download an installer">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Build Web App with Vue.js">
+<meta property="og:url" content="http://dannyzhang.run/2017/07/30/build-web-with-vue/index.html">
+<meta property="og:site_name" content="D.Z. Notes (Beta)">
+<meta property="og:description" content="1. Installing Vue.js3 ways to install Vue.js  CDN(Content Delivery Network):  NPM(Node Package Manager): npm install vue sudo npm install –global vue-cli   Visit nodejs.org and download an installer">
+<meta property="og:image" content="https://lh3.googleusercontent.com/mWCNpDtIKwQXIVEYdTwSEF_jnkvAgpQClm4_SX_FnmTD_Q1bq7ERYggNHLdehabW3DH_7eqb8l2dspTwSOtdwsJyBmxuHFJ7jvvUUwg0ChCZuSs33yV0ZYpEbzDK805pR3k3nCVPhhEth2QQ24PPE85FhNBWzPnouhbz_L9VesO20dfuf175OoWo2eg8eo_ZA3AHBfGh2DYiYI9S53K_0SeGMnuTpfUQvD_dXxeqyAK9lsDmKjsG7sKsvbelXUBWjwfFWtstqDt4_I3NrHhDLZIcqFrP86EDDC5SIiVeLTrJ2NIoMZQJHXAAgX6pO08-0wvAwKnNYuAAUZdrBgCFol0AvGh_rtW7JhTmGNHfoXQo1F5dAjjKqkGOj0DXTPFVnsl6Ou625knUBaUU2_WVoSCElCgwLGqi1DCO8nUJ9DCIBYmSd5T4tC_QSj8yw17SaZ04iP-d1REx3Dkvw3XtFNFQv_qrMYDLWWbhzecOWs4rnbJ4MTL6DWYOrE2jIloM37Dt-VZhxgE3AJ8EdfRBBthzWpa79B8mVrwepjPltLoTCNwYkUFVEpTTA2xP7QzHlZQSg4nz7fLFZ1vsvB_NbK0NHQGwJRAbIz8wAFBj8cbEJWSPYX_byG3oBeRwwep26MH7KzfiwC_-AuK2QLgz0i2bmUB_7On23jRBzkH9prYZZQ=w1274-h629-no">
+<meta property="og:image" content="https://lh3.googleusercontent.com/HkHbkesYC2xjrcP_ZBC4x7DKQZ2vKNQmAEdyzWj_t6UwD59PqTW5RfSsW4mwoa6JfBG3zRBesb6XJ6ezVyF-SLEv87jNJc1_jZ4QvgZ5bEG5eTX1rMba0pVvydy8dafG4VzoM-pxAIpXYePzU37Y7JV47yako4sqW1hUb_n14cddcoCya-NuTpkqvNj84VU9CvZ0DloOhF68nFic9oMViPbcISruarLy4Fm3MkkZppgrzj6rPvX9wX2meY0NjCjdFC734nYshL9OGeGU4_0k00wB0xmnql0o5T2wqZAN2xpYHjc_MKcS6ccjbDJabfnpRDCDDXqvl_7tIj3COhUdd5ge5-vu_M1rOzyzg50UjPFImDMpUme8rjIhDcizIPVo310DTRpChgC91AkMBb8PpSZkjqd8jFtlDMwEehhW3t7U-Ho_400zoVTa96jERh8XYk85_wW6OJAkuCrDZ0mGMge94DHuafYZ7OkPzRTvX72BAf6GvYO9beK7e3wUX_Am8FNFBvm2YxtZ2Y7MpX-n3dPYb9orR341MNHAO43bo_ktcFX8NmcLESvwZPdqxS1_EODt-J2Fw-_2pD_kexHuogmPh9uqYZoa5JwrWtX7ENLim6nEFWrjGJmzn7NcX1huDfqcGPP-C-UOOReiodjkHaEO-VPfPmmpFEsI4WsiB61Nug=w528-h166-no">
+<meta property="og:image" content="https://lh3.googleusercontent.com/tT0KMI_C2pFDShdc--lzNfBMSELx64a-SYrv2pmNYUrJ7xhffKzhPUX8KiQjnSOvxp55afV-kGRCyHCuh7rt3RLNegzIWGHxXzHC8KH23REY0qScddcHB8xUAYdkKMkxgSJsWd1E8BxGRe4rx0X8jZxP3_I2s85sVVyObNWTYB2nBBHiMujYAc2MPjch-rhwJQv4OBpaP2dI50Nd1_c_TgUs34upYnvJAtbNcsg8z4n6QLgEETT2ggX7zEPtkLdG0dllo0wiUyFOPWQ_o7glM9_47CzjJcnN6Z4ZFXh0oeQnqB7OWys6izvEcn3aFygcpnlsksXr7v7ZEMsKVwamclgRvhjR2PfB0Jz4LrOc8EEGqZXpDEHLwSTCIGqirVwHqIndvkJfQWJXH410PsRCHR96CDk-u8UT_odK3kZ_uk4wISUR9MjElucm0J6FNHQARIS-fLBoxXnlbbpnDJkVIfZf3F5GkiSp1OKNkirfOZ_KUx5Lc4OqaHZjAzO__cK-SX7IiiRd7_A4FbzymSSeA2-YcO-ZI9Mo83gKqMf-K5Pb06Eao9Q392hSEYfQdDBBAUqcuCcyeNMmoMArvdCEd98nHop8jnPjPgPv7I3zqBciaE0anVPTzNxiul9Wa4WtdlFzXhH6YjTaCDOoSprci6BlgHRDl0QOBLZoJIs1TZM6vw=w1086-h691-no">
+<meta property="article:published_time" content="2017-07-30T20:51:04.000Z">
+<meta property="article:modified_time" content="2017-07-30T21:20:19.000Z">
+<meta property="article:author" content="Danny Zhang">
+<meta property="article:tag" content="tech">
+<meta property="article:tag" content="学习笔记">
+<meta property="article:tag" content="JavaScript">
+<meta property="article:tag" content="Vue.js">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://lh3.googleusercontent.com/mWCNpDtIKwQXIVEYdTwSEF_jnkvAgpQClm4_SX_FnmTD_Q1bq7ERYggNHLdehabW3DH_7eqb8l2dspTwSOtdwsJyBmxuHFJ7jvvUUwg0ChCZuSs33yV0ZYpEbzDK805pR3k3nCVPhhEth2QQ24PPE85FhNBWzPnouhbz_L9VesO20dfuf175OoWo2eg8eo_ZA3AHBfGh2DYiYI9S53K_0SeGMnuTpfUQvD_dXxeqyAK9lsDmKjsG7sKsvbelXUBWjwfFWtstqDt4_I3NrHhDLZIcqFrP86EDDC5SIiVeLTrJ2NIoMZQJHXAAgX6pO08-0wvAwKnNYuAAUZdrBgCFol0AvGh_rtW7JhTmGNHfoXQo1F5dAjjKqkGOj0DXTPFVnsl6Ou625knUBaUU2_WVoSCElCgwLGqi1DCO8nUJ9DCIBYmSd5T4tC_QSj8yw17SaZ04iP-d1REx3Dkvw3XtFNFQv_qrMYDLWWbhzecOWs4rnbJ4MTL6DWYOrE2jIloM37Dt-VZhxgE3AJ8EdfRBBthzWpa79B8mVrwepjPltLoTCNwYkUFVEpTTA2xP7QzHlZQSg4nz7fLFZ1vsvB_NbK0NHQGwJRAbIz8wAFBj8cbEJWSPYX_byG3oBeRwwep26MH7KzfiwC_-AuK2QLgz0i2bmUB_7On23jRBzkH9prYZZQ=w1274-h629-no">
+
+<link rel="canonical" href="http://dannyzhang.run/2017/07/30/build-web-with-vue/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true
+  };
+</script>
+
+  <title>Build Web App with Vue.js | D.Z. Notes (Beta)</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">D.Z. Notes (Beta)</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">Be insensitive, and keep a lifelong growth mindset.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://dannyzhang.run/2017/07/30/build-web-with-vue/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Danny Zhang">
+      <meta itemprop="description" content="Blogger/Software Engineer/Fitness Enthusiast">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="D.Z. Notes (Beta)">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Build Web App with Vue.js
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2017-07-30 13:51:04 / Modified: 14:20:19" itemprop="dateCreated datePublished" datetime="2017-07-30T13:51:04-07:00">2017-07-30</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="1-Installing-Vue-js"><a href="#1-Installing-Vue-js" class="headerlink" title="1. Installing Vue.js"></a>1. Installing Vue.js</h2><p>3 ways to install Vue.js</p>
+<ul>
+<li>CDN(Content Delivery Network): <script src="https://unpkg.com/vue"></script></li>
+<li>NPM(Node Package Manager):<ul>
+<li>npm install vue</li>
+<li>sudo npm install –global vue-cli</li>
+</ul>
+</li>
+<li>Visit nodejs.org and download an installer</li>
+</ul>
+<p>Start a New Project</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vue init webpack compare-vue</span><br><span class="line">//webpack is the template name, and compare-vue is the project name.</span><br></pre></td></tr></table></figure>
+
+<p>Project Configuration<br><img src="https://lh3.googleusercontent.com/mWCNpDtIKwQXIVEYdTwSEF_jnkvAgpQClm4_SX_FnmTD_Q1bq7ERYggNHLdehabW3DH_7eqb8l2dspTwSOtdwsJyBmxuHFJ7jvvUUwg0ChCZuSs33yV0ZYpEbzDK805pR3k3nCVPhhEth2QQ24PPE85FhNBWzPnouhbz_L9VesO20dfuf175OoWo2eg8eo_ZA3AHBfGh2DYiYI9S53K_0SeGMnuTpfUQvD_dXxeqyAK9lsDmKjsG7sKsvbelXUBWjwfFWtstqDt4_I3NrHhDLZIcqFrP86EDDC5SIiVeLTrJ2NIoMZQJHXAAgX6pO08-0wvAwKnNYuAAUZdrBgCFol0AvGh_rtW7JhTmGNHfoXQo1F5dAjjKqkGOj0DXTPFVnsl6Ou625knUBaUU2_WVoSCElCgwLGqi1DCO8nUJ9DCIBYmSd5T4tC_QSj8yw17SaZ04iP-d1REx3Dkvw3XtFNFQv_qrMYDLWWbhzecOWs4rnbJ4MTL6DWYOrE2jIloM37Dt-VZhxgE3AJ8EdfRBBthzWpa79B8mVrwepjPltLoTCNwYkUFVEpTTA2xP7QzHlZQSg4nz7fLFZ1vsvB_NbK0NHQGwJRAbIz8wAFBj8cbEJWSPYX_byG3oBeRwwep26MH7KzfiwC_-AuK2QLgz0i2bmUB_7On23jRBzkH9prYZZQ=w1274-h629-no" alt="Project Configuration"></p>
+<p>CD into the project folder and run npm install to generate packages and jsons.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd compare-vue</span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
+
+<p>Run a project</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run dev</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-Vue-Components"><a href="#2-Vue-Components" class="headerlink" title="2. Vue Components"></a>2. Vue Components</h2><p><strong>index.html</strong><br>Start point of the project, everything of the app will be inside the div with id “app”</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>compare-vue<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- built files will be auto injected --&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>src/main.js</strong><br>Imports and new Vue project start.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// The Vue build version to load with the `import` command</span></span><br><span class="line"><span class="comment">// (runtime-only or standalone) has been set in webpack.base.conf with an alias.</span></span><br><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line"><span class="keyword">import</span> App <span class="keyword">from</span> <span class="string">'./App'</span></span><br><span class="line"><span class="keyword">import</span> router <span class="keyword">from</span> <span class="string">'./router'</span></span><br><span class="line"></span><br><span class="line">Vue.config.productionTip = <span class="literal">false</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* eslint-disable no-new */</span></span><br><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app'</span>,</span><br><span class="line">  router,</span><br><span class="line">  template: <span class="string">'&lt;App/&gt;'</span>,</span><br><span class="line">  components: &#123; App &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p><strong>App.vue</strong><br>The entry point of the app, including html, script and style</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"./assets/logo.png"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">router-view</span>&gt;</span><span class="tag">&lt;/<span class="name">router-view</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line"><span class="actionscript">  name: <span class="string">'app'</span></span></span><br><span class="line">&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css"><span class="selector-id">#app</span> &#123;</span></span><br><span class="line">  font-family: 'Avenir', Helvetica, Arial, sans-serif;</span><br><span class="line">  -webkit-font-smoothing: antialiased;</span><br><span class="line">  -moz-osx-font-smoothing: grayscale;</span><br><span class="line">  text-align: center;</span><br><span class="line"><span class="css">  <span class="selector-tag">color</span>: <span class="selector-id">#2c3e50</span>;</span></span><br><span class="line">  margin-top: 60px;</span><br><span class="line">&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>src/router/index.js</strong><br>Define the paths of the project.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line"><span class="keyword">import</span> Router <span class="keyword">from</span> <span class="string">'vue-router'</span></span><br><span class="line"><span class="keyword">import</span> Home <span class="keyword">from</span> <span class="string">'@/components/Home'</span></span><br><span class="line"><span class="keyword">import</span> Faq <span class="keyword">from</span> <span class="string">'@/components/Faq'</span></span><br><span class="line"></span><br><span class="line">Vue.use(Router)</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">new</span> Router(&#123;</span><br><span class="line">  routes: [</span><br><span class="line">    &#123;</span><br><span class="line">      path: <span class="string">'/'</span>,</span><br><span class="line">      name: <span class="string">'Home'</span>,</span><br><span class="line">      component: Home</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      path: <span class="string">'/faq'</span>,</span><br><span class="line">      name: <span class="string">'Faq'</span>,</span><br><span class="line">      component: Faq</span><br><span class="line">    &#125;,</span><br><span class="line">  ]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="3-Integrating-a-CSS-Framework"><a href="#3-Integrating-a-CSS-Framework" class="headerlink" title="3. Integrating a CSS Framework"></a>3. Integrating a CSS Framework</h2><p>Install bulma in the project folder (compare-vue)</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install bulma --save</span><br></pre></td></tr></table></figure>
+
+<p>Then import bulma in App.vue. To support sass, we have to add ‘lang=”sass”‘ in style tag, and also delete these “;” and “{}” under style tag.</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">lang</span>=<span class="string">"sass"</span>&gt;</span></span><br><span class="line"><span class="css"><span class="keyword">@import</span> <span class="string">'../node_modules/bulma/bulma.sass'</span></span></span><br><span class="line"></span><br><span class="line"><span class="css"><span class="selector-id">#app</span></span></span><br><span class="line">  font-family: 'Avenir', Helvetica, Arial, sans-serif</span><br><span class="line">  -webkit-font-smoothing: antialiased</span><br><span class="line">  -moz-osx-font-smoothing: grayscale</span><br><span class="line">  text-align: center</span><br><span class="line"><span class="css">  <span class="selector-tag">color</span>: <span class="selector-id">#2c3e50</span></span></span><br><span class="line">  margin-top: 60px</span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>Install additional packages to fully support sass.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install node-sass sass-loader style-loader --save-dev</span><br></pre></td></tr></table></figure>
+
+<p>Create mq.sass file under src folder with the following contents.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">$primary: #1EC9AC !default</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; Responsiveness</span><br><span class="line">&#x2F;&#x2F; 960, 1152, and 1344 have been chosen because they are divisible by both 12 and 16</span><br><span class="line">$tablet: 769px !default</span><br><span class="line">&#x2F;&#x2F; 960px container + 40px</span><br><span class="line">$desktop: 1000px !default</span><br><span class="line">&#x2F;&#x2F; 1152px container + 40</span><br><span class="line">$widescreen: 1192px !default</span><br><span class="line">&#x2F;&#x2F; 1344px container + 40</span><br><span class="line">$fullhd: 1384px !default</span><br><span class="line"></span><br><span class="line">&#x3D;mobile</span><br><span class="line">  @media screen and (max-width: $tablet - 1px)</span><br><span class="line">    @content</span><br><span class="line"></span><br><span class="line">&#x3D;tablet</span><br><span class="line">  @media screen and (min-width: $tablet), print</span><br><span class="line">    @content</span><br><span class="line"></span><br><span class="line">&#x3D;tablet-only</span><br><span class="line">  @media screen and (min-width: $tablet) and (max-width: $desktop - 1px)</span><br><span class="line">    @content</span><br><span class="line"></span><br><span class="line">&#x3D;desktop</span><br><span class="line">  @media screen and (min-width: $desktop)</span><br><span class="line">    @content</span><br><span class="line"></span><br><span class="line">&#x3D;desktop-only</span><br><span class="line">  @media screen and (min-width: $desktop) and (max-width: $widescreen - 1px)</span><br><span class="line">    @content</span><br></pre></td></tr></table></figure>
+
+<p>Then import ‘mq’ in App.vue.</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">lang</span>=<span class="string">"sass"</span>&gt;</span></span><br><span class="line"><span class="css"><span class="keyword">@import</span> <span class="string">'../node_modules/bulma/bulma.sass'</span></span></span><br><span class="line"><span class="css"><span class="keyword">@import</span> <span class="string">'mq'</span></span></span><br><span class="line"></span><br><span class="line"><span class="css"><span class="selector-id">#app</span></span></span><br><span class="line">  font-family: 'Avenir', Helvetica, Arial, sans-serif</span><br><span class="line">  -webkit-font-smoothing: antialiased</span><br><span class="line">  -moz-osx-font-smoothing: grayscale</span><br><span class="line">  text-align: center</span><br><span class="line"><span class="css">  <span class="selector-tag">color</span>: <span class="selector-id">#2c3e50</span></span></span><br><span class="line">  margin-top: 60px</span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>Import mq in Home.vue and Faq.vue as well.</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">lang</span>=<span class="string">"sass"</span> <span class="attr">scoped</span>&gt;</span></span><br><span class="line"><span class="css"><span class="keyword">@import</span> <span class="string">'../mq'</span></span></span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="4-Vue-js-Navigation"><a href="#4-Vue-js-Navigation" class="headerlink" title="4. Vue.js Navigation"></a>4. Vue.js Navigation</h2><p>Go to <a href="http://bulma.io/documentation/components/navbar/" target="_blank" rel="noopener">bulma-Doc-Navbar</a> to see the nav bar template.</p>
+<p>Include <code>Font Awesome</code> in the project index.html.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>compare-vue<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p>Then edit App.vue template tag section as follows:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"nav has-shadow"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"container"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"nav-left"</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">"nav-item"</span>&gt;</span>MyCompany<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"nav-toggle"</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"nav-right nav-menu"</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">router-link</span> <span class="attr">to</span>=<span class="string">"/"</span> <span class="attr">class</span>=<span class="string">"nav-item r-item"</span>&gt;</span>Home<span class="tag">&lt;/<span class="name">router-link</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">router-link</span> <span class="attr">to</span>=<span class="string">"faq"</span> <span class="attr">class</span>=<span class="string">"nav-item r-item"</span>&gt;</span>Features<span class="tag">&lt;/<span class="name">router-link</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">router-link</span> <span class="attr">to</span>=<span class="string">"faq"</span> <span class="attr">class</span>=<span class="string">"nav-item r-item"</span>&gt;</span>About<span class="tag">&lt;/<span class="name">router-link</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">router-link</span> <span class="attr">to</span>=<span class="string">"faq"</span> <span class="attr">class</span>=<span class="string">"nav-item r-item"</span>&gt;</span>FAQ<span class="tag">&lt;/<span class="name">router-link</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"nav-item"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">"control"</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">"button is-primary is-outlined"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"icon"</span>&gt;</span></span><br><span class="line">                  <span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">"fa fa-download"</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">span</span>&gt;</span>Join Now<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">router-view</span>&gt;</span><span class="tag">&lt;/<span class="name">router-view</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>Edit the App.vue style tag section as follows:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">lang</span>=<span class="string">"sass"</span>&gt;</span></span><br><span class="line"><span class="css"><span class="keyword">@import</span> <span class="string">'../node_modules/bulma/bulma.sass'</span></span></span><br><span class="line"><span class="css"><span class="keyword">@import</span> <span class="string">'mq'</span></span></span><br><span class="line"></span><br><span class="line"><span class="css"><span class="selector-class">.nav</span></span></span><br><span class="line"><span class="css">  <span class="selector-tag">background-color</span>: <span class="selector-id">#383838</span></span></span><br><span class="line"><span class="css">  <span class="selector-tag">a</span><span class="selector-pseudo">:hover</span></span></span><br><span class="line">    color: gray</span><br><span class="line"></span><br><span class="line"><span class="css"><span class="selector-class">.nav-left</span> <span class="selector-tag">a</span></span></span><br><span class="line"><span class="css">  <span class="selector-tag">color</span>: <span class="selector-id">#fff</span></span></span><br><span class="line">  font-weight: bold</span><br><span class="line"></span><br><span class="line"><span class="css"><span class="selector-tag">a</span><span class="selector-class">.r-item</span></span></span><br><span class="line"><span class="css">  <span class="selector-tag">color</span>:<span class="selector-id">#C1C1C1</span></span></span><br><span class="line"><span class="css">  <span class="selector-tag">padding</span>: 0<span class="selector-class">.5rem</span> 1<span class="selector-class">.75rem</span></span></span><br><span class="line">  +mobile</span><br><span class="line">    color: gray</span><br><span class="line"><span class="css">    &amp;<span class="selector-pseudo">:hover</span></span></span><br><span class="line"><span class="css">      <span class="selector-tag">background-color</span>: <span class="selector-id">#F1F1F1</span></span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="5-Making-the-Navigation-Function"><a href="#5-Making-the-Navigation-Function" class="headerlink" title="5. Making the Navigation Function"></a>5. Making the Navigation Function</h2><p>Add <code>v-on:click</code> attribute to nav-toggle and <code>v-bind</code> to both nav-toggle and nav-menu as follows:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"nav-toggle"</span> <span class="attr">v-on:click</span>=<span class="string">"toggleNav"</span> <span class="attr">v-bind:class</span>=<span class="string">"&#123; 'is-active': isActive &#125;"</span>&gt;</span></span><br><span class="line">...</span><br><span class="line"><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">...</span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"nav-right nav-menu"</span> <span class="attr">v-bind:class</span>=<span class="string">"&#123; 'is-active': isActive &#125;"</span>&gt;</span></span><br><span class="line">...</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+
+<p>Edit the App.vue script tag content as follows:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">  <span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line"><span class="actionscript">    name: <span class="string">'app'</span>,</span></span><br><span class="line"><span class="actionscript">    data: <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>&#123;</span></span><br><span class="line"><span class="actionscript">      <span class="keyword">return</span> &#123;</span></span><br><span class="line"><span class="actionscript">        isActive: <span class="literal">false</span></span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    methods: &#123;</span><br><span class="line"><span class="actionscript">      toggleNav: <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>&#123;</span></span><br><span class="line"><span class="actionscript">        <span class="keyword">this</span>.isActive = !<span class="keyword">this</span>.isActive;</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>Add sass item in App.vue style section:</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="selector-class">.nav-toggle</span> <span class="selector-tag">span</span></span><br><span class="line">	<span class="selector-tag">background-color</span>: <span class="selector-id">#F1F1F1</span></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<h2 id="6-Footer-Integration"><a href="#6-Footer-Integration" class="headerlink" title="6. Footer Integration"></a>6. Footer Integration</h2><p>Add footer under router-view in App.vue template</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="tag">&lt;<span class="name">router-view</span>&gt;</span><span class="tag">&lt;/<span class="name">router-view</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">footer</span> <span class="attr">class</span>=<span class="string">"footer is-primary"</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"container"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"columns"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"column"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>And this right here is a spiffy footer, where you can put stuff.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"column has-text-right"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">"icon"</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span><span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">"fa fa-facebook"</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">"icon"</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span><span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">"fa fa-twitter"</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">footer</span>&gt;</span></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p>Add styling for footer in App.vue style content</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="selector-tag">footer</span></span><br><span class="line">  background-color: $primary !important</span><br><span class="line">  <span class="selector-tag">color</span>: <span class="selector-id">#fff</span></span><br><span class="line"></span><br><span class="line">  <span class="selector-class">.icon</span></span><br><span class="line">    <span class="selector-tag">color</span>: <span class="selector-id">#fff</span></span><br><span class="line">    <span class="selector-tag">margin-left</span>: 20<span class="selector-tag">px</span></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="7-Hero-Section"><a href="#7-Hero-Section" class="headerlink" title="7. Hero Section"></a>7. Hero Section</h2><p>Go to <a href="http://bulma.io/documentation/components/navbar/" target="_blank" rel="noopener">bulma-Doc-Hero</a> to see the hero template.</p>
+<p>Edit the template tag section in Home.vue as follows:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"home"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">section</span> <span class="attr">class</span>=<span class="string">"hero"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"hero-body"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"container"</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">h1</span> <span class="attr">class</span>=<span class="string">"title"</span>&gt;</span>&#123;&#123;heading&#125;&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"is-two-thirds column is-paddingless"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">h2</span> <span class="attr">class</span>=<span class="string">"subtitle is-4"</span>&gt;</span>&#123;&#123;subheading&#125;&#125;<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">"button is-large is-primary"</span> <span class="attr">id</span>=<span class="string">"learn"</span>&gt;</span>Learn more<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">section</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>Edit the script tag section to return the heading and subheading attributes as follows:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line"><span class="actionscript">  name: <span class="string">'home'</span>,</span></span><br><span class="line">  data()&#123;</span><br><span class="line"><span class="actionscript">    <span class="keyword">return</span> &#123;</span></span><br><span class="line"><span class="actionscript">      heading: <span class="string">'Soaring to new heights'</span>,</span></span><br><span class="line"><span class="actionscript">      subheading: <span class="string">'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'</span></span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>To add the background, firstly we need to add the clouds.jpg to <code>src/assets</code> folder.</p>
+<p>Then add the sass stylings in Home.vue style tag section as follows:</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- Add "scoped" attribute to limit CSS to this component only --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">lang</span>=<span class="string">"sass"</span> <span class="attr">scoped</span>&gt;</span></span><br><span class="line"><span class="css"><span class="keyword">@import</span> <span class="string">'../mq'</span></span></span><br><span class="line"></span><br><span class="line"><span class="css"><span class="selector-class">.hero</span></span></span><br><span class="line">  background: url('../assets/clouds.jpg')</span><br><span class="line">  background-size: cover</span><br><span class="line"></span><br><span class="line"><span class="css">  <span class="selector-class">.title</span></span></span><br><span class="line">    +mobile</span><br><span class="line">      font-weight: bold</span><br><span class="line">    +tablet</span><br><span class="line"><span class="css">      <span class="selector-tag">font-size</span>: 2<span class="selector-class">.5rem</span></span></span><br><span class="line">    +desktop</span><br><span class="line">      font-size: 4rem</span><br><span class="line">      margin-top: 2rem</span><br><span class="line"></span><br><span class="line">h2</span><br><span class="line"><span class="css">  <span class="selector-tag">margin</span>: 1<span class="selector-class">.5rem</span> 0 2<span class="selector-tag">rem</span> 0 !<span class="selector-tag">important</span></span></span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+<p>Now the home page looks much better!<br><img src="https://lh3.googleusercontent.com/HkHbkesYC2xjrcP_ZBC4x7DKQZ2vKNQmAEdyzWj_t6UwD59PqTW5RfSsW4mwoa6JfBG3zRBesb6XJ6ezVyF-SLEv87jNJc1_jZ4QvgZ5bEG5eTX1rMba0pVvydy8dafG4VzoM-pxAIpXYePzU37Y7JV47yako4sqW1hUb_n14cddcoCya-NuTpkqvNj84VU9CvZ0DloOhF68nFic9oMViPbcISruarLy4Fm3MkkZppgrzj6rPvX9wX2meY0NjCjdFC734nYshL9OGeGU4_0k00wB0xmnql0o5T2wqZAN2xpYHjc_MKcS6ccjbDJabfnpRDCDDXqvl_7tIj3COhUdd5ge5-vu_M1rOzyzg50UjPFImDMpUme8rjIhDcizIPVo310DTRpChgC91AkMBb8PpSZkjqd8jFtlDMwEehhW3t7U-Ho_400zoVTa96jERh8XYk85_wW6OJAkuCrDZ0mGMge94DHuafYZ7OkPzRTvX72BAf6GvYO9beK7e3wUX_Am8FNFBvm2YxtZ2Y7MpX-n3dPYb9orR341MNHAO43bo_ktcFX8NmcLESvwZPdqxS1_EODt-J2Fw-_2pD_kexHuogmPh9uqYZoa5JwrWtX7ENLim6nEFWrjGJmzn7NcX1huDfqcGPP-C-UOOReiodjkHaEO-VPfPmmpFEsI4WsiB61Nug=w528-h166-no" alt="Home Page"></p>
+<h2 id="8-Supporting-Content"><a href="#8-Supporting-Content" class="headerlink" title="8. Supporting Content"></a>8. Supporting Content</h2><p>Add a new section below the “hero” section in Home.vue template tag section.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">...</span><br><span class="line">    <span class="tag">&lt;<span class="name">section</span> <span class="attr">class</span>=<span class="string">"section"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"container"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"columns pd is-desktop"</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"column is-1 has-text-centered"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">"fa fa-cog is-primary"</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"column is-one-third-desktop"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">"title"</span>&gt;</span><span class="tag">&lt;<span class="name">strong</span>&gt;</span>We provide superior logistics so that your business can succeed in a crazy world.<span class="tag">&lt;/<span class="name">strong</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"column"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">p</span>&gt;</span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"columns pd"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"column"</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"card"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"card-content"</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">"title"</span>&gt;</span>I think it's an absolutely excellent tool for our business. I can't survive without this thing.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">"subtitle"</span>&gt;</span>- Gary Simon<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"column"</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"card"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"card-content"</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">"title"</span>&gt;</span>I think it's an absolutely excellent tool for our business. I can't survive without this thing.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">"subtitle"</span>&gt;</span>- Gary Simon<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"column"</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"card"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"card-content"</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">"title"</span>&gt;</span>I think it's an absolutely excellent tool for our business. I can't survive without this thing.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">"subtitle"</span>&gt;</span>- Gary Simon<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">section</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>Then add additional css styling in Home.vue style tag section.</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.fa-cog</span></span><br><span class="line">  <span class="selector-tag">font-size</span>: 40<span class="selector-tag">px</span></span><br><span class="line"></span><br><span class="line"><span class="selector-id">#learn</span></span><br><span class="line">  +<span class="selector-tag">desktop</span></span><br><span class="line">    <span class="selector-tag">margin-bottom</span>: 2<span class="selector-tag">rem</span></span><br><span class="line"></span><br><span class="line"><span class="selector-class">.pd</span></span><br><span class="line">  +<span class="selector-tag">tablet</span></span><br><span class="line">    <span class="selector-tag">padding</span>: 2<span class="selector-tag">em</span> 0</span><br></pre></td></tr></table></figure>
+
+<h2 id="9-FAQ-Page"><a href="#9-FAQ-Page" class="headerlink" title="9. FAQ Page"></a>9. FAQ Page</h2><p>Install <a href="https://github.com/mzabriskie/axios" target="_blank" rel="noopener">axios</a> with the following command. (Axios is a promise based HTTP client for the browser and node.js)</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install axios --save</span><br></pre></td></tr></table></figure>
+
+<p>Edit the script tag section in FAQ.vue as follows:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">'axios'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  name: <span class="string">'faq'</span>,</span><br><span class="line">  data: <span class="function"><span class="params">()</span> =&gt;</span> (&#123;</span><br><span class="line">    faqs: [],</span><br><span class="line">    errors: []</span><br><span class="line">  &#125;),</span><br><span class="line"></span><br><span class="line">  created() &#123;</span><br><span class="line">      axios.get(<span class="string">'https://jsonplaceholder.typicode.com/posts'</span>)</span><br><span class="line">      .then(<span class="function"><span class="params">response</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">this</span>.faqs = response.data.slice(<span class="number">0</span>, <span class="number">10</span>);</span><br><span class="line">      &#125;)</span><br><span class="line">      .catch(<span class="function"><span class="params">e</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">this</span>.errors.push(e)</span><br><span class="line">      &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>Then edit the template tag section in FAQ.vue as follows:</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"faq"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"container"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">section</span> <span class="attr">class</span>=<span class="string">"section"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h1</span> <span class="attr">class</span>=<span class="string">"title"</span>&gt;</span>FAQ<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h2</span> <span class="attr">class</span>=<span class="string">"subtitle is-4"</span>&gt;</span>Lorum ipsum and all of that jazz.<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"columns"</span> <span class="attr">v-if</span>=<span class="string">"faqs &amp;&amp; faqs.length"</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"column is-one-third"</span> <span class="attr">v-for</span>=<span class="string">"faq of faqs"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"card"</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"card-content"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">"title"</span>&gt;</span>&#123;&#123; faq.title &#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">"answer"</span>&gt;</span>&#123;&#123; faq.body &#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">      <span class="tag">&lt;/<span class="name">section</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>Now the FAQ page will be look like this.<br><img src="https://lh3.googleusercontent.com/tT0KMI_C2pFDShdc--lzNfBMSELx64a-SYrv2pmNYUrJ7xhffKzhPUX8KiQjnSOvxp55afV-kGRCyHCuh7rt3RLNegzIWGHxXzHC8KH23REY0qScddcHB8xUAYdkKMkxgSJsWd1E8BxGRe4rx0X8jZxP3_I2s85sVVyObNWTYB2nBBHiMujYAc2MPjch-rhwJQv4OBpaP2dI50Nd1_c_TgUs34upYnvJAtbNcsg8z4n6QLgEETT2ggX7zEPtkLdG0dllo0wiUyFOPWQ_o7glM9_47CzjJcnN6Z4ZFXh0oeQnqB7OWys6izvEcn3aFygcpnlsksXr7v7ZEMsKVwamclgRvhjR2PfB0Jz4LrOc8EEGqZXpDEHLwSTCIGqirVwHqIndvkJfQWJXH410PsRCHR96CDk-u8UT_odK3kZ_uk4wISUR9MjElucm0J6FNHQARIS-fLBoxXnlbbpnDJkVIfZf3F5GkiSp1OKNkirfOZ_KUx5Lc4OqaHZjAzO__cK-SX7IiiRd7_A4FbzymSSeA2-YcO-ZI9Mo83gKqMf-K5Pb06Eao9Q392hSEYfQdDBBAUqcuCcyeNMmoMArvdCEd98nHop8jnPjPgPv7I3zqBciaE0anVPTzNxiul9Wa4WtdlFzXhH6YjTaCDOoSprci6BlgHRDl0QOBLZoJIs1TZM6vw=w1086-h691-no" alt="FAQ page"></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/tech/" rel="tag"># tech</a>
+              <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag"># 学习笔记</a>
+              <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+              <a href="/tags/Vue-js/" rel="tag"># Vue.js</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2017/07/22/Complete-JavaScript-Course-ES6-Code-Challenge/" rel="prev" title="ES6 Code Challenge and Solution">
+      <i class="fa fa-chevron-left"></i> ES6 Code Challenge and Solution
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2017/07/31/build-web-with-react/" rel="next" title="Build Web App with React">
+      Build Web App with React <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Installing-Vue-js"><span class="nav-number">1.</span> <span class="nav-text">1. Installing Vue.js</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Vue-Components"><span class="nav-number">2.</span> <span class="nav-text">2. Vue Components</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Integrating-a-CSS-Framework"><span class="nav-number">3.</span> <span class="nav-text">3. Integrating a CSS Framework</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Vue-js-Navigation"><span class="nav-number">4.</span> <span class="nav-text">4. Vue.js Navigation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-Making-the-Navigation-Function"><span class="nav-number">5.</span> <span class="nav-text">5. Making the Navigation Function</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-Footer-Integration"><span class="nav-number">6.</span> <span class="nav-text">6. Footer Integration</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-Hero-Section"><span class="nav-number">7.</span> <span class="nav-text">7. Hero Section</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-Supporting-Content"><span class="nav-number">8.</span> <span class="nav-text">8. Supporting Content</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-FAQ-Page"><span class="nav-number">9.</span> <span class="nav-text">9. FAQ Page</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Danny Zhang</p>
+  <div class="site-description" itemprop="description">Blogger/Software Engineer/Fitness Enthusiast</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">47</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">61</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Danny Zhang</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.7.2
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

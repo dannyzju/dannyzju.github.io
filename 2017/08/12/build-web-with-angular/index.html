@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"dannyzhang.run","root":"/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="1. Installing AngularInstall Angular 12npm install -g @angular&#x2F;cling  Create new Angular project 1ng new compare-angular --routing --style&#x3D;sass  Run the default project 12cd compare-angularng serve  2">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Build Web App with Angular">
+<meta property="og:url" content="http://dannyzhang.run/2017/08/12/build-web-with-angular/index.html">
+<meta property="og:site_name" content="D.Z. Notes (Beta)">
+<meta property="og:description" content="1. Installing AngularInstall Angular 12npm install -g @angular&#x2F;cling  Create new Angular project 1ng new compare-angular --routing --style&#x3D;sass  Run the default project 12cd compare-angularng serve  2">
+<meta property="og:image" content="https://lh3.googleusercontent.com/QZf1TU4wEeqAVNuUPhG6DNMiR3960AffF3leem5K-6z6ycRqW5d0tYY-fLEE9c_OVQPiXyPXh5CIWq4VPczFa_1lsN8j6KRTNT0PxzCqZYF0k4Aa8QDE00MFzd6sCK3giNNJ8J942aTaoazHLJfNJZNLKaCy-RcXeui8G_iKrGvvBh7hPaOnRUhqsfmAYQjEJwSm7FW_NMmg_MPMy17QG9NcI4jqRQT6YzTSsV3ttqpxXimypQKTlle8GztTbFKx3sQw3YF6WC3N281ZXM0PzS3gg7bXAQuTNml2ZP_rnqbxPpfBUzXGC9e2UEYtt1I5UVEYmGuxtKkHchB45WIJrjM0w7C6pOuOHbLqvIpqPu3yPVzj52rxOuPeorDqB2jEbLZAueeqep__Ns1yalaXvW0POQtYXf0aV6CM3bSKNmivuQsil6yOJeEgXSa1ISMXZIy9nmHXqV6aL6oyTtBkyt_fgg4hHRfoH7LMY35TnyCAi4s5C8MbKfriKmgPP0VYnePvSRd8jdThtDREhosBqVTwKxPMsyqFAJ_wdSQSX4BPq6BVmFdnWyvTYDtL82Fv-snb24Jo8hmm_vojp6fz81dEC4c5J3wFpGhQV8nfhUxsYce-76xgUiCY4Iq7j11fXM43cp2W3Z0Yu8OjSWOe8nzzBrFHhOwInYa8s3CKE-DRvw=w1448-h1552-no">
+<meta property="article:published_time" content="2017-08-12T22:39:22.000Z">
+<meta property="article:modified_time" content="2017-08-12T22:42:36.000Z">
+<meta property="article:author" content="Danny Zhang">
+<meta property="article:tag" content="tech">
+<meta property="article:tag" content="学习笔记">
+<meta property="article:tag" content="JavaScript">
+<meta property="article:tag" content="Angular">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://lh3.googleusercontent.com/QZf1TU4wEeqAVNuUPhG6DNMiR3960AffF3leem5K-6z6ycRqW5d0tYY-fLEE9c_OVQPiXyPXh5CIWq4VPczFa_1lsN8j6KRTNT0PxzCqZYF0k4Aa8QDE00MFzd6sCK3giNNJ8J942aTaoazHLJfNJZNLKaCy-RcXeui8G_iKrGvvBh7hPaOnRUhqsfmAYQjEJwSm7FW_NMmg_MPMy17QG9NcI4jqRQT6YzTSsV3ttqpxXimypQKTlle8GztTbFKx3sQw3YF6WC3N281ZXM0PzS3gg7bXAQuTNml2ZP_rnqbxPpfBUzXGC9e2UEYtt1I5UVEYmGuxtKkHchB45WIJrjM0w7C6pOuOHbLqvIpqPu3yPVzj52rxOuPeorDqB2jEbLZAueeqep__Ns1yalaXvW0POQtYXf0aV6CM3bSKNmivuQsil6yOJeEgXSa1ISMXZIy9nmHXqV6aL6oyTtBkyt_fgg4hHRfoH7LMY35TnyCAi4s5C8MbKfriKmgPP0VYnePvSRd8jdThtDREhosBqVTwKxPMsyqFAJ_wdSQSX4BPq6BVmFdnWyvTYDtL82Fv-snb24Jo8hmm_vojp6fz81dEC4c5J3wFpGhQV8nfhUxsYce-76xgUiCY4Iq7j11fXM43cp2W3Z0Yu8OjSWOe8nzzBrFHhOwInYa8s3CKE-DRvw=w1448-h1552-no">
+
+<link rel="canonical" href="http://dannyzhang.run/2017/08/12/build-web-with-angular/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true
+  };
+</script>
+
+  <title>Build Web App with Angular | D.Z. Notes (Beta)</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">D.Z. Notes (Beta)</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">Be insensitive, and keep a lifelong growth mindset.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://dannyzhang.run/2017/08/12/build-web-with-angular/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Danny Zhang">
+      <meta itemprop="description" content="Blogger/Software Engineer/Fitness Enthusiast">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="D.Z. Notes (Beta)">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Build Web App with Angular
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2017-08-12 15:39:22 / Modified: 15:42:36" itemprop="dateCreated datePublished" datetime="2017-08-12T15:39:22-07:00">2017-08-12</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="1-Installing-Angular"><a href="#1-Installing-Angular" class="headerlink" title="1. Installing Angular"></a>1. Installing Angular</h2><p>Install Angular</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install -g @angular/cli</span><br><span class="line">ng</span><br></pre></td></tr></table></figure>
+
+<p>Create new Angular project</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ng new compare-angular --routing --style=sass</span><br></pre></td></tr></table></figure>
+
+<p>Run the default project</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd compare-angular</span><br><span class="line">ng serve</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-Angular-Components"><a href="#2-Angular-Components" class="headerlink" title="2. Angular Components"></a>2. Angular Components</h2><p>Generate home and faq components</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ng generate component home</span><br><span class="line">ng generate component home</span><br></pre></td></tr></table></figure>
+
+<p>Or for short:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ng g c home</span><br><span class="line">ng g c home</span><br></pre></td></tr></table></figure>
+
+<p>Now the app components will be look like this.</p>
+<p><img src="https://lh3.googleusercontent.com/QZf1TU4wEeqAVNuUPhG6DNMiR3960AffF3leem5K-6z6ycRqW5d0tYY-fLEE9c_OVQPiXyPXh5CIWq4VPczFa_1lsN8j6KRTNT0PxzCqZYF0k4Aa8QDE00MFzd6sCK3giNNJ8J942aTaoazHLJfNJZNLKaCy-RcXeui8G_iKrGvvBh7hPaOnRUhqsfmAYQjEJwSm7FW_NMmg_MPMy17QG9NcI4jqRQT6YzTSsV3ttqpxXimypQKTlle8GztTbFKx3sQw3YF6WC3N281ZXM0PzS3gg7bXAQuTNml2ZP_rnqbxPpfBUzXGC9e2UEYtt1I5UVEYmGuxtKkHchB45WIJrjM0w7C6pOuOHbLqvIpqPu3yPVzj52rxOuPeorDqB2jEbLZAueeqep__Ns1yalaXvW0POQtYXf0aV6CM3bSKNmivuQsil6yOJeEgXSa1ISMXZIy9nmHXqV6aL6oyTtBkyt_fgg4hHRfoH7LMY35TnyCAi4s5C8MbKfriKmgPP0VYnePvSRd8jdThtDREhosBqVTwKxPMsyqFAJ_wdSQSX4BPq6BVmFdnWyvTYDtL82Fv-snb24Jo8hmm_vojp6fz81dEC4c5J3wFpGhQV8nfhUxsYce-76xgUiCY4Iq7j11fXM43cp2W3Z0Yu8OjSWOe8nzzBrFHhOwInYa8s3CKE-DRvw=w1448-h1552-no" alt="Components"></p>
+<h2 id="3-Routing-amp-CSS-Framework-Integration"><a href="#3-Routing-amp-CSS-Framework-Integration" class="headerlink" title="3. Routing &amp; CSS Framework Integration"></a>3. Routing &amp; CSS Framework Integration</h2><h3 id="3-1-Routing"><a href="#3-1-Routing" class="headerlink" title="3.1. Routing"></a>3.1. Routing</h3><p>Edit the app-routing.moduels.ts to add Home and Faq components</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">import &#123; NgModule &#125; from '@angular/core';</span><br><span class="line">import &#123; Routes, RouterModule &#125; from '@angular/router';</span><br><span class="line">import &#123; HomeComponent &#125; from './home/home.component';</span><br><span class="line">import &#123; FaqComponent&#125; from './faq/faq.component';</span><br><span class="line"></span><br><span class="line">const routes: Routes = [</span><br><span class="line">  &#123;</span><br><span class="line">    path: '',</span><br><span class="line">    children: HomeComponent</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    path: 'faq',</span><br><span class="line">    children: FaqComponent</span><br><span class="line">  &#125;</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line">@NgModule(&#123;</span><br><span class="line">  imports: [RouterModule.forRoot(routes)],</span><br><span class="line">  exports: [RouterModule]</span><br><span class="line">&#125;)</span><br><span class="line">export class AppRoutingModule &#123; &#125;</span><br></pre></td></tr></table></figure>
+
+<p>Then edit the app.component.html page as follows:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">HEADER</span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">router-outlet</span>&gt;</span><span class="tag">&lt;/<span class="name">router-outlet</span>&gt;</span></span><br><span class="line"></span><br><span class="line">FOOTER</span><br></pre></td></tr></table></figure>
+
+<p>Now,<br><a href="http://localhost:4200" target="_blank" rel="noopener">http://localhost:4200</a> -&gt; Home page<br><a href="http://localhost:4200/faq" target="_blank" rel="noopener">http://localhost:4200/faq</a> -&gt; Faq page</p>
+<h3 id="3-2-CSS-Framework-Integration"><a href="#3-2-CSS-Framework-Integration" class="headerlink" title="3.2. CSS Framework Integration"></a>3.2. CSS Framework Integration</h3><p>Install bumla</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install bulma --save</span><br></pre></td></tr></table></figure>
+
+<p>Add bulma reference in .angular.cli.json</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">      "styles": [</span><br><span class="line">        "../node_modules/bulma/bulma.sass"</span><br><span class="line">        "styles.sass"</span><br><span class="line">      ],</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p>Create src/mq.sass, copy and paste the same content from previous project.</p>
+<p>Then add font-awesome to index.html file.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"icon"</span> <span class="attr">type</span>=<span class="string">"image/x-icon"</span> <span class="attr">href</span>=<span class="string">"favicon.ico"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"</span>&gt;</span></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="4-Header-amp-Footer-Integration"><a href="#4-Header-amp-Footer-Integration" class="headerlink" title="4. Header &amp; Footer Integration"></a>4. Header &amp; Footer Integration</h2><h3 id="4-1-Header"><a href="#4-1-Header" class="headerlink" title="4.1. Header"></a>4.1. Header</h3><p>Copy the previous header html code, and replace the HEADER in <code>app.component.html</code>.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"nav has-shadow"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"container"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"nav-left"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">a</span> <span class="attr">routerLink</span>=<span class="string">"/"</span> <span class="attr">class</span>=<span class="string">"nav-item"</span>&gt;</span>MyCompany<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"nav-toggle"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"nav-right nav-menu"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">      <span class="tag">&lt;<span class="name">a</span> <span class="attr">routerLink</span>=<span class="string">"/"</span> <span class="attr">class</span>=<span class="string">"nav-item r-item"</span>&gt;</span>Home<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">"nav-item r-item"</span>&gt;</span>About<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">"nav-item r-item"</span>&gt;</span>Features<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">a</span> <span class="attr">routerLink</span>=<span class="string">"/faq"</span> <span class="attr">class</span>=<span class="string">"nav-item r-item"</span>&gt;</span>FAQ<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"nav-item"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">"control"</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">"button is-primary is-outlined"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"icon"</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">"fa fa-download"</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">span</span>&gt;</span>Join Now<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">router-outlet</span>&gt;</span><span class="tag">&lt;/<span class="name">router-outlet</span>&gt;</span></span><br><span class="line"></span><br><span class="line">FOOTER</span><br></pre></td></tr></table></figure>
+
+<p>Then import mq.sass in app.component.sass, and copy &amp; paste previous sass code from Vue project.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">@import &#39;..&#x2F;mq&#39;</span><br><span class="line"></span><br><span class="line">.nav</span><br><span class="line">  background-color: #383838</span><br><span class="line">  a:hover</span><br><span class="line">    color: gray</span><br><span class="line"></span><br><span class="line">.nav-left a</span><br><span class="line">  color: #fff</span><br><span class="line">  font-weight: bold</span><br><span class="line"></span><br><span class="line">a.r-item</span><br><span class="line">  color: #C1C1C1</span><br><span class="line">  padding: 0.5rem 1.75rem</span><br><span class="line">  +mobile</span><br><span class="line">    color: gray</span><br><span class="line">    &amp;:hover</span><br><span class="line">      background-color: #F1F1F1</span><br><span class="line"></span><br><span class="line">.nav-toggle span</span><br><span class="line">  background-color: #C1C1C1</span><br><span class="line"></span><br><span class="line">footer</span><br><span class="line">  background-color: $primary !important</span><br><span class="line">  color: #fff</span><br><span class="line"></span><br><span class="line">  .icon</span><br><span class="line">    color: #fff</span><br><span class="line">    margin-left: 20px</span><br></pre></td></tr></table></figure>
+
+<p>To make the menu button work, we need to make the following change in app.component.html</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"nav-toggle"</span> (<span class="attr">click</span>)=<span class="string">"toggleNav = !toggleNav;"</span> [<span class="attr">ngClass</span>]=<span class="string">"&#123;'is-active': toggleNav &#125;"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"nav-right nav-menu"</span> [<span class="attr">ngClass</span>]=<span class="string">"&#123;'is-active' : toggleNav &#125;"</span>&gt;</span></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p>Also add “toggleNav” attribute in app.component.ts</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">AppComponent</span> </span>&#123;</span><br><span class="line">  toggleNav: <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="4-2-Footer"><a href="#4-2-Footer" class="headerlink" title="4.2. Footer"></a>4.2. Footer</h3><p>Just copy and paste previous footer html code to app.component.html</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="tag">&lt;<span class="name">footer</span> <span class="attr">class</span>=<span class="string">"footer is-primary"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"container"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"columns"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"column"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>And this right here is a spiffy footer, where you can put stuff.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"column has-text-right"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">"icon"</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span><span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">"fa fa-facebook"</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">"icon"</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span><span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">"fa fa-twitter"</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">footer</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+<h2 id="5-Home-amp-FAQ-Page"><a href="#5-Home-amp-FAQ-Page" class="headerlink" title="5. Home &amp; FAQ Page"></a>5. Home &amp; FAQ Page</h2><h3 id="5-1-Home-Page"><a href="#5-1-Home-Page" class="headerlink" title="5.1. Home Page"></a>5.1. Home Page</h3><p>Copy and paste the home html code to home.component.html.</p>
+<p>Then copy and paste the previous sass code to home.component.sass as follows.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">@import &#39;..&#x2F;..&#x2F;mq&#39;</span><br><span class="line"></span><br><span class="line">.hero</span><br><span class="line">  background: url(&#39;&#x2F;assets&#x2F;clouds.jpg&#39;)</span><br><span class="line">  background-size: cover</span><br><span class="line">  animation: clouds 3s forwards</span><br><span class="line"></span><br><span class="line">  .title</span><br><span class="line">    +mobile</span><br><span class="line">      font-weight: bold</span><br><span class="line">    +tablet</span><br><span class="line">      font-size: 2.5rem</span><br><span class="line">    +desktop</span><br><span class="line">      font-size: 4rem</span><br><span class="line"></span><br><span class="line">h2</span><br><span class="line">  margin: 1.5rem 0 2rem 0 !important</span><br><span class="line"></span><br><span class="line">.fa-cog</span><br><span class="line">  font-size: 40px</span><br><span class="line"></span><br><span class="line">.pd</span><br><span class="line">  +tablet</span><br><span class="line">    padding: 3.5em 0</span><br><span class="line">  +desktop</span><br><span class="line">    padding: 5em 0</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-2-Faq-Page"><a href="#5-2-Faq-Page" class="headerlink" title="5.2. Faq Page"></a>5.2. Faq Page</h3><p>Firstly, edit faq.component.ts as follows</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> &#123; Component, OnInit &#125; <span class="keyword">from</span> <span class="string">'@angular/core'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Http &#125; <span class="keyword">from</span> <span class="string">'@angular/http'</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">'rxjs/add/operator/map'</span>;</span><br><span class="line"></span><br><span class="line">@Component(&#123;</span><br><span class="line">  selector: <span class="string">'app-faq'</span>,</span><br><span class="line">  templateUrl: <span class="string">'./faq.component.html'</span>,</span><br><span class="line">  styleUrls: [<span class="string">'./faq.component.sass'</span>]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">FaqComponent</span> <span class="title">implements</span> <span class="title">OnInit</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  faqs: <span class="built_in">Array</span>&lt;any&gt;;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">constructor</span>(private http:Http) &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">this</span>.http.get(<span class="string">'https://jsonplaceholder.typicode.com/posts'</span>)</span><br><span class="line">    .map(<span class="function"><span class="params">response</span> =&gt;</span> response.json())</span><br><span class="line">    .subscribe(<span class="function"><span class="params">res</span> =&gt;</span> <span class="keyword">this</span>.faqs = res);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  ngOnInit() &#123;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>The edit faq.component.html to use the first 10 items from faqs as follows</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"container"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">section</span> <span class="attr">class</span>=<span class="string">"section"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span> <span class="attr">class</span>=<span class="string">"title"</span>&gt;</span>FAQ<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h2</span> <span class="attr">class</span>=<span class="string">"subtitle is-4"</span>&gt;</span>Lorum ipsum and all of that jazz.<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"columns"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"column is-one-third"</span> *<span class="attr">ngFor</span>=<span class="string">"let faq of (faqs ? faqs.slice(0, 10): [])"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"card"</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"card-content"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">"title"</span>&gt;</span>&#123;&#123; faq.title &#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">"answer"</span>&gt;</span>&#123;&#123; faq.body &#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;/<span class="name">section</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>Besides, we should import HttmModule in app.module.ts like this.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> &#123; BrowserModule &#125; <span class="keyword">from</span> <span class="string">'@angular/platform-browser'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; NgModule &#125; <span class="keyword">from</span> <span class="string">'@angular/core'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; HttpModule &#125; <span class="keyword">from</span> <span class="string">'@angular/http'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> &#123; AppRoutingModule &#125; <span class="keyword">from</span> <span class="string">'./app-routing.module'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; AppComponent &#125; <span class="keyword">from</span> <span class="string">'./app.component'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; HomeComponent &#125; <span class="keyword">from</span> <span class="string">'./home/home.component'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; FaqComponent &#125; <span class="keyword">from</span> <span class="string">'./faq/faq.component'</span>;</span><br><span class="line"></span><br><span class="line">@NgModule(&#123;</span><br><span class="line">  declarations: [</span><br><span class="line">    AppComponent,</span><br><span class="line">    HomeComponent,</span><br><span class="line">    FaqComponent</span><br><span class="line">  ],</span><br><span class="line">  imports: [</span><br><span class="line">    BrowserModule,</span><br><span class="line">    AppRoutingModule,</span><br><span class="line">    HttpModule</span><br><span class="line">  ],</span><br><span class="line">  providers: [],</span><br><span class="line">  bootstrap: [AppComponent]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">AppModule</span> </span>&#123; &#125;</span><br></pre></td></tr></table></figure>
+
+<p>Then add the following code from previous project to faq.component.sass</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.pd</span></span><br><span class="line">  <span class="selector-tag">padding</span>: 2<span class="selector-class">.5em</span> 0 1<span class="selector-class">.5em</span> 0</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.answer</span></span><br><span class="line">  <span class="selector-tag">margin-top</span>: 10<span class="selector-tag">px</span> !<span class="selector-tag">important</span></span><br><span class="line">  <span class="selector-tag">color</span>: <span class="selector-tag">gray</span></span><br><span class="line"></span><br><span class="line"><span class="selector-class">.columns</span></span><br><span class="line">  <span class="selector-tag">flex-wrap</span>: <span class="selector-tag">wrap</span></span><br></pre></td></tr></table></figure>
+
+<p>Everything is good now!</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/tech/" rel="tag"># tech</a>
+              <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag"># 学习笔记</a>
+              <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+              <a href="/tags/Angular/" rel="tag"># Angular</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2017/08/04/2017-weekly-8-basic-principles/" rel="prev" title="生活基本法则">
+      <i class="fa fa-chevron-left"></i> 生活基本法则
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2017/10/28/2017-weekly-9-new-journey/" rel="next" title="新的旅程">
+      新的旅程 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Installing-Angular"><span class="nav-number">1.</span> <span class="nav-text">1. Installing Angular</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Angular-Components"><span class="nav-number">2.</span> <span class="nav-text">2. Angular Components</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Routing-amp-CSS-Framework-Integration"><span class="nav-number">3.</span> <span class="nav-text">3. Routing &amp; CSS Framework Integration</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-Routing"><span class="nav-number">3.1.</span> <span class="nav-text">3.1. Routing</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-CSS-Framework-Integration"><span class="nav-number">3.2.</span> <span class="nav-text">3.2. CSS Framework Integration</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Header-amp-Footer-Integration"><span class="nav-number">4.</span> <span class="nav-text">4. Header &amp; Footer Integration</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-Header"><span class="nav-number">4.1.</span> <span class="nav-text">4.1. Header</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-Footer"><span class="nav-number">4.2.</span> <span class="nav-text">4.2. Footer</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-Home-amp-FAQ-Page"><span class="nav-number">5.</span> <span class="nav-text">5. Home &amp; FAQ Page</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-Home-Page"><span class="nav-number">5.1.</span> <span class="nav-text">5.1. Home Page</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-Faq-Page"><span class="nav-number">5.2.</span> <span class="nav-text">5.2. Faq Page</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Danny Zhang</p>
+  <div class="site-description" itemprop="description">Blogger/Software Engineer/Fitness Enthusiast</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">47</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">61</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Danny Zhang</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.7.2
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

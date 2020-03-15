@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"dannyzhang.run","root":"/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="技术方面成长是一个长期的积累过程，在这里集合了我的所有技术类相关博文，并且按照类别进行了整理，不定期更新。 Cloud Computing ConceptsCoursera上Cloud Computing Concepts课程的笔记整理，计划分为10个部分，持续更新中。  Cloud Computing Concepts Notes 1: Orientation, Introduction to">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Tech All in One">
+<meta property="og:url" content="http://dannyzhang.run/technical/index.html">
+<meta property="og:site_name" content="D.Z. Notes (Beta)">
+<meta property="og:description" content="技术方面成长是一个长期的积累过程，在这里集合了我的所有技术类相关博文，并且按照类别进行了整理，不定期更新。 Cloud Computing ConceptsCoursera上Cloud Computing Concepts课程的笔记整理，计划分为10个部分，持续更新中。  Cloud Computing Concepts Notes 1: Orientation, Introduction to">
+<meta property="article:published_time" content="2016-07-30T22:11:10.000Z">
+<meta property="article:modified_time" content="2017-08-12T23:11:07.000Z">
+<meta property="article:author" content="Danny Zhang">
+<meta property="article:tag" content="Danny Zhang">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://dannyzhang.run/technical/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : false
+  };
+</script>
+
+  <title>Tech All in One | D.Z. Notes (Beta)
+  </title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">D.Z. Notes (Beta)</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">Be insensitive, and keep a lifelong growth mindset.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+  
+  
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+    
+    
+    
+    <div class="post-block" lang="zh-Hans">
+      <header class="post-header">
+
+<h1 class="post-title" itemprop="name headline">Tech All in One
+</h1>
+
+<div class="post-meta">
+  
+
+</div>
+
+</header>
+
+      
+      
+      
+      <div class="post-body">
+          <p>技术方面成长是一个长期的积累过程，在这里集合了我的所有技术类相关博文，并且按照类别进行了整理，不定期更新。</p>
+<h1 id="Cloud-Computing-Concepts"><a href="#Cloud-Computing-Concepts" class="headerlink" title="Cloud Computing Concepts"></a>Cloud Computing Concepts</h1><p>Coursera上Cloud Computing Concepts课程的笔记整理，计划分为10个部分，持续更新中。</p>
+<ul>
+<li><a href="http://dannyzhang.run/2017/02/25/Cloud-Computing-Concepts-1/">Cloud Computing Concepts Notes 1: Orientation, Introduction to Clouds, MapReduce</a></li>
+<li><a href="http://dannyzhang.run/2017/03/14/Cloud-Computing-Concepts-2/">Cloud Computing Concepts Notes 2: Gossip, Membership, and Grids</a></li>
+<li><a href="http://dannyzhang.run/2017/03/20/Cloud-Computing-Concepts-3/">Cloud Computing Concepts Notes 3: P2P Systems</a></li>
+<li>Cloud Computing Concepts Notes 4: Key-Value Stores, Time, and Ordering</li>
+<li>Cloud Computing Concepts Nodes 5: Classical Distributed Algorithms</li>
+<li>Cloud Computing Concepts Nodes 6: Classical Distributed Algorithms Continued</li>
+<li>Cloud Computing Concepts Nodes 7: Concurrency and Replication Control</li>
+<li>Cloud Computing Concepts Nodes 8: Emerging Paradigms</li>
+<li>Cloud Computing Concepts Nodes 9: Classical Systems</li>
+<li>Cloud Computing Concepts Nodes 10: Real-Life Behaviors</li>
+</ul>
+<h1 id="The-Complete-JavaScript-Course"><a href="#The-Complete-JavaScript-Course" class="headerlink" title="The Complete JavaScript Course"></a>The Complete JavaScript Course</h1><ul>
+<li><a href="http://dannyzhang.run/2017/04/02/Complete-JavaScript-Course-Basics/">The Complete JavaScript Course Notes 1: Basics</a></li>
+<li><a href="http://dannyzhang.run/2017/04/03/How-JavaScript-works-Behind-the-Scenes/">The Complete JavaScript Course Notes 2: How JavaScript Works Behind the Scenes?</a></li>
+<li><a href="http://dannyzhang.run/2017/04/05/JavaScript-in-the-Browser-DOM-Manipulation-and-Events/">The Complete JavaScript Course Notes 3: JavaScript in the Browser: DOM Manipulation and Events</a></li>
+<li><a href="http://dannyzhang.run/2017/04/06/Advanced-JavaScript-Objects-and-Functions/">The Complete JavaScript Course Notes 4: Advanced JavaScript: Objects and Functions</a></li>
+<li><a href="http://dannyzhang.run/2017/05/28/Complete-JavaScript-Course-Project-1/">The Complete JavaScript Course Notes 5: Put It All Together: The Budget App Project Part I</a></li>
+<li><a href="http://dannyzhang.run/2017/05/29/Complete-JavaScript-Course-Project-2/">The Complete JavaScript Course Notes 6: Put It All Together: The Budget App Project Part II</a></li>
+<li><a href="http://dannyzhang.run/2017/06/25/Complete-JavaScript-Course-Project-3/">The Complete JavaScript Course Notes 7: Put It All Together: The Budget App Project Part III</a></li>
+<li><a href="http://dannyzhang.run/2017/07/07/Complete-JavaScript-Course-Future/">The Complete JavaScript Course Notes 8: Get Ready for the Future: ES6 / ES2015</a></li>
+<li><a href="http://dannyzhang.run/2017/07/22/Complete-JavaScript-Course-ES6-Code-Challenge/">The Complete JavaScript Course Notes 9: ES6 Code Challenge and Solution</a></li>
+</ul>
+<h1 id="React-vs-Angular-vs-Vue-js-by-Example"><a href="#React-vs-Angular-vs-Vue-js-by-Example" class="headerlink" title="React vs Angular vs Vue.js by Example"></a>React vs Angular vs Vue.js by Example</h1><ul>
+<li><a href="http://dannyzhang.run/2017/07/30/build-web-with-vue">Build A Demo Web App with Vue.js</a></li>
+<li><a href="http://dannyzhang.run/2017/07/31/build-web-with-react/">Build A Demo Web App with React</a></li>
+<li><a href="http://dannyzhang.run/2017/08/12/build-web-with-angular/">Build A Demo Web App with Angular</a></li>
+</ul>
+<h1 id="Data-Structure-amp-Algorithm"><a href="#Data-Structure-amp-Algorithm" class="headerlink" title="Data Structure &amp; Algorithm"></a>Data Structure &amp; Algorithm</h1><ul>
+<li><a href="http://dannyzhang.run/2016/10/09/reservoir-sampling/">Data Structure &amp; Algorithms Notes: Reservoir Sampling</a></li>
+<li><a href="http://dannyzhang.run/2016/07/30/Techmon-Go-Union-Find/">Data Structure &amp; Algorithms Notes: Union Find</a></li>
+<li><a href="http://dannyzhang.run/2016/07/17/Techmon-Go-3-Segment-Tree/">Data Structure &amp; Algorithms Notes: Segment Tree</a></li>
+<li><a href="http://dannyzhang.run/2016/07/16/Techmon-Go-2-Topological-Sort/">Data Structure &amp; Algorithms Notes: Topological Sort</a></li>
+<li><a href="http://dannyzhang.run/2016/07/14/Techmon-Go-1-Hash/">Data Structure &amp; Algorithms Notes: Hash</a></li>
+</ul>
+<h1 id="搭建Hexo博客相关"><a href="#搭建Hexo博客相关" class="headerlink" title="搭建Hexo博客相关"></a>搭建Hexo博客相关</h1><ul>
+<li><a href="http://dannyzhang.run/2017/03/11/2017BlogUpdate/">博客重大升级啦!</a></li>
+<li><a href="http://dannyzhang.run/2016/03/20/createGitHubBlogWithHexo/">利用Hexo快速搭建GitHub博客</a></li>
+</ul>
+<h1 id="Generals"><a href="#Generals" class="headerlink" title="Generals"></a>Generals</h1><ul>
+<li><a href="http://dannyzhang.run/2017/03/27/AIToolKits/">人工智能(AI)简明工具箱</a></li>
+<li><a href="http://dannyzhang.run/2016/08/30/RxJavaIntro/">RxJava极简入门</a></li>
+<li><a href="http://dannyzhang.run/2016/08/25/androidThreads/">Android中的Threads的实现</a></li>
+<li><a href="http://dannyzhang.run/2016/08/15/androidTestSummary/">Android 测试专题笔记</a></li>
+<li><a href="http://dannyzhang.run/2016/06/27/python-basics-notes/">Learn Python Basics Learning Notes I</a></li>
+<li><a href="http://dannyzhang.run/2016/04/25/build-api-in-spark/">Build a REST API in Spark Summary</a></li>
+<li><a href="http://dannyzhang.run/2016/03/24/codeReview/">Best Practice for Code Review</a></li>
+</ul>
+
+      </div>
+      
+      
+      
+    </div>
+    
+
+    
+    
+    
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Cloud-Computing-Concepts"><span class="nav-number">1.</span> <span class="nav-text">Cloud Computing Concepts</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#The-Complete-JavaScript-Course"><span class="nav-number">2.</span> <span class="nav-text">The Complete JavaScript Course</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#React-vs-Angular-vs-Vue-js-by-Example"><span class="nav-number">3.</span> <span class="nav-text">React vs Angular vs Vue.js by Example</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Data-Structure-amp-Algorithm"><span class="nav-number">4.</span> <span class="nav-text">Data Structure &amp; Algorithm</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#搭建Hexo博客相关"><span class="nav-number">5.</span> <span class="nav-text">搭建Hexo博客相关</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Generals"><span class="nav-number">6.</span> <span class="nav-text">Generals</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Danny Zhang</p>
+  <div class="site-description" itemprop="description">Blogger/Software Engineer/Fitness Enthusiast</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">47</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">61</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Danny Zhang</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.7.2
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

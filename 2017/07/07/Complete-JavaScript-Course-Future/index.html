@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"dannyzhang.run","root":"/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="1. What’s new in ES6 &#x2F; ES20151.1. JavaScript Today ES 5: Fully supported in all modern browsers; Ready to be used today(2016)   ES6 &#x2F; ES2015 Partial supported in modern browsers, no support in older b">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Get Ready for the Future: ES6 &#x2F; ES2015">
+<meta property="og:url" content="http://dannyzhang.run/2017/07/07/Complete-JavaScript-Course-Future/index.html">
+<meta property="og:site_name" content="D.Z. Notes (Beta)">
+<meta property="og:description" content="1. What’s new in ES6 &#x2F; ES20151.1. JavaScript Today ES 5: Fully supported in all modern browsers; Ready to be used today(2016)   ES6 &#x2F; ES2015 Partial supported in modern browsers, no support in older b">
+<meta property="og:image" content="https://lh3.googleusercontent.com/FSJzIBGVOv7w9a-8El7jRjEgJ1PX4wDMUakG76CcP-r6phX-BErInbk6RYWbOgEuf7FwPo7rLgJCvScUtGncxitTxNkPvqLG4TDBtFpWaE1w4a9JDJoo9dzPJcZLjCanhCOIPiFYu_nSW4RmiKX9VUGPq1VEt5wWWcuKonAi1ZW5QPWtk39mvF4i903oh7RFhQA8UsAXeg9aNRhIwMb6VPRmPXishUTOUKHkAiGsDMDgKpdkEuFr1inz4BVYPoH70NWNmwHZKX-AMRC_kaN3MA_92hAXwO4216NR0zCdi_BVGmrsJQiDDqrghy3SDre1hUQ91t-j8i-NIKEpmvsLWlD9JrZjp9oLfspRm5YiOKmF4ek_6x_tHLSLn1578RY2UUvR8Vyl2GZOTbPmZNfq9933awEjLEk0P7Jx_e_FTwb3a0qHiOZSqRA1IVQFlrYJkHvE4yiGp05D_KEpEQnJiQWOiWOidaHiEqxjMv8BdJKIwHo4fmV15bxT1jY5X09eMY_CHeSMUDnqHfsPskHAyhwoYQjQ4f77XWW7jbmq4J0mLbQxbIYsv5hhOl8rw3Y39BT3G8HmbZXfGKv0ZaCFnHq4hHQQkyRdQIDv_AoknX_Fob4W8_adxxiO=w1274-h708-no">
+<meta property="article:published_time" content="2017-07-08T05:05:07.000Z">
+<meta property="article:modified_time" content="2017-07-22T18:58:32.000Z">
+<meta property="article:author" content="Danny Zhang">
+<meta property="article:tag" content="tech">
+<meta property="article:tag" content="学习笔记">
+<meta property="article:tag" content="JavaScript">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://lh3.googleusercontent.com/FSJzIBGVOv7w9a-8El7jRjEgJ1PX4wDMUakG76CcP-r6phX-BErInbk6RYWbOgEuf7FwPo7rLgJCvScUtGncxitTxNkPvqLG4TDBtFpWaE1w4a9JDJoo9dzPJcZLjCanhCOIPiFYu_nSW4RmiKX9VUGPq1VEt5wWWcuKonAi1ZW5QPWtk39mvF4i903oh7RFhQA8UsAXeg9aNRhIwMb6VPRmPXishUTOUKHkAiGsDMDgKpdkEuFr1inz4BVYPoH70NWNmwHZKX-AMRC_kaN3MA_92hAXwO4216NR0zCdi_BVGmrsJQiDDqrghy3SDre1hUQ91t-j8i-NIKEpmvsLWlD9JrZjp9oLfspRm5YiOKmF4ek_6x_tHLSLn1578RY2UUvR8Vyl2GZOTbPmZNfq9933awEjLEk0P7Jx_e_FTwb3a0qHiOZSqRA1IVQFlrYJkHvE4yiGp05D_KEpEQnJiQWOiWOidaHiEqxjMv8BdJKIwHo4fmV15bxT1jY5X09eMY_CHeSMUDnqHfsPskHAyhwoYQjQ4f77XWW7jbmq4J0mLbQxbIYsv5hhOl8rw3Y39BT3G8HmbZXfGKv0ZaCFnHq4hHQQkyRdQIDv_AoknX_Fob4W8_adxxiO=w1274-h708-no">
+
+<link rel="canonical" href="http://dannyzhang.run/2017/07/07/Complete-JavaScript-Course-Future/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true
+  };
+</script>
+
+  <title>Get Ready for the Future: ES6 / ES2015 | D.Z. Notes (Beta)</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">D.Z. Notes (Beta)</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">Be insensitive, and keep a lifelong growth mindset.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://dannyzhang.run/2017/07/07/Complete-JavaScript-Course-Future/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Danny Zhang">
+      <meta itemprop="description" content="Blogger/Software Engineer/Fitness Enthusiast">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="D.Z. Notes (Beta)">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Get Ready for the Future: ES6 / ES2015
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2017-07-07 22:05:07" itemprop="dateCreated datePublished" datetime="2017-07-07T22:05:07-07:00">2017-07-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2017-07-22 11:58:32" itemprop="dateModified" datetime="2017-07-22T11:58:32-07:00">2017-07-22</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="1-What’s-new-in-ES6-ES2015"><a href="#1-What’s-new-in-ES6-ES2015" class="headerlink" title="1. What’s new in ES6 / ES2015"></a>1. What’s new in ES6 / ES2015</h2><h3 id="1-1-JavaScript-Today"><a href="#1-1-JavaScript-Today" class="headerlink" title="1.1. JavaScript Today"></a>1.1. JavaScript Today</h3><ul>
+<li>ES 5:<ul>
+<li>Fully supported in all modern browsers;</li>
+<li>Ready to be used today(2016)</li>
+</ul>
+</li>
+<li>ES6 / ES2015<ul>
+<li>Partial supported in modern browsers, no support in older browsers;</li>
+<li>Can’t use it in production today (2016).</li>
+</ul>
+</li>
+<li>ES2016, ES2017, …<ul>
+<li>Almost no support in modern browsers;</li>
+<li>Can’t use it in production today (2016)</li>
+</ul>
+</li>
+</ul>
+<h3 id="1-2-New-ES6-Features-We’ll-Cover-in-This-Section"><a href="#1-2-New-ES6-Features-We’ll-Cover-in-This-Section" class="headerlink" title="1.2. New ES6 Features We’ll Cover in This Section"></a>1.2. New ES6 Features We’ll Cover in This Section</h3><ul>
+<li>Variable Declarations with let and const</li>
+<li>Blocks and IIFEs</li>
+<li>Strings</li>
+<li>Arrow Functions</li>
+<li>Destructuring</li>
+<li>Arrays</li>
+<li>The Spread Operator</li>
+<li>Rest and Default Parameters</li>
+<li>Maps</li>
+<li>Classes and subclasses</li>
+<li>How to use ES2015 / ES6 today!</li>
+</ul>
+<p><a href="https://kangax.github.io/compat-table/es6" target="_blank" rel="noopener">ES6 Compatibility Table</a></p>
+<h2 id="2-Variable-Declarations-with-let-and-const"><a href="#2-Variable-Declarations-with-let-and-const" class="headerlink" title="2. Variable Declarations with let and const"></a>2. Variable Declarations with let and const</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ES5</span></span><br><span class="line"><span class="keyword">var</span> name5 = <span class="string">'Jane Smith'</span>;</span><br><span class="line"><span class="keyword">var</span> age5 = <span class="number">23</span>;</span><br><span class="line">name5 = <span class="string">'Jane Miller'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(name5);</span><br><span class="line"></span><br><span class="line"><span class="comment">// ES6</span></span><br><span class="line"><span class="keyword">const</span> name6 = <span class="string">'Jane Smith'</span>;</span><br><span class="line"><span class="keyword">let</span> age6 = <span class="number">23</span>;</span><br><span class="line">name6 = <span class="string">'Jane Miller'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(name6); <span class="comment">// will get error.</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// ES5</span></span><br><span class="line"><span class="comment">// variables in ES5 are function scoped.</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">driverLicence</span> (<span class="params">passedTest</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (passedTest) &#123;</span><br><span class="line">		<span class="keyword">var</span> firstName = <span class="string">'John'</span>;</span><br><span class="line">		<span class="keyword">var</span> yearOfBirth = <span class="number">1990</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">console</span>.log(firstName + <span class="string">', born in '</span> + yearOfBirth + <span class="string">', is now officially allowed to drive a car.'</span>);</span><br><span class="line">&#125;</span><br><span class="line">driverLicence (<span class="literal">true</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// ES6</span></span><br><span class="line"><span class="comment">// variables in ES6 are block scoped.</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">driverLicence</span> (<span class="params">passedTest</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (passedTest) &#123;</span><br><span class="line">		<span class="keyword">var</span> firstName = <span class="string">'John'</span>;</span><br><span class="line">		<span class="keyword">var</span> yearOfBirth = <span class="number">1990</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">console</span>.log(firstName + <span class="string">', born in '</span> + yearOfBirth + <span class="string">', is now officially allowed to drive a car.'</span>); <span class="comment">// Will get 'firstName' not defined error.</span></span><br><span class="line">&#125;</span><br><span class="line">driverLicence (<span class="literal">true</span>);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//ES5</span></span><br><span class="line"><span class="keyword">var</span> i = <span class="number">23</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++) &#123;</span><br><span class="line">	<span class="built_in">console</span>.log(i);</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(i);</span><br><span class="line"><span class="comment">//it will print: 0, 1, 2, 3, 4, 5</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//ES6</span></span><br><span class="line"><span class="keyword">let</span> i = <span class="number">23</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++) &#123;</span><br><span class="line">	<span class="built_in">console</span>.log(i);</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(i);</span><br><span class="line"><span class="comment">//it will print: 0, 1, 2, 3, 4, 23</span></span><br><span class="line"><span class="comment">//It's still due to function scoped vs block scoped</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="3-Blocks-and-IIFEs"><a href="#3-Blocks-and-IIFEs" class="headerlink" title="3. Blocks and IIFEs"></a>3. Blocks and IIFEs</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">Block (IIFE) <span class="keyword">in</span> ES6</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">const</span> a = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">let</span> b = <span class="number">2</span>;</span><br><span class="line">	<span class="keyword">var</span> c = <span class="number">3</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//console.log(a + b); //Will get error</span></span><br><span class="line"><span class="built_in">console</span>.log(c); <span class="comment">// works good!</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//IIFE in ES5: create block that can not be accesed outside.</span></span><br><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> c = <span class="number">3</span>;</span><br><span class="line">&#125;)();</span><br><span class="line"></span><br><span class="line"><span class="comment">//console.log(c);</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="4-Strings-in-ES6-ES2015"><a href="#4-Strings-in-ES6-ES2015" class="headerlink" title="4. Strings in ES6 / ES2015"></a>4. Strings in ES6 / ES2015</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> firstName = <span class="string">'john'</span>;</span><br><span class="line"><span class="keyword">let</span> lastName = <span class="string">'Smith'</span>;</span><br><span class="line"><span class="keyword">const</span> yearOfBirth = <span class="number">1990</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">calcAge</span>(<span class="params">year</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">2016</span> - year;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// ES5</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'This is '</span> + firstName + <span class="string">' '</span> + lastName + <span class="string">'. He was born in '</span> + yearOfBirth + <span class="string">'. Today, he is '</span> +  calcAge(yearOfBirth) + <span class="string">' year old.'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//ES6</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'This is $&#123;firstName&#125; $&#123;lastName&#125;. He was born in $&#123;yearOfBirth&#125;. Today he is $&#123;calcAge(yearOfBirth)&#125; years old.'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> n = <span class="string">'$&#123;firstName&#125; $ &#123;lastName&#125;'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(n.startsWith(<span class="string">'J'</span>)); <span class="comment">//false</span></span><br><span class="line"><span class="built_in">console</span>.log(n.endsWith(<span class="string">'Sm'</span>)); <span class="comment">// false</span></span><br><span class="line"><span class="built_in">console</span>.log(n.includes(<span class="string">' '</span>)); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'$&#123;firstName&#125; '</span>.repeat(<span class="number">5</span>)); <span class="comment">//John John John John John</span></span><br></pre></td></tr></table></figure>
+
+
+<h2 id="5-Arrow-Functions-Basics"><a href="#5-Arrow-Functions-Basics" class="headerlink" title="5. Arrow Functions: Basics"></a>5. Arrow Functions: Basics</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> years = [<span class="number">1990</span>, <span class="number">1965</span>, <span class="number">1982</span>, <span class="number">1937</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">//ES5</span></span><br><span class="line"><span class="keyword">var</span> ages5 = years.map(<span class="function"><span class="keyword">function</span>(<span class="params">el</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">2016</span> - el;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(ages5) <span class="comment">//&#123;26, 51, 34, 79&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//ES6</span></span><br><span class="line"><span class="keyword">let</span> ages6 = years.map(<span class="function"><span class="params">el</span> =&gt;</span> <span class="number">2016</span> - el); <span class="comment">//Exact same thing.</span></span><br><span class="line"><span class="built_in">console</span>.log(ages6); <span class="comment">//&#123;26, 51, 34, 79&#125;</span></span><br><span class="line"></span><br><span class="line">ages6 = years.map(<span class="function">(<span class="params">el, index</span>) =&gt;</span> <span class="string">'Age element $&#123;index + 1&#125;: $&#123;2016 - el&#125;.'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(ages6);</span><br><span class="line"></span><br><span class="line">ages6 = years.map(<span class="function">(<span class="params">el, index</span>) =&gt;</span> &#123;</span><br><span class="line">	<span class="keyword">const</span> now = <span class="keyword">new</span> <span class="built_in">Date</span>().getFullYear();</span><br><span class="line">	<span class="keyword">const</span> age = now - el;</span><br><span class="line">	<span class="keyword">return</span> <span class="string">'Age element $&#123;index + 1&#125;: $&#123;2016 - el&#125;.'</span></span><br><span class="line">	&#125;);</span><br><span class="line"><span class="built_in">console</span>.log(ages6);</span><br></pre></td></tr></table></figure>
+
+<h2 id="6-Arrow-Functions-Lexical-‘this’-Keyword"><a href="#6-Arrow-Functions-Lexical-‘this’-Keyword" class="headerlink" title="6. Arrow Functions: Lexical ‘this’ Keyword"></a>6. Arrow Functions: Lexical ‘this’ Keyword</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//ES5</span></span><br><span class="line"><span class="keyword">var</span> box5 = &#123;</span><br><span class="line">	color: <span class="string">'green'</span>,</span><br><span class="line">	position: <span class="number">1</span>,</span><br><span class="line">	clickMe: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		<span class="keyword">var</span> self = <span class="keyword">this</span>;</span><br><span class="line">		<span class="built_in">document</span>.querySelector(<span class="string">'.green'</span>).addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">			<span class="keyword">var</span> str = <span class="string">'This is box number '</span> + self.position + <span class="string">' and it is '</span> + self.color;</span><br><span class="line">			alert(str);</span><br><span class="line">		&#125;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">box5.clickMe();</span><br><span class="line"></span><br><span class="line"><span class="comment">//ES6</span></span><br><span class="line"><span class="keyword">var</span> box6 = &#123;</span><br><span class="line">	color: <span class="string">'green'</span>,</span><br><span class="line">	position: <span class="number">1</span>,</span><br><span class="line">	clickMe: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		<span class="built_in">document</span>.querySelector(<span class="string">'.green'</span>).addEventListener(<span class="string">'click'</span>, () =&gt; &#123;</span><br><span class="line">			<span class="keyword">var</span> str = <span class="string">'This is box number '</span> + <span class="keyword">this</span>.position + <span class="string">' and it is '</span> + <span class="keyword">this</span>.color;</span><br><span class="line">			alert(str);</span><br><span class="line">		&#125;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">box6.clickMe();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.name = name;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//ES5</span></span><br><span class="line">Person.prototype.myFriends5 = <span class="function"><span class="keyword">function</span>(<span class="params">friends</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> arr = friends.map(<span class="function"><span class="keyword">function</span>(<span class="params">el</span>)</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">this</span>.name + <span class="string">' is friends with '</span> + el;</span><br><span class="line">	&#125;.bind(<span class="keyword">this</span>));</span><br><span class="line"></span><br><span class="line">	<span class="built_in">console</span>.log(arr);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> friends = [<span class="string">'Bob'</span>, <span class="string">'Jane'</span>, <span class="string">'Mark'</span>];</span><br><span class="line"><span class="keyword">new</span> Person(<span class="string">'John'</span>).myFriends5(friends);</span><br><span class="line"></span><br><span class="line"><span class="comment">//ES6</span></span><br><span class="line">Person.prototype.myFriends6 = <span class="function"><span class="keyword">function</span>(<span class="params">friends</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> arr = friends.map(<span class="function"><span class="params">el</span> =&gt;</span></span><br><span class="line">	<span class="string">'$(this.name) is friends with $&#123;el&#125;'</span>);</span><br><span class="line">	<span class="built_in">console</span>.log(arr);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> Person(<span class="string">'Mike'</span>).myFriends6(friends);</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="7-Destructuring"><a href="#7-Destructuring" class="headerlink" title="7. Destructuring"></a>7. Destructuring</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//ES5</span></span><br><span class="line"><span class="keyword">var</span> john = [<span class="string">'John'</span>, <span class="number">26</span>];</span><br><span class="line"><span class="comment">//var name = john[0];</span></span><br><span class="line"><span class="comment">//var age = john[1];</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//ES6</span></span><br><span class="line"><span class="keyword">const</span> [name, year] = [<span class="string">'John'</span>, <span class="number">26</span>];</span><br><span class="line"><span class="built_in">console</span>.log(name);</span><br><span class="line"><span class="built_in">console</span>.log(age);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> obj = &#123;</span><br><span class="line">	firstName: <span class="string">'John'</span>,</span><br><span class="line">	lastName: <span class="string">'Smith'</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> obj = &#123;</span><br><span class="line">	firstName: <span class="string">'John'</span>,</span><br><span class="line">	lastName: <span class="string">'Smith'</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> &#123;firstName, lastName&#125; = obj;</span><br><span class="line"><span class="built_in">console</span>.log(firstName);</span><br><span class="line"><span class="built_in">console</span>.log(lastName);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> &#123;<span class="attr">firstName</span>: a, <span class="attr">lastName</span>: b&#125; = obj;</span><br><span class="line"><span class="built_in">console</span>.log(a);</span><br><span class="line"><span class="built_in">console</span>.log(b);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">calcAgeRetirement</span>(<span class="params">year</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">const</span> age = <span class="keyword">new</span> <span class="built_in">Date</span>().getFullYear() - year;</span><br><span class="line">	<span class="keyword">return</span> [age, <span class="number">65</span> - age];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span>[age2, retirement] = calcAgeRetirement(<span class="number">1990</span>);</span><br><span class="line"><span class="built_in">console</span>.log(age2);</span><br><span class="line"><span class="built_in">console</span>.log(retirement);</span><br></pre></td></tr></table></figure>
+
+<h2 id="8-Arrays-in-ES6-ES2015"><a href="#8-Arrays-in-ES6-ES2015" class="headerlink" title="8. Arrays in ES6 / ES2015"></a>8. Arrays in ES6 / ES2015</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> boxes = <span class="built_in">document</span>.querySelectorAll(<span class="string">'.box'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//ES5</span></span><br><span class="line"><span class="keyword">var</span> boxesArr5 = <span class="built_in">Array</span>.prototype.slice.call(boxes);</span><br><span class="line">boxesArr5.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">cur</span>) </span>&#123;</span><br><span class="line">	cur.style.backgroundColor = <span class="string">'dodgerblue'</span>;</span><br><span class="line">&#125;)；</span><br><span class="line"></span><br><span class="line"><span class="comment">//ES6</span></span><br><span class="line"><span class="keyword">const</span> boxesArr6 = <span class="built_in">Array</span>.from(boxes).forEach(<span class="function"><span class="params">cur</span> =&gt;</span> cur.style.backgroundColor = <span class="string">'dodgerblue'</span>)；</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//Loop</span></span><br><span class="line"><span class="comment">//ES5</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; boxesArr5.length; i++) &#123;</span><br><span class="line">	<span class="keyword">if</span> (boxesArr5[i].className === <span class="string">'box blue'</span>) &#123;</span><br><span class="line">		<span class="keyword">continue</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	boxesArr5[i].textContent = <span class="string">'I changed to blue!'</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//ES6</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">const</span> cur <span class="keyword">of</span> boxesArr6) &#123;</span><br><span class="line">	<span class="keyword">if</span> (cur.className.includes(<span class="string">'blue'</span>)) &#123;</span><br><span class="line">		<span class="keyword">continue</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	cur.textContent = <span class="string">'I changed to blue!'</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//ES5</span></span><br><span class="line"><span class="keyword">var</span> ages = [<span class="number">12</span>, <span class="number">17</span>, <span class="number">8</span>, <span class="number">21</span>, <span class="number">14</span>, <span class="number">11</span>];</span><br><span class="line"><span class="keyword">var</span> full = ages.map(<span class="function"><span class="keyword">function</span>(<span class="params">cur</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> cur &gt;= <span class="number">18</span>;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">console</span>.log(full);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(full.indexOf(<span class="literal">true</span>));</span><br><span class="line"><span class="built_in">console</span>.log(ages[full.indexOf(<span class="literal">true</span>)]);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//ES6</span></span><br><span class="line"><span class="built_in">console</span>.log(ages.findIndex(<span class="function"><span class="params">cur</span> =&gt;</span> &gt;= <span class="number">18</span>));</span><br><span class="line"><span class="built_in">console</span>.log(ages.find(<span class="function"><span class="params">cur</span> =&gt;</span> cur &gt;= <span class="number">18</span>));</span><br></pre></td></tr></table></figure>
+
+<h2 id="9-The-Spread-Operator"><a href="#9-The-Spread-Operator" class="headerlink" title="9. The Spread Operator"></a>9. The Spread Operator</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">addFourages</span> (<span class="params">a, b, c, d</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> a + b + c + d;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> sum1 = addFourAges () &#123;<span class="number">18</span>, <span class="number">30</span>, <span class="number">12</span>, <span class="number">21</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(sum1);</span><br><span class="line"></span><br><span class="line"><span class="comment">//ES5</span></span><br><span class="line"><span class="keyword">var</span> ages = [<span class="number">18</span>, <span class="number">30</span>, <span class="number">12</span>, <span class="number">21</span>];</span><br><span class="line"><span class="keyword">var</span> sum2 = addFourAges.apply(<span class="literal">null</span>, ages);</span><br><span class="line"><span class="built_in">console</span>.log(sum2);</span><br><span class="line"></span><br><span class="line"><span class="comment">//ES6</span></span><br><span class="line"><span class="keyword">const</span> sum3 = addFourAges(...ages); <span class="comment">//Spread Operator</span></span><br><span class="line"><span class="built_in">console</span>.log(sum3);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> familySmith = [<span class="string">'John'</span>, <span class="string">'Jane'</span>, <span class="string">'Mark'</span>];</span><br><span class="line"><span class="keyword">const</span> familyMiller = [<span class="string">'Mary'</span>, <span class="string">'Bob'</span>, <span class="string">'Ann'</span>];</span><br><span class="line"><span class="keyword">const</span> bigFamily = [...familySmith, <span class="string">'Lily'</span>, ...familyMiller];</span><br><span class="line"><span class="built_in">console</span>.log(bigFamily);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> h = <span class="built_in">document</span>.querySelector(<span class="string">'h1'</span>);</span><br><span class="line"><span class="keyword">const</span> boxes = <span class="built_in">document</span>.querySelectorAll(<span class="string">'.box'</span>);</span><br><span class="line"><span class="keyword">const</span> all = [h, ...boxes];</span><br><span class="line"></span><br><span class="line"><span class="built_in">Array</span>.from(all).forEach(<span class="function"><span class="params">cur</span> =&gt;</span> cur.style.color = <span class="string">'purple'</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="10-Rest-Parameters"><a href="#10-Rest-Parameters" class="headerlink" title="10. Rest Parameters"></a>10. Rest Parameters</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//ES5</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isFullAge5</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="comment">//console.log(arguments);</span></span><br><span class="line">	<span class="keyword">var</span> argsArr = <span class="built_in">Array</span>.prototype.slice.call(<span class="built_in">arguments</span>);</span><br><span class="line"></span><br><span class="line">	argsArr.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">cur</span>) </span>&#123;</span><br><span class="line">		<span class="built_in">console</span>.log((<span class="number">2016</span> - cur) &gt;= <span class="number">18</span>);</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">isFullAge5(<span class="number">1990</span>, <span class="number">1999</span>, <span class="number">1965</span>);</span><br><span class="line">isFullAge5(<span class="number">1990</span>, <span class="number">1999</span>, <span class="number">1965</span>, <span class="number">2016</span>, <span class="number">1987</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//ES6</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isFullAge6</span>(<span class="params">...years</span>) </span>&#123;</span><br><span class="line">	years.forEach(<span class="function"><span class="params">cur</span> =&gt;</span> <span class="built_in">console</span>.log((<span class="number">2016</span> - cur) &gt;= <span class="number">18</span>));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">isFullAge6(<span class="number">1990</span>, <span class="number">1999</span>, <span class="number">1965</span>, <span class="number">2016</span>, <span class="number">1987</span>);</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//ES5</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isFullAge5</span>(<span class="params">limit</span>) </span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="built_in">arguments</span>);</span><br><span class="line">	<span class="keyword">var</span> argsArr = <span class="built_in">Array</span>.prototype.slice.call(<span class="built_in">arguments</span>, <span class="number">1</span>);</span><br><span class="line">	<span class="built_in">console</span>.log(argsArr);</span><br><span class="line"></span><br><span class="line">	argsArr.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">cur</span>) </span>&#123;</span><br><span class="line">		<span class="built_in">console</span>.log((<span class="number">2016</span> - cur) &gt;= limit);</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">isFullAge5(<span class="number">1990</span>, <span class="number">1999</span>, <span class="number">1965</span>);</span><br><span class="line">isFullAge5(<span class="number">1990</span>, <span class="number">1999</span>, <span class="number">1965</span>, <span class="number">2016</span>, <span class="number">1987</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//ES6</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isFullAge6</span>(<span class="params">limit, ...years</span>) </span>&#123;</span><br><span class="line">	years.forEach(<span class="function"><span class="params">cur</span> =&gt;</span> <span class="built_in">console</span>.log((<span class="number">2016</span> - cur) &gt;= limit));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">isFullAge6(<span class="number">16</span>, <span class="number">1990</span>, <span class="number">1999</span>, <span class="number">1965</span>, <span class="number">2016</span>, <span class="number">1987</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="11-Default-Parameters"><a href="#11-Default-Parameters" class="headerlink" title="11. Default Parameters"></a>11. Default Parameters</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//ES5</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">SmithPerson</span>(<span class="params">firstName, yerOfBirth, lastName, nationality</span>) </span>&#123;</span><br><span class="line">	lastName === <span class="literal">undefined</span>? lastName = <span class="string">'Smith'</span> : lastName = lastName;</span><br><span class="line">	nationality === <span class="literal">undefined</span> ? nationality = <span class="string">'american'</span> : nationality = nationality;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">this</span>.firstName - firstName;</span><br><span class="line">	<span class="keyword">this</span>.lastName = lastName;</span><br><span class="line">	<span class="keyword">this</span>.yearOfBirth = yearOfBirth;</span><br><span class="line">	<span class="keyword">this</span>.nationality = nationality;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> john = <span class="keyword">new</span> SmithPerson(<span class="string">'John'</span>, <span class="number">1990</span>);</span><br><span class="line"><span class="keyword">var</span> emily = <span class="keyword">new</span> SmithPerson(<span class="string">'Emily'</span>, <span class="number">1983</span>, <span class="string">'Diaz'</span>, <span class="string">'Spanish'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//ES6</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">SmithPerson</span>(<span class="params">firstName, yerOfBirth, lastName = <span class="string">'Smith'</span>, nationality = <span class="string">'american'</span></span>) </span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.firstName - firstName;</span><br><span class="line">	<span class="keyword">this</span>.lastName = lastName;</span><br><span class="line">	<span class="keyword">this</span>.yearOfBirth = yearOfBirth;</span><br><span class="line">	<span class="keyword">this</span>.nationality = nationality;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> john = <span class="keyword">new</span> SmithPerson(<span class="string">'John'</span>, <span class="number">1990</span>);</span><br><span class="line"><span class="keyword">var</span> emily = <span class="keyword">new</span> SmithPerson(<span class="string">'Emily'</span>, <span class="number">1983</span>, <span class="string">'Diaz'</span>, <span class="string">'Spanish'</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="12-Maps"><a href="#12-Maps" class="headerlink" title="12. Maps"></a>12. Maps</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> question = <span class="keyword">new</span> <span class="built_in">Map</span>();</span><br><span class="line">question.set(<span class="string">'question'</span>, <span class="string">'What is the official name of the latest major JavaScript version?'</span>);</span><br><span class="line">question.set(<span class="number">1</span>, <span class="string">'ES5'</span>);</span><br><span class="line">question.set(<span class="number">2</span>, <span class="string">'ES6'</span>);</span><br><span class="line">question.set(<span class="number">3</span>, <span class="string">'ES2015'</span>);</span><br><span class="line">question.set(<span class="number">4</span>, <span class="string">'ES7'</span>);</span><br><span class="line">question.set(<span class="string">'correct'</span>, <span class="number">3</span>);</span><br><span class="line">question.set(<span class="literal">true</span>, <span class="string">'Correct answer :D'</span>);</span><br><span class="line">question.set(<span class="literal">false</span>, <span class="string">'Wong, please try again!'</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(question.get(<span class="string">'question'</span>));</span><br><span class="line"><span class="built_in">console</span>.log(question.size);</span><br><span class="line"><span class="keyword">if</span> (question.has(<span class="number">4</span>)) &#123;</span><br><span class="line">	<span class="comment">//question.delete(4);</span></span><br><span class="line">	<span class="built_in">console</span>.log(<span class="string">'Answer 4 is here!'</span>);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//question.clear();</span></span><br><span class="line">question.forEach(<span class="function">(<span class="params">value, key</span>) =&gt;</span></span><br><span class="line">	<span class="built_in">console</span>.log(<span class="string">"This is $&#123;key&#125;, and it's set to $&#123;value&#125;'"</span>));</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> [key, value] <span class="keyword">of</span> question.entries()) &#123;</span><br><span class="line">	<span class="keyword">if</span> (<span class="keyword">typeof</span>(key) === <span class="string">'number'</span>) &#123;</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="string">'Answer $&#123;key&#125;: $&#123;value&#125;'</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> ans = <span class="built_in">parseInt</span>(promt(<span class="string">'Write the correct answer'</span>));</span><br><span class="line"><span class="built_in">console</span>.log(question.get(ans === question.get(<span class="string">'correct'</span>)));</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="13-Classes"><a href="#13-Classes" class="headerlink" title="13. Classes"></a>13. Classes</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//ES5</span></span><br><span class="line"><span class="keyword">var</span> Person5 = <span class="function"><span class="keyword">function</span>(<span class="params">name, yearOfBirth, job</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.name = name;</span><br><span class="line">	<span class="keyword">this</span>.yearOfBirth = yearOfBirth;</span><br><span class="line">	<span class="keyword">this</span>.job = job;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Person5.prototype.calculateAge =</span><br><span class="line"><span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> age = <span class="keyword">new</span> <span class="built_in">Date</span>().getFullYear - <span class="keyword">this</span>.yearOfBirth;</span><br><span class="line">	<span class="built_in">console</span>.log(age);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> john5 = <span class="keyword">new</span> Person5(<span class="string">'John'</span>, <span class="number">1990</span>, <span class="string">'teacher'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//ES6</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person6</span> </span>&#123;</span><br><span class="line">	<span class="keyword">constructor</span> (name, yearOfBirth, job) &#123;</span><br><span class="line">		<span class="keyword">this</span>.name = name;</span><br><span class="line">		<span class="keyword">this</span>.yearOfBirth = yearOfBirth;</span><br><span class="line">		<span class="keyword">this</span>.job = job;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	calculateAge() &#123;</span><br><span class="line">		<span class="keyword">var</span> age = <span class="keyword">new</span> <span class="built_in">Date</span>().getFullYear - <span class="keyword">this</span>.yearOfBirth;</span><br><span class="line">		<span class="built_in">console</span>.log(age);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">static</span> greeting() &#123;</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="string">'Hey there!'</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> john6 = <span class="keyword">new</span> Person6(<span class="string">'John'</span>, <span class="number">1990</span>, <span class="string">'teacher'</span>);</span><br><span class="line">Person6.greeting();</span><br></pre></td></tr></table></figure>
+
+<h2 id="14-Classes-with-Subclasses"><a href="#14-Classes-with-Subclasses" class="headerlink" title="14. Classes with Subclasses"></a>14. Classes with Subclasses</h2><p><img src="https://lh3.googleusercontent.com/FSJzIBGVOv7w9a-8El7jRjEgJ1PX4wDMUakG76CcP-r6phX-BErInbk6RYWbOgEuf7FwPo7rLgJCvScUtGncxitTxNkPvqLG4TDBtFpWaE1w4a9JDJoo9dzPJcZLjCanhCOIPiFYu_nSW4RmiKX9VUGPq1VEt5wWWcuKonAi1ZW5QPWtk39mvF4i903oh7RFhQA8UsAXeg9aNRhIwMb6VPRmPXishUTOUKHkAiGsDMDgKpdkEuFr1inz4BVYPoH70NWNmwHZKX-AMRC_kaN3MA_92hAXwO4216NR0zCdi_BVGmrsJQiDDqrghy3SDre1hUQ91t-j8i-NIKEpmvsLWlD9JrZjp9oLfspRm5YiOKmF4ek_6x_tHLSLn1578RY2UUvR8Vyl2GZOTbPmZNfq9933awEjLEk0P7Jx_e_FTwb3a0qHiOZSqRA1IVQFlrYJkHvE4yiGp05D_KEpEQnJiQWOiWOidaHiEqxjMv8BdJKIwHo4fmV15bxT1jY5X09eMY_CHeSMUDnqHfsPskHAyhwoYQjQ4f77XWW7jbmq4J0mLbQxbIYsv5hhOl8rw3Y39BT3G8HmbZXfGKv0ZaCFnHq4hHQQkyRdQIDv_AoknX_Fob4W8_adxxiO=w1274-h708-no" alt="Inheritance In General"></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//ES5</span></span><br><span class="line"><span class="keyword">var</span> Person5 = <span class="function"><span class="keyword">function</span>(<span class="params">name, yearOfBirth, job</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.name = name;</span><br><span class="line">	<span class="keyword">this</span>.yearOfBirth = yearOfBirth;</span><br><span class="line">	<span class="keyword">this</span>.job = job;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Person5.prototype.calculateAge =</span><br><span class="line"><span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> age = <span class="keyword">new</span> <span class="built_in">Date</span>().getFullYear() - <span class="keyword">this</span>.yearOfBirth;</span><br><span class="line">	<span class="built_in">console</span>.log(age);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> Athlete5 = <span class="function"><span class="keyword">function</span>(<span class="params">name, yearOfBirth, job, olymicGames, medals</span>) </span>&#123;</span><br><span class="line">	Person5.call(<span class="keyword">this</span>, name, yearOfBirth, job);</span><br><span class="line">	<span class="keyword">this</span>.olymicGames = olymicGames;</span><br><span class="line">	<span class="keyword">this</span>.medals = medals;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Athlete5.prototype.wonMedal = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.medals++;</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="keyword">this</span>.medals);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Athlete5.prototype = <span class="built_in">Object</span>.create(Person5.prototype);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> johnAthlete5 = <span class="keyword">new</span> Athlete5(<span class="string">'John'</span>, <span class="number">1990</span>, <span class="string">'swimmer'</span>, <span class="number">3</span>, <span class="number">10</span>);</span><br><span class="line"></span><br><span class="line">johnAthlete5.calculateAge();</span><br><span class="line">johnAthlete5.wonMedal();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//ES6</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person6</span> </span>&#123;</span><br><span class="line">	<span class="keyword">constructor</span> (name, yearOfBirth, job) &#123;</span><br><span class="line">		<span class="keyword">this</span>.name = name;</span><br><span class="line">		<span class="keyword">this</span>.yearOfBirth = yearOfBirth;</span><br><span class="line">		<span class="keyword">this</span>.job = job;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	calculateAge() &#123;</span><br><span class="line">		<span class="keyword">var</span> age = <span class="keyword">new</span> <span class="built_in">Date</span>().getFullYear() - <span class="keyword">this</span>.yearOfBirth;</span><br><span class="line">		<span class="built_in">console</span>.log(age);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Athlete6</span> <span class="keyword">extends</span> <span class="title">Perso6</span> </span>&#123;</span><br><span class="line">	<span class="keyword">constructor</span>(name, yearOfBirth, job, olympicGames, medals) &#123;</span><br><span class="line">		<span class="keyword">super</span>(name, yearOfBirth, job);</span><br><span class="line">		<span class="keyword">this</span>.olympicGames = olympicGames;</span><br><span class="line">		<span class="keyword">this</span>.medals = medals;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	wonMedal() &#123;</span><br><span class="line">		<span class="keyword">this</span>.medals++;</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="keyword">this</span>.medals);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> johnAthlete6 = <span class="keyword">new</span> Athlete6(<span class="string">'John'</span>, <span class="number">1990</span>, <span class="string">'swimmer'</span>, <span class="number">3</span>, <span class="number">10</span>);</span><br><span class="line"></span><br><span class="line">johnAthlete6.wonMedal();</span><br><span class="line">johnAthlete6.calculateAge();</span><br></pre></td></tr></table></figure>
+
+<h2 id="15-How-to-use-ES2015-ES6-Today"><a href="#15-How-to-use-ES2015-ES6-Today" class="headerlink" title="15. How to use ES2015 / ES6 Today?"></a>15. How to use ES2015 / ES6 Today?</h2><p><a href="https://babeljs.io" target="_blank" rel="noopener">Babel</a>: Use next generation JavaScript, today.</p>
+<h3 id="15-1-Environment-Setup"><a href="#15-1-Environment-Setup" class="headerlink" title="15.1. Environment Setup"></a>15.1. Environment Setup</h3><ul>
+<li>Intall NodeJS</li>
+<li>Install Babel<ul>
+<li>npm -v</li>
+<li>npm install –save-dev babel-cli babel-preset-es2015 babel-polyfill</li>
+</ul>
+</li>
+</ul>
+<h3 id="15-2-Usage"><a href="#15-2-Usage" class="headerlink" title="15.2. Usage"></a>15.2. Usage</h3><pre><code>- ./node_modules/.bin/babel --presets es2015 script.js --out-file script-transpiled.js</code></pre>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/tech/" rel="tag"># tech</a>
+              <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag"># 学习笔记</a>
+              <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2017/06/27/2017-weekly-7/" rel="prev" title="最美的风景">
+      <i class="fa fa-chevron-left"></i> 最美的风景
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2017/07/22/Complete-JavaScript-Course-ES6-Code-Challenge/" rel="next" title="ES6 Code Challenge and Solution">
+      ES6 Code Challenge and Solution <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-What’s-new-in-ES6-ES2015"><span class="nav-number">1.</span> <span class="nav-text">1. What’s new in ES6 &#x2F; ES2015</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-JavaScript-Today"><span class="nav-number">1.1.</span> <span class="nav-text">1.1. JavaScript Today</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-New-ES6-Features-We’ll-Cover-in-This-Section"><span class="nav-number">1.2.</span> <span class="nav-text">1.2. New ES6 Features We’ll Cover in This Section</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Variable-Declarations-with-let-and-const"><span class="nav-number">2.</span> <span class="nav-text">2. Variable Declarations with let and const</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Blocks-and-IIFEs"><span class="nav-number">3.</span> <span class="nav-text">3. Blocks and IIFEs</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Strings-in-ES6-ES2015"><span class="nav-number">4.</span> <span class="nav-text">4. Strings in ES6 &#x2F; ES2015</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-Arrow-Functions-Basics"><span class="nav-number">5.</span> <span class="nav-text">5. Arrow Functions: Basics</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-Arrow-Functions-Lexical-‘this’-Keyword"><span class="nav-number">6.</span> <span class="nav-text">6. Arrow Functions: Lexical ‘this’ Keyword</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-Destructuring"><span class="nav-number">7.</span> <span class="nav-text">7. Destructuring</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-Arrays-in-ES6-ES2015"><span class="nav-number">8.</span> <span class="nav-text">8. Arrays in ES6 &#x2F; ES2015</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-The-Spread-Operator"><span class="nav-number">9.</span> <span class="nav-text">9. The Spread Operator</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-Rest-Parameters"><span class="nav-number">10.</span> <span class="nav-text">10. Rest Parameters</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-Default-Parameters"><span class="nav-number">11.</span> <span class="nav-text">11. Default Parameters</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12-Maps"><span class="nav-number">12.</span> <span class="nav-text">12. Maps</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13-Classes"><span class="nav-number">13.</span> <span class="nav-text">13. Classes</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#14-Classes-with-Subclasses"><span class="nav-number">14.</span> <span class="nav-text">14. Classes with Subclasses</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#15-How-to-use-ES2015-ES6-Today"><span class="nav-number">15.</span> <span class="nav-text">15. How to use ES2015 &#x2F; ES6 Today?</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#15-1-Environment-Setup"><span class="nav-number">15.1.</span> <span class="nav-text">15.1. Environment Setup</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#15-2-Usage"><span class="nav-number">15.2.</span> <span class="nav-text">15.2. Usage</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Danny Zhang</p>
+  <div class="site-description" itemprop="description">Blogger/Software Engineer/Fitness Enthusiast</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">47</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">61</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Danny Zhang</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.7.2
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

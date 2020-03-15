@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"dannyzhang.run","root":"/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="I. Hash Functiona. 31In Java, the hash code for a String object is computed as 1s[0]*31^(n-1) + s[1]*31^(n-2) + ... + s[n-1]  The value 31 was chosen because it is an odd prime. If it were even and th">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Data Structure &amp; Algorithms Notes: Hash">
+<meta property="og:url" content="http://dannyzhang.run/2016/07/14/Techmon-Go-1-Hash/index.html">
+<meta property="og:site_name" content="D.Z. Notes (Beta)">
+<meta property="og:description" content="I. Hash Functiona. 31In Java, the hash code for a String object is computed as 1s[0]*31^(n-1) + s[1]*31^(n-2) + ... + s[n-1]  The value 31 was chosen because it is an odd prime. If it were even and th">
+<meta property="article:published_time" content="2016-07-15T04:57:32.000Z">
+<meta property="article:modified_time" content="2016-07-30T21:23:56.000Z">
+<meta property="article:author" content="Danny Zhang">
+<meta property="article:tag" content="Data Structure &amp; Algorithms">
+<meta property="article:tag" content="Hash">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://dannyzhang.run/2016/07/14/Techmon-Go-1-Hash/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true
+  };
+</script>
+
+  <title>Data Structure & Algorithms Notes: Hash | D.Z. Notes (Beta)</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">D.Z. Notes (Beta)</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">Be insensitive, and keep a lifelong growth mindset.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://dannyzhang.run/2016/07/14/Techmon-Go-1-Hash/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Danny Zhang">
+      <meta itemprop="description" content="Blogger/Software Engineer/Fitness Enthusiast">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="D.Z. Notes (Beta)">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Data Structure & Algorithms Notes: Hash
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2016-07-14 21:57:32" itemprop="dateCreated datePublished" datetime="2016-07-14T21:57:32-07:00">2016-07-14</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2016-07-30 14:23:56" itemprop="dateModified" datetime="2016-07-30T14:23:56-07:00">2016-07-30</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="I-Hash-Function"><a href="#I-Hash-Function" class="headerlink" title="I. Hash Function"></a>I. Hash Function</h3><h5 id="a-31"><a href="#a-31" class="headerlink" title="a. 31"></a>a. 31</h5><p>In Java, the hash code for a String object is computed as</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s[0]*31^(n-1) + s[1]*31^(n-2) + ... + s[n-1]</span><br></pre></td></tr></table></figure>
+
+<p>The value 31 was chosen because it is an odd prime. If it were even and the multiplication overflowed, information would be lost, as multiplication by 2 is equivalent to shifting. The advantage of using a prime is less clear, but it is traditional. A nice property of 31 is that the multiplication can be replaced by a shift and a subtraction for better performance: 31 * i == (i &lt;&lt; 5) - i. Modern VMs do this sort of optimization automatically.</p>
+<h5 id="b-31-mod-n"><a href="#b-31-mod-n" class="headerlink" title="b. 31 mod n"></a>b. 31 mod n</h5><p>Based on 31, mod the result with n, n stands for capacity.</p>
+<h5 id="c-rolling-hash"><a href="#c-rolling-hash" class="headerlink" title="c. rolling hash"></a>c. rolling hash</h5><p>This is used to find if str1 contains str2:</p>
+<pre><code>index = 0123456789
+str1 = &quot;fsaabcdefg&quot;
+str2 = &quot;abc&quot;
+...
+result1 = str1[3] * 31 ^ 0 + str1[4] * 31 ^ 1 + str1[5] * 31 ^ 2
+...
+result2 = str2[0] * 31 ^ 0 + str2[1] * 31 ^ 1 + str2[2] * 31 ^ 2</code></pre><h3 id="II-Hash-Families"><a href="#II-Hash-Families" class="headerlink" title="II. Hash Families"></a>II. Hash Families</h3><p>Hashtable: thread safe, but deprecated.<br>ConcurrentHashMap: an advanced version of Hashtable;<br>HashMap: not thread safe.<br>TreeMap: <a href="https://docs.oracle.com/javase/7/docs/api/java/util/TreeMap.html" target="_blank" rel="noopener">https://docs.oracle.com/javase/7/docs/api/java/util/TreeMap.html</a></p>
+<h3 id="III-Implement-hashCode-and-equals-methods"><a href="#III-Implement-hashCode-and-equals-methods" class="headerlink" title="III. Implement hashCode and equals methods"></a>III. Implement hashCode and equals methods</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Item</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> String str;</span><br><span class="line">    <span class="keyword">public</span> Integer inter;</span><br><span class="line">    <span class="keyword">public</span> Object obj;</span><br><span class="line">    <span class="keyword">public</span> Integer inter1;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">final</span> <span class="keyword">int</span> prime = <span class="number">31</span>;</span><br><span class="line">        <span class="keyword">final</span> <span class="keyword">int</span> N = <span class="number">345678</span>;</span><br><span class="line">        <span class="keyword">int</span> result = <span class="number">1</span>;</span><br><span class="line">        result = result * prime + str.hashCode();</span><br><span class="line">        result = result * prime + inter;</span><br><span class="line">        result = result * prime + obj.hashCode();</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object obj)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span> == obj) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (getClass() != obj.getClass()) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        Item other = (Item) obj;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (str == <span class="keyword">null</span> &amp;&amp; other.str != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (!str.equals(other.str)) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="IV-Probabilities"><a href="#IV-Probabilities" class="headerlink" title="IV. Probabilities"></a>IV. Probabilities</h3><p>a. n elements, n cells, question: for any particular cell, the prob of<br>    the number of elements is equal to k.<br>    Ans: prob = C(n, k) * (1/n)^k * (1-1/n)^(n-k)</p>
+<p>b. N people with everyone of different birthday<br>    Ans: p(n) = 365/365 * 364/365 * .. * (365-n)/365 &lt; 50%</p>
+<p>c. More probability questions<br><a href="https://www.careercup.com/page?pid=probability-interview-questions" target="_blank" rel="noopener">https://www.careercup.com/page?pid=probability-interview-questions</a></p>
+<h3 id="V-Further-Readings"><a href="#V-Further-Readings" class="headerlink" title="V. Further Readings"></a>V. Further Readings</h3><p>a. Java Knowledge<br>    1. Annotation;</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Data-Structure-Algorithms/" rel="tag"># Data Structure & Algorithms</a>
+              <a href="/tags/Hash/" rel="tag"># Hash</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2016/06/27/python-basics-notes/" rel="prev" title="Learn Python Basics Learning Notes I">
+      <i class="fa fa-chevron-left"></i> Learn Python Basics Learning Notes I
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2016/07/16/Techmon-Go-2-Topological-Sort/" rel="next" title="Data Structure & Algorithms Notes: Topological Sort">
+      Data Structure & Algorithms Notes: Topological Sort <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#I-Hash-Function"><span class="nav-number">1.</span> <span class="nav-text">I. Hash Function</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#a-31"><span class="nav-number">1.0.1.</span> <span class="nav-text">a. 31</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#b-31-mod-n"><span class="nav-number">1.0.2.</span> <span class="nav-text">b. 31 mod n</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#c-rolling-hash"><span class="nav-number">1.0.3.</span> <span class="nav-text">c. rolling hash</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#II-Hash-Families"><span class="nav-number">2.</span> <span class="nav-text">II. Hash Families</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#III-Implement-hashCode-and-equals-methods"><span class="nav-number">3.</span> <span class="nav-text">III. Implement hashCode and equals methods</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IV-Probabilities"><span class="nav-number">4.</span> <span class="nav-text">IV. Probabilities</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#V-Further-Readings"><span class="nav-number">5.</span> <span class="nav-text">V. Further Readings</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Danny Zhang</p>
+  <div class="site-description" itemprop="description">Blogger/Software Engineer/Fitness Enthusiast</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">47</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">61</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Danny Zhang</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.7.2
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

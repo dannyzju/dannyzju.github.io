@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"dannyzhang.run","root":"/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="1. What is JavaScript?JavaScript is a lightweight, cross-platform, object-oriented computer programming language  JavaScript is one of the three core technologies of web development JavaScript is most">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Complete JavaScript Course: Basics">
+<meta property="og:url" content="http://dannyzhang.run/2017/04/02/Complete-JavaScript-Course-Basics/index.html">
+<meta property="og:site_name" content="D.Z. Notes (Beta)">
+<meta property="og:description" content="1. What is JavaScript?JavaScript is a lightweight, cross-platform, object-oriented computer programming language  JavaScript is one of the three core technologies of web development JavaScript is most">
+<meta property="article:published_time" content="2017-04-02T15:00:19.000Z">
+<meta property="article:modified_time" content="2017-07-22T15:49:44.000Z">
+<meta property="article:author" content="Danny Zhang">
+<meta property="article:tag" content="tech">
+<meta property="article:tag" content="学习笔记">
+<meta property="article:tag" content="JavaScript">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://dannyzhang.run/2017/04/02/Complete-JavaScript-Course-Basics/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true
+  };
+</script>
+
+  <title>Complete JavaScript Course: Basics | D.Z. Notes (Beta)</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">D.Z. Notes (Beta)</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">Be insensitive, and keep a lifelong growth mindset.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://dannyzhang.run/2017/04/02/Complete-JavaScript-Course-Basics/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Danny Zhang">
+      <meta itemprop="description" content="Blogger/Software Engineer/Fitness Enthusiast">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="D.Z. Notes (Beta)">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Complete JavaScript Course: Basics
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2017-04-02 08:00:19" itemprop="dateCreated datePublished" datetime="2017-04-02T08:00:19-07:00">2017-04-02</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2017-07-22 08:49:44" itemprop="dateModified" datetime="2017-07-22T08:49:44-07:00">2017-07-22</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="1-What-is-JavaScript"><a href="#1-What-is-JavaScript" class="headerlink" title="1. What is JavaScript?"></a>1. What is JavaScript?</h2><p>JavaScript is a lightweight, cross-platform, object-oriented computer programming language</p>
+<ul>
+<li>JavaScript is one of the three core technologies of web development</li>
+<li>JavaScript is most commonly used as a part of webpages</li>
+<li>Today, JavaScript can be used in different places:<ul>
+<li>Client-side: JavaScript was traditionally only used in the browser</li>
+<li>Server-side: Thanks to node.js, we can use JavaScript on the server as well</li>
+</ul>
+</li>
+<li>JavaScript is what made modern web development possible:<ul>
+<li>Dynamic effects and interactivity;</li>
+<li>Modern web applications that we can interact with.</li>
+</ul>
+</li>
+</ul>
+<h2 id="2-JavaScript-Basics"><a href="#2-JavaScript-Basics" class="headerlink" title="2. JavaScript Basics"></a>2. JavaScript Basics</h2><h3 id="2-1-Declare-a-variable"><a href="#2-1-Declare-a-variable" class="headerlink" title="2.1. Declare a variable:"></a>2.1. Declare a variable:</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> name = <span class="string">'John'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(name);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> lastName = <span class="string">"Smith"</span>; <span class="comment">//Both single quotes and double quotes work, but need to keep consistent.</span></span><br><span class="line"><span class="built_in">console</span>.log(lastName);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> age = <span class="number">26</span>;</span><br><span class="line"><span class="built_in">console</span>.log(age);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> fullAge = <span class="literal">true</span>;</span><br><span class="line"><span class="built_in">console</span>.log(fullAge);</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-2-Primitive-Javascript-Data-Types-Variable-Mutation-and-Type-coercion"><a href="#2-2-Primitive-Javascript-Data-Types-Variable-Mutation-and-Type-coercion" class="headerlink" title="2.2. Primitive Javascript Data Types, Variable Mutation and Type coercion"></a>2.2. Primitive Javascript Data Types, Variable Mutation and Type coercion</h3><ul>
+<li><strong>Number</strong>: Floating point numbers, for decimals and integers</li>
+<li><strong>String</strong>: Sequence of characters, used for text.</li>
+<li><strong>Boolean</strong>: Logical data type that can only be true of false</li>
+<li><strong>Undefined</strong>: Data type of a variable which doe not have a value yet.</li>
+<li><strong>Null</strong>: Also means ‘non-existent’.</li>
+</ul>
+<p><code>JavaScript has dynamic typing</code><br>We don’t need to define the variable type, Javascript will figure it out by itself.</p>
+<p><strong>Variable Mutation &amp; Type coercion</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> name = <span class="string">'Danny'</span>;</span><br><span class="line"><span class="keyword">var</span> age = <span class="number">27</span>;</span><br><span class="line"><span class="built_in">console</span>.log(name + age); <span class="comment">//Type coercion: String + Number = String</span></span><br><span class="line">age = <span class="string">"twenty seven"</span> <span class="comment">//Variable Mutation: the data type can be changed for the same virable.</span></span><br><span class="line">consol.log(name + age);</span><br></pre></td></tr></table></figure>
+
+<p><strong>Prompt &amp; Alert</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> lastName = prompt(<span class="string">'What is the last name?'</span>); <span class="comment">//Allow user to type in.</span></span><br><span class="line">alert(<span class="string">'The last name is '</span> + lastName);</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-3-Operators"><a href="#2-3-Operators" class="headerlink" title="2.3. Operators"></a>2.3. Operators</h3><p>例子都很简单，在JavaScript中各种运算符的优先顺序可参考：</p>
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Operator_Precedence" target="_blank" rel="noopener">Operator precedence</a></li>
+</ul>
+<h3 id="2-4-If-else-statements"><a href="#2-4-If-else-statements" class="headerlink" title="2.4. If else statements"></a>2.4. If else statements</h3><h3 id="2-5-vs"><a href="#2-5-vs" class="headerlink" title="2.5. == vs ==="></a>2.5. == vs ===</h3><p><code>==</code>: does type coercion<br><code>===</code>: does not do type coercion</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="number">23</span> == <span class="string">'23'</span>) &#123;</span><br><span class="line">	<span class="comment">//Result is true, javaScript transform 23 to string and compare with '23'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="number">23</span> === <span class="string">'23'</span>) &#123;</span><br><span class="line">	<span class="comment">//Result is false, to avoid bugs, it's more recommended to use ===</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-6-Boolean-Logic-and-Switch-Statements"><a href="#2-6-Boolean-Logic-and-Switch-Statements" class="headerlink" title="2.6. Boolean Logic and Switch Statements:"></a>2.6. Boolean Logic and Switch Statements:</h3><p>Too basic, and the same as Java</p>
+<h3 id="2-7-Functions"><a href="#2-7-Functions" class="headerlink" title="2.7. Functions"></a>2.7. Functions</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">calculateAge</span>(<span class="params">yearOfBirth</span>) </span>&#123; <span class="comment">//Function with return value.</span></span><br><span class="line">	<span class="keyword">var</span> age = <span class="number">2016</span> - yearOfBirth;</span><br><span class="line">	<span class="keyword">return</span> age;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> ageJohn = calculateAge(<span class="number">1990</span>);</span><br><span class="line"><span class="built_in">console</span>.log(ageJohn);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">yearsUntilRetirement</span>(<span class="params">name, yearOfBirth</span>) </span>&#123; <span class="comment">//Function without return value.</span></span><br><span class="line">	<span class="keyword">var</span> age = calculateAge(yearOfBirth);</span><br><span class="line">	<span class="keyword">var</span> retirement = <span class="number">65</span> - age;</span><br><span class="line">	<span class="built_in">console</span>.log(name + <span class="string">'retires in '</span> + retirement + <span class="string">'years.'</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">yearsUntilRetirement(<span class="string">'John'</span>, <span class="number">1990</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-8-Statements-and-Expressions"><a href="#2-8-Statements-and-Expressions" class="headerlink" title="2.8. Statements and Expressions"></a>2.8. Statements and Expressions</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Function Statement</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">someFun</span>(<span class="params">par</span>) </span>&#123;</span><br><span class="line">	<span class="comment">//code</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//Function Expression</span></span><br><span class="line"><span class="keyword">var</span> someFun = <span class="function"><span class="keyword">function</span>(<span class="params">par</span>) </span>&#123;</span><br><span class="line">	<span class="comment">//code</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Difference:</p>
+<ul>
+<li>Function expression produces a value and outcome</li>
+<li>Statement just performs an action</li>
+</ul>
+<h3 id="2-9-Arrays"><a href="#2-9-Arrays" class="headerlink" title="2.9. Arrays"></a>2.9. Arrays</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> names = [<span class="string">'John'</span>, <span class="string">'Jane'</span>, <span class="string">'Mark'</span>];</span><br><span class="line"><span class="keyword">var</span> years = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">1990</span>, <span class="number">1969</span>, <span class="number">1948</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(names[<span class="number">0</span>]);</span><br><span class="line">names[<span class="number">1</span>] = <span class="string">'Ben'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(names);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> john = [<span class="string">'John'</span>, <span class="string">'Smith'</span>, <span class="number">1990</span>, <span class="string">'designer'</span>, <span class="literal">false</span>];</span><br><span class="line"></span><br><span class="line">john.push(<span class="string">'blue'</span>); <span class="comment">//Add an element to the end</span></span><br><span class="line">john.unshift(<span class="string">'Mr.'</span>); <span class="comment">//Add an element to the beginning</span></span><br><span class="line">john.pop(); <span class="comment">//Remove an element from the end</span></span><br><span class="line">john.shift(); <span class="comment">//Remove an element from the beginning</span></span><br><span class="line">john.indexOf(<span class="string">'Smith'</span>); <span class="comment">//Return the index of an element</span></span><br><span class="line"><span class="built_in">console</span>.log(john);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (john.indexOf(<span class="string">'teacher'</span>) === <span class="number">-1</span>) &#123;</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="string">'John is NOT a teacher.'</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-10-Objects-and-Properties"><a href="#2-10-Objects-and-Properties" class="headerlink" title="2.10. Objects and Properties"></a>2.10. Objects and Properties</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> john = &#123;</span><br><span class="line">		name: <span class="string">'John'</span>,</span><br><span class="line">		lastName: <span class="string">'Smith'</span>,</span><br><span class="line">		yearOfBirth: <span class="number">1990</span>,</span><br><span class="line">		job: <span class="string">'teacher'</span>,</span><br><span class="line">		isMarried: <span class="literal">false</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(john); <span class="comment">//Print out all properties</span></span><br><span class="line"><span class="built_in">console</span>.log(john.lastName); <span class="comment">// Print out specific property</span></span><br><span class="line"><span class="built_in">console</span>.log(john[<span class="string">'lastName'</span>]); <span class="comment">// Print out specific property</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> xyz = <span class="string">'job'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(john[xyz]);</span><br><span class="line"></span><br><span class="line">john.lastName = <span class="string">'Miller'</span>;</span><br><span class="line">john[<span class="string">'job'</span>] = <span class="string">'programmer'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(john);</span><br><span class="line"></span><br><span class="line"><span class="comment">//A different way to create object</span></span><br><span class="line"><span class="keyword">var</span> jane = <span class="keyword">new</span> <span class="built_in">Object</span>();</span><br><span class="line">jane.name = <span class="string">'Jane'</span>;</span><br><span class="line">jane.lastName = <span class="string">'Smith'</span>;</span><br><span class="line">jane[<span class="string">'yearOfBirth'</span>] = <span class="number">1969</span>;</span><br><span class="line">jane[<span class="string">'job'</span>] = <span class="string">'retired'</span>;</span><br><span class="line">jane[<span class="string">'isMarried'</span>] = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(jane);</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-11-Objects-and-Methods"><a href="#2-11-Objects-and-Methods" class="headerlink" title="2.11. Objects and Methods"></a>2.11. Objects and Methods</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">var</span> john = &#123;</span><br><span class="line">		name: <span class="string">'John'</span>,</span><br><span class="line">		lastName: <span class="string">'Smith'</span>,</span><br><span class="line">		yearOfBirth: <span class="number">1990</span>,</span><br><span class="line">		job: <span class="string">'teacher'</span>,</span><br><span class="line">		isMarried: <span class="literal">false</span>,</span><br><span class="line">		family: [<span class="string">'Jane'</span>, <span class="string">'Mark'</span>, <span class="string">'Bob'</span>],</span><br><span class="line">		<span class="comment">/*</span></span><br><span class="line"><span class="comment">		calculateAge: function() &#123; //Function Expression</span></span><br><span class="line"><span class="comment">				return 2016 - this.yearOfBirth;</span></span><br><span class="line"><span class="comment">		&#125; */</span></span><br><span class="line">		calculateAge: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="comment">//Function Expression</span></span><br><span class="line">				<span class="keyword">return</span> <span class="number">2016</span> - <span class="keyword">this</span>.yearOfBirth;</span><br><span class="line">		&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(john.family);</span><br><span class="line"><span class="built_in">console</span>.log(john.family[<span class="number">2</span>]);</span><br><span class="line"><span class="comment">//console.log(john.calculateAge(1990));</span></span><br><span class="line"><span class="built_in">console</span>.log(john.calculateAge());</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> age = john.calculateAge();</span><br><span class="line">john.age = age;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(john);</span><br><span class="line"></span><br><span class="line"><span class="comment">//v2.0</span></span><br><span class="line"><span class="keyword">var</span> john = &#123;</span><br><span class="line">		name: <span class="string">'John'</span>,</span><br><span class="line">		lastName: <span class="string">'Smith'</span>,</span><br><span class="line">		yearOfBirth: <span class="number">1990</span>,</span><br><span class="line">		job: <span class="string">'teacher'</span>,</span><br><span class="line">		isMarried: <span class="literal">false</span>,</span><br><span class="line">		family: [<span class="string">'Jane'</span>, <span class="string">'Mark'</span>, <span class="string">'Bob'</span>],</span><br><span class="line">		<span class="comment">/*</span></span><br><span class="line"><span class="comment">		calculateAge: function() &#123; //Function Expression</span></span><br><span class="line"><span class="comment">				return 2016 - this.yearOfBirth;</span></span><br><span class="line"><span class="comment">		&#125; */</span></span><br><span class="line">		calculateAge: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="comment">//Function Expression</span></span><br><span class="line">				<span class="keyword">this</span>.age = <span class="number">2016</span> - <span class="keyword">this</span>.yearOfBirth;</span><br><span class="line">		&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">john.calculateAge（）；</span><br><span class="line"><span class="built_in">console</span>.log(john);</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-12-Loops-and-Iteration"><a href="#2-12-Loops-and-Iteration" class="headerlink" title="2.12. Loops and Iteration"></a>2.12. Loops and Iteration</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//for loops</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">	<span class="built_in">console</span>.log(i);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> names = [<span class="string">'John'</span>, <span class="string">'Jane'</span>, <span class="string">'Mary'</span>, <span class="string">'Mark'</span>, <span class="string">'Bob'</span>];</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; names.length; i++) &#123;</span><br><span class="line">	<span class="built_in">console</span>.log(names[i]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = names.length - <span class="number">1</span>; i &gt;=<span class="number">0</span> ; i—) &#123;</span><br><span class="line">	<span class="built_in">console</span>.log(names[i]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> i = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">while</span> (i &lt; names.length) &#123;</span><br><span class="line">	<span class="built_in">console</span>.log(names[i]);</span><br><span class="line">	i++;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++) &#123;</span><br><span class="line">	<span class="built_in">console</span>.log(i);</span><br><span class="line">	<span class="keyword">if</span> (i === <span class="number">3</span>) &#123;</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++) &#123;</span><br><span class="line">	<span class="keyword">if</span> (i === <span class="number">3</span>) &#123;</span><br><span class="line">		<span class="keyword">continue</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">console</span>.log(i);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-History-and-Versions"><a href="#3-History-and-Versions" class="headerlink" title="3. History and Versions"></a>3. History and Versions</h2><h3 id="3-1-A-Very-Short-History-of-JavaScript"><a href="#3-1-A-Very-Short-History-of-JavaScript" class="headerlink" title="3.1. A Very Short History of JavaScript"></a>3.1. A Very Short History of JavaScript</h3><ul>
+<li><strong>1996</strong>: Changed from LiveScript to JavaScript to attract Java developers. <strong>JavaScript has almost nothing to do with Java</strong>.</li>
+<li><strong>1997</strong>: ECMAScript 1 became the fist version of the JavaScript language standard:<ul>
+<li>ECMAScript: The language standard;</li>
+<li>JavaScript: The language in practice.</li>
+</ul>
+</li>
+<li><strong>2009</strong>: ECMAScript 5 (ES5) was released with logs of new features.</li>
+<li><strong>2015</strong>: ECMAScript 2015 (ES2015) was released: <strong>the biggest update ever</strong>.</li>
+<li><strong>2016</strong>: ECMAScript 2016 (ES2016) was released with minor changes only.</li>
+</ul>
+<h3 id="3-2-JavaScript-Today"><a href="#3-2-JavaScript-Today" class="headerlink" title="3.2. JavaScript Today"></a>3.2. JavaScript Today</h3><ul>
+<li><p><code>ES5</code></p>
+<ul>
+<li>Fully supported in all modern browsers;</li>
+<li>Ready to be used today (2016).</li>
+</ul>
+</li>
+<li><p><code>ES6/ES2015</code></p>
+<ul>
+<li>Only partial supported in modern browsers, no support in older browsers;</li>
+<li>Can’t use it in production today (2016).</li>
+</ul>
+</li>
+<li><p><code>ES2016</code></p>
+<ul>
+<li>Almost no support in modern browsers;</li>
+<li>Can’t use it in production today (2016).</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-3-Why-We’re-Using-ES5-in-This-Course"><a href="#3-3-Why-We’re-Using-ES5-in-This-Course" class="headerlink" title="3.3. Why We’re Using ES5 in This Course"></a>3.3. Why We’re Using ES5 in This Course</h3><ul>
+<li>ECMAScript 2015 still has very incomplete browser support today.</li>
+<li>Almost all tutorials and code you find on the web today is till in ES5</li>
+<li>When working on older codebases, these will be written in ES5.</li>
+<li>It’s easier to learn ES5 and then update to ES6/ES2015.</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/tech/" rel="tag"># tech</a>
+              <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag"># 学习笔记</a>
+              <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2017/03/28/2017-weekly-2/" rel="prev" title="Learn without limits">
+      <i class="fa fa-chevron-left"></i> Learn without limits
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2017/04/03/How-JavaScript-works-Behind-the-Scenes/" rel="next" title="How JavaScript Works Behind the Scenes?">
+      How JavaScript Works Behind the Scenes? <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-What-is-JavaScript"><span class="nav-number">1.</span> <span class="nav-text">1. What is JavaScript?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-JavaScript-Basics"><span class="nav-number">2.</span> <span class="nav-text">2. JavaScript Basics</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-Declare-a-variable"><span class="nav-number">2.1.</span> <span class="nav-text">2.1. Declare a variable:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-Primitive-Javascript-Data-Types-Variable-Mutation-and-Type-coercion"><span class="nav-number">2.2.</span> <span class="nav-text">2.2. Primitive Javascript Data Types, Variable Mutation and Type coercion</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-Operators"><span class="nav-number">2.3.</span> <span class="nav-text">2.3. Operators</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-If-else-statements"><span class="nav-number">2.4.</span> <span class="nav-text">2.4. If else statements</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-5-vs"><span class="nav-number">2.5.</span> <span class="nav-text">2.5. &#x3D;&#x3D; vs &#x3D;&#x3D;&#x3D;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-6-Boolean-Logic-and-Switch-Statements"><span class="nav-number">2.6.</span> <span class="nav-text">2.6. Boolean Logic and Switch Statements:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-7-Functions"><span class="nav-number">2.7.</span> <span class="nav-text">2.7. Functions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-8-Statements-and-Expressions"><span class="nav-number">2.8.</span> <span class="nav-text">2.8. Statements and Expressions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-9-Arrays"><span class="nav-number">2.9.</span> <span class="nav-text">2.9. Arrays</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-10-Objects-and-Properties"><span class="nav-number">2.10.</span> <span class="nav-text">2.10. Objects and Properties</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-11-Objects-and-Methods"><span class="nav-number">2.11.</span> <span class="nav-text">2.11. Objects and Methods</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-12-Loops-and-Iteration"><span class="nav-number">2.12.</span> <span class="nav-text">2.12. Loops and Iteration</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-History-and-Versions"><span class="nav-number">3.</span> <span class="nav-text">3. History and Versions</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-A-Very-Short-History-of-JavaScript"><span class="nav-number">3.1.</span> <span class="nav-text">3.1. A Very Short History of JavaScript</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-JavaScript-Today"><span class="nav-number">3.2.</span> <span class="nav-text">3.2. JavaScript Today</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-Why-We’re-Using-ES5-in-This-Course"><span class="nav-number">3.3.</span> <span class="nav-text">3.3. Why We’re Using ES5 in This Course</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Danny Zhang</p>
+  <div class="site-description" itemprop="description">Blogger/Software Engineer/Fitness Enthusiast</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">47</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">61</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Danny Zhang</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.7.2
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

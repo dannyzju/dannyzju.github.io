@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"dannyzhang.run","root":"/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="虽然在工作中其实经常用到JavaScript，但好像还真是很久没有系统地进行过梳理了，于是本着查漏补缺的心态，完成了Udemy的The Complete JavaScript Course基础部分的课程并且整理了笔记，过程中的确是发现了不少知识体系上的漏洞，也算是收获颇丰。 这周还顺带把笔记管理的软件替换成了iA Writer, 以前一直在用Evernote，但是对于Markdown的支持太鸡肋，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="白日莫空过，青春不再来">
+<meta property="og:url" content="http://dannyzhang.run/2017/04/11/2017-weekly-3/index.html">
+<meta property="og:site_name" content="D.Z. Notes (Beta)">
+<meta property="og:description" content="虽然在工作中其实经常用到JavaScript，但好像还真是很久没有系统地进行过梳理了，于是本着查漏补缺的心态，完成了Udemy的The Complete JavaScript Course基础部分的课程并且整理了笔记，过程中的确是发现了不少知识体系上的漏洞，也算是收获颇丰。 这周还顺带把笔记管理的软件替换成了iA Writer, 以前一直在用Evernote，但是对于Markdown的支持太鸡肋，">
+<meta property="article:published_time" content="2017-04-12T05:33:16.000Z">
+<meta property="article:modified_time" content="2017-04-13T14:18:57.000Z">
+<meta property="article:author" content="Danny Zhang">
+<meta property="article:tag" content="周记">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://dannyzhang.run/2017/04/11/2017-weekly-3/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true
+  };
+</script>
+
+  <title>白日莫空过，青春不再来 | D.Z. Notes (Beta)</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">D.Z. Notes (Beta)</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">Be insensitive, and keep a lifelong growth mindset.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://dannyzhang.run/2017/04/11/2017-weekly-3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Danny Zhang">
+      <meta itemprop="description" content="Blogger/Software Engineer/Fitness Enthusiast">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="D.Z. Notes (Beta)">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          白日莫空过，青春不再来
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2017-04-11 22:33:16" itemprop="dateCreated datePublished" datetime="2017-04-11T22:33:16-07:00">2017-04-11</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2017-04-13 07:18:57" itemprop="dateModified" datetime="2017-04-13T07:18:57-07:00">2017-04-13</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>虽然在工作中其实经常用到JavaScript，但好像还真是很久没有系统地进行过梳理了，于是本着查漏补缺的心态，完成了Udemy的The Complete JavaScript Course基础部分的课程并且整理了笔记，过程中的确是发现了不少知识体系上的漏洞，也算是收获颇丰。</p>
+<p>这周还顺带把笔记管理的软件替换成了iA Writer, 以前一直在用Evernote，但是对于Markdown的支持太鸡肋，反而有一堆不太用得上的杂七杂八功能，实在是显得冗余不堪。尝试了iA Writer之后发现这个软件完全走的是另一个路线，专业的Markdown支持，iCloud云备份，最重要的是其极简界面深得我心，多平台同步也是毫无压力，感觉接下来基本上可以抛弃Evernote了。</p>
+<p>公司方面这两周都在搞Learn的Hackathon，因为Tap这边的也涉及到Learn的Feature, 因此上周也受邀参与了两天。这次Hackathon来得人还不少，不仅有湾区的同事，还有从德州，麻省，以及印度还有英国专程飞过来的，而且居然还意外看到了David Mason，当年一起做Phone Shell的时候可真是算难兄难弟了，虽然后面没有再合作，不过那段经历也真还是挺难忘。这次Hacathon是Jeff和Vitaly联合带队，若论起美国人的敬业精神，作为Learn Team Senior Director的Jeff就是一个活生生的例子，同时精于技术，管理，沟通，口才，领导力，而且工作起来精力极度旺盛。用一个美国同事的话说，Jeff是常年开启着N个克隆版本，带领着多个项目齐头并进，任何时候都属于高能状态。当初和Jeff工作的那段时间，有一次他一边高速上开着车，一边dial in到我们的scrum里面，而且遇到问题还指点着我们打开哪一个程序文件，然后去分析哪一段代码，简直是让人目瞪口呆。</p>
+<p>不过说起敬业精神，也不得不提及日本这个民族。最近看了柳井正的《一胜九败》和稻盛和夫的《干法》，这两位卓越的企业家更是将日本人特有的那种专注，执着和敬业的精神发挥到了极致。稻盛和夫先生对于工作的态度给我留下了很深的印象，很多人工作不过是为了期盼假期，薪水和奖金，而稻盛和夫是发自内心地热爱工作，视工作为最佳的自我修炼方式。人生总是被“贪嗔痴”三毒所控制，要想减少这三毒，最好的方法就是“愚直地、认真地、专业地、诚实地”投身于自己的工作，工作就是万病的良药。</p>
+<p>另外呢，这几个月通过GYL社群收获不少，通过早睡早起，使用效率手册，感觉时间的掌控能力好了很多。现在同时也开始承担了一定的GYL社群管理的工作，希望自己的坚持也能带动新加入的小伙伴们一起进步和成长。</p>
+<p>柳烟侵御道，门映夹城开。白日莫空过，青春不再来。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%91%A8%E8%AE%B0/" rel="tag"># 周记</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2017/04/06/Advanced-JavaScript-Objects-and-Functions/" rel="prev" title="Advanced JavaScript: Objects and Functions">
+      <i class="fa fa-chevron-left"></i> Advanced JavaScript: Objects and Functions
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2017/04/19/2017-weekly-4/" rel="next" title="双面">
+      双面 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Danny Zhang</p>
+  <div class="site-description" itemprop="description">Blogger/Software Engineer/Fitness Enthusiast</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">47</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">61</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Danny Zhang</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.7.2
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

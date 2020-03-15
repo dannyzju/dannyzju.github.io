@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"dannyzhang.run","root":"/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="1. Installing ReactCd into the target folder, and run the following commands 1sudo npm install -g create-react-app  Create a new react app called compare-react 1create-react-app compare-react  Build a">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Build Web App with React">
+<meta property="og:url" content="http://dannyzhang.run/2017/07/31/build-web-with-react/index.html">
+<meta property="og:site_name" content="D.Z. Notes (Beta)">
+<meta property="og:description" content="1. Installing ReactCd into the target folder, and run the following commands 1sudo npm install -g create-react-app  Create a new react app called compare-react 1create-react-app compare-react  Build a">
+<meta property="og:image" content="https://lh3.googleusercontent.com/wCoAPYWpnClUXMZ_Krks8XM9n31EIeow-NR5Ak9JSn2h8dDKvQvDdq15hxXc9-AYnCZJ7gGv3Ypqj2x2FDyXf0zWGbLQ-clo_MDey_NkQDsWPD8wB_L1s3P2vXzV9QW1hdg0LEKHOHGI2I0GGWQ8zbJfXE96VEI8FiklqkjT7w4Fd-toqh5iIPwYdk9o3FyFUSh7N7E5Q9sR7LFgNZuYb2LQGNRs5sBqkegRDA6M2g_yV6Ldu5dqyltNcFjd31kv0jKuyOUoqbWE5SYC26iIjGiKyJDyP1SKGG1GaVd28yYv07bzTfSas7Vg1JKQLJ3Wr57v59Bo9wJp9HN7encIpkKgYavtDH4gXOIS6_3W7qQQUV3FH0CO64nI7Uk9_zgzJvNlB2y43xCLS7RvC095fiko_k50EX_0NhIN5iU4URC4ohwLJPn2VaF4sA5Y7KPVY1Bb9o2Btu30UAQoRorQLlfTVLXDnU_y8frmyciwaSCKNRQxBdwZgBDGQUeGd6PgaEt-4Blthd7NuF_oyR3cp_ZgBIwxYd0Kg-Yidl52Rq9OXOOSJE3xt7nFgUO1uJEXZxwpHVBgT4bFoLRtbAv0MUZezpf92ZtmCPPj5wPhKgPL7kNXHKmcvPiwXUNr-PrGqlZBkQa2181v2Q863quAY2qbkg8sCuKppU-Ws3QwIAN1Mg=w2036-h956-no">
+<meta property="og:image" content="https://lh3.googleusercontent.com/eRWIVrMMJU8UtUABtAJbkQ7M6qit-Wmkk5VNEVAcwnKphNBPYKbGSAlA24XnDshYIDmvDR91rOGZ6MuAXcazFZhBagCVr3ip-aJ3OLNtKRoyzOvH2qxPWnuma3fZxBcQKRzPx_24ypk71KU8a8yOL_X7O6QEMhKVlCwoW2gX5MVAYtTYrQ8J2ImgyXFC5omNT7ZIR9F6-TIS9DHLv3PuzJnDN8qIbZGvjjuJQfmqdie0XH9unBup4EvvayBZmktAVO29HbZ0wqaGt65SPMPssy_KKArEmOm0led9hWMndrjfQ01LcEdmYYrjUm_I9N1M00kb4WCgPFSgCCuHoJwbXAQ-mTl1cdxXwEGvgOhsn60aOcQkYWRK-DVLwspuSSTJ1qgZT5JM0YeoX6J64tdSkbS_BuNTXPtJTrF4fhs_NqEiopzY1w45ZP4oktrmYyl_SLSJQgtjDmQORznm_46uvrDanmOcid799-uHbf-Rf-SceZqsfU_oHT1mMgslb5G2VIdx97SJke4CzoMTzEXKxXJ_sczXfYyDLRF0HiyT2hYvv8uXevdfuhsXr-Ehj5n_InYTpZR0H-Gp4ZO6v3bKcQsqUEVdJjhLKd9Ng1I80vSZ7J6ipF_IOHKttx5Go8uGDnVQn8yUEiEWnGJWgTuQ_sl0syiKzv4NJgIjUAH9VlZ6eA=w2204-h1246-no">
+<meta property="article:published_time" content="2017-08-01T04:24:12.000Z">
+<meta property="article:modified_time" content="2017-08-01T04:33:11.000Z">
+<meta property="article:author" content="Danny Zhang">
+<meta property="article:tag" content="tech">
+<meta property="article:tag" content="学习笔记">
+<meta property="article:tag" content="JavaScript">
+<meta property="article:tag" content="React">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://lh3.googleusercontent.com/wCoAPYWpnClUXMZ_Krks8XM9n31EIeow-NR5Ak9JSn2h8dDKvQvDdq15hxXc9-AYnCZJ7gGv3Ypqj2x2FDyXf0zWGbLQ-clo_MDey_NkQDsWPD8wB_L1s3P2vXzV9QW1hdg0LEKHOHGI2I0GGWQ8zbJfXE96VEI8FiklqkjT7w4Fd-toqh5iIPwYdk9o3FyFUSh7N7E5Q9sR7LFgNZuYb2LQGNRs5sBqkegRDA6M2g_yV6Ldu5dqyltNcFjd31kv0jKuyOUoqbWE5SYC26iIjGiKyJDyP1SKGG1GaVd28yYv07bzTfSas7Vg1JKQLJ3Wr57v59Bo9wJp9HN7encIpkKgYavtDH4gXOIS6_3W7qQQUV3FH0CO64nI7Uk9_zgzJvNlB2y43xCLS7RvC095fiko_k50EX_0NhIN5iU4URC4ohwLJPn2VaF4sA5Y7KPVY1Bb9o2Btu30UAQoRorQLlfTVLXDnU_y8frmyciwaSCKNRQxBdwZgBDGQUeGd6PgaEt-4Blthd7NuF_oyR3cp_ZgBIwxYd0Kg-Yidl52Rq9OXOOSJE3xt7nFgUO1uJEXZxwpHVBgT4bFoLRtbAv0MUZezpf92ZtmCPPj5wPhKgPL7kNXHKmcvPiwXUNr-PrGqlZBkQa2181v2Q863quAY2qbkg8sCuKppU-Ws3QwIAN1Mg=w2036-h956-no">
+
+<link rel="canonical" href="http://dannyzhang.run/2017/07/31/build-web-with-react/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true
+  };
+</script>
+
+  <title>Build Web App with React | D.Z. Notes (Beta)</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">D.Z. Notes (Beta)</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">Be insensitive, and keep a lifelong growth mindset.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://dannyzhang.run/2017/07/31/build-web-with-react/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Danny Zhang">
+      <meta itemprop="description" content="Blogger/Software Engineer/Fitness Enthusiast">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="D.Z. Notes (Beta)">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Build Web App with React
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2017-07-31 21:24:12 / Modified: 21:33:11" itemprop="dateCreated datePublished" datetime="2017-07-31T21:24:12-07:00">2017-07-31</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="1-Installing-React"><a href="#1-Installing-React" class="headerlink" title="1. Installing React"></a>1. Installing React</h2><p>Cd into the target folder, and run the following commands</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo npm install -g create-react-app</span><br></pre></td></tr></table></figure>
+
+<p>Create a new react app called compare-react</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create-react-app compare-react</span><br></pre></td></tr></table></figure>
+
+<p>Build and launch the project</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd compare-react</span><br><span class="line">npm start</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-React-Components"><a href="#2-React-Components" class="headerlink" title="2. React Components"></a>2. React Components</h2><p>Initially, the app structure looks like this.</p>
+<p><img src="https://lh3.googleusercontent.com/wCoAPYWpnClUXMZ_Krks8XM9n31EIeow-NR5Ak9JSn2h8dDKvQvDdq15hxXc9-AYnCZJ7gGv3Ypqj2x2FDyXf0zWGbLQ-clo_MDey_NkQDsWPD8wB_L1s3P2vXzV9QW1hdg0LEKHOHGI2I0GGWQ8zbJfXE96VEI8FiklqkjT7w4Fd-toqh5iIPwYdk9o3FyFUSh7N7E5Q9sR7LFgNZuYb2LQGNRs5sBqkegRDA6M2g_yV6Ldu5dqyltNcFjd31kv0jKuyOUoqbWE5SYC26iIjGiKyJDyP1SKGG1GaVd28yYv07bzTfSas7Vg1JKQLJ3Wr57v59Bo9wJp9HN7encIpkKgYavtDH4gXOIS6_3W7qQQUV3FH0CO64nI7Uk9_zgzJvNlB2y43xCLS7RvC095fiko_k50EX_0NhIN5iU4URC4ohwLJPn2VaF4sA5Y7KPVY1Bb9o2Btu30UAQoRorQLlfTVLXDnU_y8frmyciwaSCKNRQxBdwZgBDGQUeGd6PgaEt-4Blthd7NuF_oyR3cp_ZgBIwxYd0Kg-Yidl52Rq9OXOOSJE3xt7nFgUO1uJEXZxwpHVBgT4bFoLRtbAv0MUZezpf92ZtmCPPj5wPhKgPL7kNXHKmcvPiwXUNr-PrGqlZBkQa2181v2Q863quAY2qbkg8sCuKppU-Ws3QwIAN1Mg=w2036-h956-no" alt="Initial React Components"></p>
+<p>To better organize the app components, create /src/components folder, and then create subfolders <code>Home</code>, <code>Header</code>, <code>Footer</code>, and <code>Faq</code> for each UI components.</p>
+<p><strong>Header.js</strong></p>
+<p>Same as the App.js, Header is also a stateful UI component. Create Header.js under /src/components/Header, copy and paste code from App.js, and edit it as follows:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Header</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;div className=<span class="string">"App"</span>&gt;</span><br><span class="line">        MY HEADER</span><br><span class="line">      &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    );</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">export default Header;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>Footer.js</strong></p>
+<p>Create Footer.js under /src/components/Footer, different with Header, Footer is a stateless UI component. Instead of creating a class extending Component, we need to create a const function. See the code below.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> Footer = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    &lt;div className = <span class="string">"App"</span> &gt;</span><br><span class="line">      MY FOOTER</span><br><span class="line">    &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">  );</span></span><br><span class="line"><span class="regexp">&#125;;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">export default Footer;</span></span><br></pre></td></tr></table></figure>
+
+<p>At last, import Header and Footer in App.js like this.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> Header <span class="keyword">from</span> <span class="string">'./component/Header/Header'</span>;</span><br><span class="line"><span class="keyword">import</span> Footer <span class="keyword">from</span> <span class="string">'./component/Footer/Footer'</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">'./App.css'</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">App</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;div className=<span class="string">"App"</span>&gt;</span><br><span class="line">        &lt;Header /&gt;</span><br><span class="line"></span><br><span class="line">        &lt;Footer /&gt;</span><br><span class="line">      &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    );</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">export default App;</span></span><br></pre></td></tr></table></figure>
+
+<p>Eventually, the app structure looks like this.</p>
+<p><img src="https://lh3.googleusercontent.com/eRWIVrMMJU8UtUABtAJbkQ7M6qit-Wmkk5VNEVAcwnKphNBPYKbGSAlA24XnDshYIDmvDR91rOGZ6MuAXcazFZhBagCVr3ip-aJ3OLNtKRoyzOvH2qxPWnuma3fZxBcQKRzPx_24ypk71KU8a8yOL_X7O6QEMhKVlCwoW2gX5MVAYtTYrQ8J2ImgyXFC5omNT7ZIR9F6-TIS9DHLv3PuzJnDN8qIbZGvjjuJQfmqdie0XH9unBup4EvvayBZmktAVO29HbZ0wqaGt65SPMPssy_KKArEmOm0led9hWMndrjfQ01LcEdmYYrjUm_I9N1M00kb4WCgPFSgCCuHoJwbXAQ-mTl1cdxXwEGvgOhsn60aOcQkYWRK-DVLwspuSSTJ1qgZT5JM0YeoX6J64tdSkbS_BuNTXPtJTrF4fhs_NqEiopzY1w45ZP4oktrmYyl_SLSJQgtjDmQORznm_46uvrDanmOcid799-uHbf-Rf-SceZqsfU_oHT1mMgslb5G2VIdx97SJke4CzoMTzEXKxXJ_sczXfYyDLRF0HiyT2hYvv8uXevdfuhsXr-Ehj5n_InYTpZR0H-Gp4ZO6v3bKcQsqUEVdJjhLKd9Ng1I80vSZ7J6ipF_IOHKttx5Go8uGDnVQn8yUEiEWnGJWgTuQ_sl0syiKzv4NJgIjUAH9VlZ6eA=w2204-h1246-no" alt="React Components"></p>
+<h2 id="3-Integrating-a-CSS-Framework"><a href="#3-Integrating-a-CSS-Framework" class="headerlink" title="3. Integrating a CSS Framework"></a>3. Integrating a CSS Framework</h2><p>Cd project folder and install bulma</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd compare-react</span><br><span class="line">npm install bulma --save</span><br></pre></td></tr></table></figure>
+
+<p>To add bulma to the project, we can reference <a href="https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#adding-a-css-preprocessor-sass-less-etc" target="_blank" rel="noopener">Adding a CSS Preprocessor (Sass, Less etc.)</a></p>
+<p>Edit the “scripts” section in package.json as follows:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"scripts"</span>: &#123;</span><br><span class="line">	<span class="string">"build-css"</span>: <span class="string">"node-sass-chokidar src/ -o src/"</span>,</span><br><span class="line">	<span class="string">"watch-css"</span>: <span class="string">"npm run build-css &amp;&amp; node-sass-chokidar src/ -o src/ --watch --recursive"</span>,</span><br><span class="line">	<span class="string">"start-js"</span>: <span class="string">"react-scripts start"</span>,</span><br><span class="line">	<span class="string">"start"</span>: <span class="string">"npm-run-all -p watch-css start-js"</span>,</span><br><span class="line">	<span class="string">"build"</span>: <span class="string">"npm run build-css &amp;&amp; react-scripts build"</span>,</span><br><span class="line">	<span class="string">"test"</span>: <span class="string">"react-scripts test --env=jsdom"</span>,</span><br><span class="line">	<span class="string">"eject"</span>: <span class="string">"react-scripts eject"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Then run the following commands</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev npm-run-all</span><br><span class="line">npm install node-sass-chokidar --save-dev</span><br><span class="line">npm start</span><br></pre></td></tr></table></figure>
+
+<p>Check the App.css file, and you can see that the content of App.sass has been compiled to App.css, so in our code, we can just import and reference to App.css.</p>
+<p>The app is running with very basic header and footer now!</p>
+<h2 id="4-Header-amp-Routing"><a href="#4-Header-amp-Routing" class="headerlink" title="4. Header &amp; Routing"></a>4. Header &amp; Routing</h2><h3 id="4-1-Header-UI"><a href="#4-1-Header-UI" class="headerlink" title="4.1. Header UI"></a>4.1. Header UI</h3><p>Copy and edit the header code from previous vue project to Header.js as follows.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Header</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;div className=<span class="string">"App"</span>&gt;</span><br><span class="line">      &lt;div className=<span class="string">"nav has-shadow"</span>&gt;</span><br><span class="line">        &lt;div className=<span class="string">"container"</span>&gt;</span><br><span class="line">          &lt;div className=<span class="string">"nav-left"</span></span><br><span class="line">            &lt;a className=<span class="string">"nav-item"</span>&gt;MyCompany&lt;<span class="regexp">/a&gt;</span></span><br><span class="line"><span class="regexp">          &lt;/</span>div&gt;</span><br><span class="line"></span><br><span class="line">          &lt;span className=<span class="string">"nav-toggle"</span>&gt;</span><br><span class="line">            &lt;span&gt;&lt;<span class="regexp">/span&gt;</span></span><br><span class="line"><span class="regexp">            &lt;span&gt;&lt;/</span>span&gt;</span><br><span class="line">            &lt;span&gt;&lt;<span class="regexp">/span&gt;</span></span><br><span class="line"><span class="regexp">          &lt;/</span>span&gt;</span><br><span class="line"></span><br><span class="line">          &lt;div className=<span class="string">"nav-right nav-menu"</span>&gt;</span><br><span class="line">            &lt;div className=<span class="string">"nav-item"</span>&gt;</span><br><span class="line">              &lt;p className=<span class="string">"control"</span>&gt;</span><br><span class="line">                &lt;a className=<span class="string">"button is-primary is-outlined"</span>&gt;</span><br><span class="line">                  &lt;span className=<span class="string">"icon"</span>&gt;</span><br><span class="line">                    &lt;i className=<span class="string">"fa fa-download"</span>&gt;&lt;<span class="regexp">/i&gt;</span></span><br><span class="line"><span class="regexp">                  &lt;/</span>span&gt;</span><br><span class="line">                  &lt;span&gt;Join Now&lt;<span class="regexp">/span&gt;</span></span><br><span class="line"><span class="regexp">                &lt;/</span>a&gt;</span><br><span class="line">              &lt;<span class="regexp">/p&gt;</span></span><br><span class="line"><span class="regexp">            &lt;/</span>div&gt;</span><br><span class="line">          &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">        &lt;/</span>div&gt;</span><br><span class="line">      &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">      &lt;/</span>div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> Header;</span><br></pre></td></tr></table></figure>
+
+<p>Copy the previous mq.sass file from vue project to /src, and create the Header.sass file under /src/components/Header with the following content.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">@import &#39;..&#x2F;..&#x2F;mq.sass&#39;</span><br><span class="line"></span><br><span class="line">.nav</span><br><span class="line">  background-color: #383838</span><br><span class="line">  a:hover</span><br><span class="line">    color: gray</span><br><span class="line"></span><br><span class="line">.nav-left a</span><br><span class="line">  color: #fff</span><br><span class="line">  font-weight: bold</span><br><span class="line"></span><br><span class="line">a.r-item</span><br><span class="line">  color: #C1C1C1</span><br><span class="line">  padding: 0.5rem 1.75rem</span><br><span class="line">  +mobile</span><br><span class="line">    color: gray</span><br><span class="line">    &amp;:hover</span><br><span class="line">      background-color: #F1F1F1</span><br><span class="line"></span><br><span class="line">.nav-toggle span</span><br><span class="line">  background-color: #C1C1C1</span><br></pre></td></tr></table></figure>
+
+<p>Then import ‘./Header.css’ in Header.js</p>
+<p>Besides, we need to change the order of “import ‘./App.css’” in App.js as follows to avoid the styling of Header and Footer got overridden by App.css</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">'./App.css'</span>;</span><br><span class="line"><span class="keyword">import</span> Header <span class="keyword">from</span> <span class="string">'./components/Header/Header'</span>;</span><br><span class="line"><span class="keyword">import</span> Footer <span class="keyword">from</span> <span class="string">'./components/Footer/Footer'</span>;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-2-Header-Routing"><a href="#4-2-Header-Routing" class="headerlink" title="4.2. Header Routing"></a>4.2. Header Routing</h3><p>Install react-router-dom.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install react-router-dom --save</span><br></pre></td></tr></table></figure>
+
+<p>Import Link in Header.js, and add links under nav-menu div as follows.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="keyword">import</span> &#123; Link &#125; <span class="keyword">from</span> <span class="string">'react-router-dom'</span></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line">&lt;div className=<span class="string">"nav-right nav-menu"</span>&gt;</span><br><span class="line">	&lt;Link to=<span class="string">"/"</span> className=<span class="string">"nav-item r-item"</span>&gt;Home&lt;<span class="regexp">/Link&gt;</span></span><br><span class="line"><span class="regexp">	&lt;Link to="/</span>faq<span class="string">" className="</span>nav-item r-item<span class="string">"&gt;Features&lt;/Link&gt;</span></span><br><span class="line"><span class="string">	&lt;Link to="</span>/faq<span class="string">" className="</span>nav-item r-item<span class="string">"&gt;About&lt;/Link&gt;</span></span><br><span class="line"><span class="string">	&lt;Link to="</span>/faq<span class="string">" className="</span>nav-item r-item<span class="string">"&gt;FAQ&lt;/Link&gt;</span></span><br><span class="line"><span class="string">	&lt;div className="</span>nav-item<span class="string">"&gt;</span></span><br><span class="line"><span class="string">...</span></span><br></pre></td></tr></table></figure>
+
+<p>Then edit /src/index.js to add BrowserRouter as follows.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> ReactDOM <span class="keyword">from</span> <span class="string">'react-dom'</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">'./index.css'</span>;</span><br><span class="line"><span class="keyword">import</span> App <span class="keyword">from</span> <span class="string">'./App'</span>;</span><br><span class="line"><span class="keyword">import</span> registerServiceWorker <span class="keyword">from</span> <span class="string">'./registerServiceWorker'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; BrowserRouter &#125; <span class="keyword">from</span> <span class="string">'react-router-dom'</span>;</span><br><span class="line"></span><br><span class="line">ReactDOM.render(</span><br><span class="line">  &lt;BrowserRouter&gt;</span><br><span class="line">    &lt;App /&gt;</span><br><span class="line">  &lt;<span class="regexp">/BrowserRouter&gt;</span></span><br><span class="line"><span class="regexp">, document.getElementById('root'));</span></span><br><span class="line"><span class="regexp">registerServiceWorker();</span></span><br></pre></td></tr></table></figure>
+
+<p>Now, create /src/components/Home/Home.js and /src/components/Faq/Faq.js as placeholders for Home and Faq page for now.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Home</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        HOME</span><br><span class="line">      &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    );</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">export default Home;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Faq</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        Faq</span><br><span class="line">      &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    );</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">export default Faq;</span></span><br></pre></td></tr></table></figure>
+
+<p>At last, import Home and Faq into App.js, and add Rout under Header.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">'./App.css'</span>;</span><br><span class="line"><span class="keyword">import</span> Header <span class="keyword">from</span> <span class="string">'./components/Header/Header'</span>;</span><br><span class="line"><span class="keyword">import</span> Footer <span class="keyword">from</span> <span class="string">'./components/Footer/Footer'</span>;</span><br><span class="line"><span class="keyword">import</span> Home <span class="keyword">from</span> <span class="string">'./components/Home/Home'</span>;</span><br><span class="line"><span class="keyword">import</span> Faq <span class="keyword">from</span> <span class="string">'./components/Faq/Faq'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Route &#125; <span class="keyword">from</span> <span class="string">'react-router-dom'</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">App</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;div className=<span class="string">"App"</span>&gt;</span><br><span class="line">        &lt;Header /&gt;</span><br><span class="line">          &lt;Route exact=&#123;<span class="literal">true</span>&#125; path=<span class="string">"/"</span> component=&#123;Home&#125; /&gt;</span><br><span class="line">          &lt;Route path=<span class="string">"/faq"</span> component=&#123;Faq&#125; /&gt;</span><br><span class="line">        &lt;Footer /&gt;</span><br><span class="line">      &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    );</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">export default App;</span></span><br></pre></td></tr></table></figure>
+
+<p>Now, the header navigation should just work!</p>
+<h2 id="5-Footer-amp-Navigation"><a href="#5-Footer-amp-Navigation" class="headerlink" title="5. Footer &amp; Navigation"></a>5. Footer &amp; Navigation</h2><h3 id="5-1-Footer-UI"><a href="#5-1-Footer-UI" class="headerlink" title="5.1. Footer UI"></a>5.1. Footer UI</h3><p>Create /src/components/Footer/Footer.sass and copy the footer styling from previous VUE project.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">@import &#39;..&#x2F;..&#x2F;mq.sass&#39;</span><br><span class="line"></span><br><span class="line">footer</span><br><span class="line">  background-color: $primary !important</span><br><span class="line">  color: #fff</span><br><span class="line"></span><br><span class="line">  .icon</span><br><span class="line">    color: #fff</span><br><span class="line">    margin-left: 20px</span><br></pre></td></tr></table></figure>
+
+<p>Copy and edit the footer code from previous vue project to Footer.js as follows.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">'./Footer.css'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> Footer = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;footer className=<span class="string">"footer is-primary"</span>&gt;</span><br><span class="line">        &lt;div className=<span class="string">"container"</span>&gt;</span><br><span class="line">          &lt;div className=<span class="string">"columns"</span>&gt;</span><br><span class="line">            &lt;div className=<span class="string">"column"</span>&gt;</span><br><span class="line">              &lt;p&gt;And <span class="keyword">this</span> right here is a spiffy footer, where you can put stuff.&lt;<span class="regexp">/p&gt;</span></span><br><span class="line"><span class="regexp">            &lt;/</span>div&gt;</span><br><span class="line">            &lt;div className=<span class="string">"column has-text-right"</span>&gt;</span><br><span class="line">              &lt;a className=<span class="string">"icon"</span> href=<span class="string">"#"</span>&gt;<span class="xml"><span class="tag">&lt;<span class="name">i</span> <span class="attr">className</span>=<span class="string">"fa fa-facebook"</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span></span>&lt;<span class="regexp">/a&gt;</span></span><br><span class="line"><span class="regexp">              &lt;a className="icon" href="#"&gt;&lt;i className="fa fa-twitter"&gt;&lt;/i</span>&gt;&lt;<span class="regexp">/a&gt;</span></span><br><span class="line"><span class="regexp">            &lt;/</span>div&gt;</span><br><span class="line">          &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">        &lt;/</span>div&gt;</span><br><span class="line">      &lt;<span class="regexp">/footer&gt;</span></span><br><span class="line"><span class="regexp">    &lt;/</span>div&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> Footer;</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-2-Navigation"><a href="#5-2-Navigation" class="headerlink" title="5.2. Navigation"></a>5.2. Navigation</h3><p>In this section, we need to make the hamburger button work for mobile web.</p>
+<p>Firstly, add the onClick listener for “nav-toggle” span.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">className</span>=<span class="string">"nav-toggle"</span> <span class="attr">onClick</span>=<span class="string">&#123;this.handleClick&#125;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p>Then add constructor and handleClick methods in Header class.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">  <span class="keyword">constructor</span>(props) &#123;</span><br><span class="line">    <span class="keyword">super</span>(props);</span><br><span class="line">    <span class="keyword">this</span>.state = &#123;<span class="attr">isToggleOn</span>: <span class="literal">false</span>&#125;;</span><br><span class="line">    <span class="keyword">this</span>.handleClick = <span class="keyword">this</span>.handleClick.bind(<span class="keyword">this</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  handleClick() &#123;</span><br><span class="line">    <span class="keyword">this</span>.setState(<span class="function"><span class="params">prevState</span> =&gt;</span> (&#123;</span><br><span class="line">      isToggleOn: !prevState.isToggleOn</span><br><span class="line">    &#125;));</span><br><span class="line">  &#125;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p>Besides, define a menuActive attribute in render() method.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">render() &#123;</span><br><span class="line">	<span class="keyword">let</span> menuActive = <span class="keyword">this</span>.state.isToggleOn ? <span class="string">'is-active'</span> : <span class="string">''</span>;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+
+<p>Then modify the nav-toggle and nav-menu divs to render the menuActive attribute.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">	<span class="tag">&lt;<span class="name">span</span> <span class="attr">className</span>=<span class="string">&#123;</span>'<span class="attr">nav-toggle</span> ' + <span class="attr">menuActive</span>&#125; <span class="attr">onClick</span>=<span class="string">&#123;this.handleClick&#125;</span>&gt;</span></span><br><span class="line">...</span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">&#123;</span>'<span class="attr">nav-right</span> <span class="attr">nav-menu</span> ' + <span class="attr">menuActive</span>&#125;&gt;</span></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<h2 id="6-Home-Page"><a href="#6-Home-Page" class="headerlink" title="6. Home Page"></a>6. Home Page</h2><p>Create /src/assets folder, and download the clouds.jpg there.</p>
+<p>Create Home.sass under /src/components/Home, copy and paste the styling contents from previous VUE project.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">@import &#39;..&#x2F;..&#x2F;mq.sass&#39;</span><br><span class="line"></span><br><span class="line">.hero</span><br><span class="line">  background: url(&#39;..&#x2F;..&#x2F;assets&#x2F;clouds.jpg&#39;)</span><br><span class="line">  background-size: cover</span><br><span class="line"></span><br><span class="line">  .title</span><br><span class="line">    +mobile</span><br><span class="line">      font-weight: bold</span><br><span class="line">    +tablet</span><br><span class="line">      font-size: 2.5rem</span><br><span class="line">    +desktop</span><br><span class="line">      font-size: 4rem</span><br><span class="line">      margin-top: 2rem</span><br><span class="line"></span><br><span class="line">h2</span><br><span class="line">  margin: 1.5rem 0 2rem 0 !important</span><br><span class="line"></span><br><span class="line">.fa-cog</span><br><span class="line">  font-size: 40px</span><br><span class="line"></span><br><span class="line">#learn</span><br><span class="line">  +desktop</span><br><span class="line">    margin-bottom: 2rem</span><br><span class="line"></span><br><span class="line">.pd</span><br><span class="line">  +tablet</span><br><span class="line">    padding: 2em 0</span><br></pre></td></tr></table></figure>
+
+
+<p>Also, reference the html content from previous VUE project and update the Home.js as follows.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">'./Home.css'</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Home</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">let</span> heading = <span class="string">'Soaring to new heights'</span>;</span><br><span class="line">    <span class="keyword">let</span> subheading = <span class="string">'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'</span>;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;section className=<span class="string">"hero"</span>&gt;</span><br><span class="line">          &lt;div className=<span class="string">"hero-body"</span>&gt;</span><br><span class="line">            &lt;div className=<span class="string">"container"</span>&gt;</span><br><span class="line">              &lt;h1 className=<span class="string">"title"</span>&gt;&#123; heading &#125;&lt;<span class="regexp">/h1&gt;</span></span><br><span class="line"><span class="regexp">              &lt;div className="is-two-thirds column is-paddingless"&gt;</span></span><br><span class="line"><span class="regexp">                &lt;h2 className="subtitle is-4"&gt;&#123; subheading &#125;&lt;/</span>h2&gt;</span><br><span class="line">              &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">              &lt;a className="button is-large is-primary" id="learn"&gt;Learn more&lt;/</span>a&gt;</span><br><span class="line">            &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">          &lt;/</span>div&gt;</span><br><span class="line">        &lt;<span class="regexp">/section&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">        &lt;section className="section"&gt;</span></span><br><span class="line"><span class="regexp">          &lt;div className="container"&gt;</span></span><br><span class="line"><span class="regexp">            &lt;div className="columns pd is-desktop"&gt;</span></span><br><span class="line"><span class="regexp">              &lt;div className="column is-1 has-text-centered"&gt;</span></span><br><span class="line"><span class="regexp">                &lt;i className="fa fa-cog is-primary"&gt;&lt;/i</span>&gt;</span><br><span class="line">              &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">              &lt;div className="column is-one-third-desktop"&gt;</span></span><br><span class="line"><span class="regexp">                &lt;p className="title"&gt;&lt;strong&gt;We provide superior logistics so that your business can succeed in a crazy world.&lt;/</span>strong&gt;&lt;<span class="regexp">/p&gt;</span></span><br><span class="line"><span class="regexp">              &lt;/</span>div&gt;</span><br><span class="line">              &lt;div className=<span class="string">"column"</span>&gt;</span><br><span class="line">                &lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed <span class="keyword">do</span> eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.&lt;<span class="regexp">/p&gt;</span></span><br><span class="line"><span class="regexp">              &lt;/</span>div&gt;</span><br><span class="line">            &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">          &lt;/</span>div&gt;</span><br><span class="line"></span><br><span class="line">          &lt;div className=<span class="string">"columns pd"</span>&gt;</span><br><span class="line">            &lt;div className=<span class="string">"column"</span>&gt;</span><br><span class="line">              &lt;div className=<span class="string">"card"</span>&gt;</span><br><span class="line">                &lt;div className=<span class="string">"card-content"</span>&gt;</span><br><span class="line">                  &lt;p className=<span class="string">"title"</span>&gt;I think it<span class="string">'s an absolutely excellent tool for our business. I can'</span>t survive without <span class="keyword">this</span> thing.&lt;<span class="regexp">/p&gt;</span></span><br><span class="line"><span class="regexp">                  &lt;p className="subtitle"&gt;- Gary Simon&lt;/</span>p&gt;</span><br><span class="line">                &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">              &lt;/</span>div&gt;</span><br><span class="line">            &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">            &lt;div className="column"&gt;</span></span><br><span class="line"><span class="regexp">              &lt;div className="card"&gt;</span></span><br><span class="line"><span class="regexp">                &lt;div className="card-content"&gt;</span></span><br><span class="line"><span class="regexp">                  &lt;p className="title"&gt;I think it's an absolutely excellent tool for our business. I can't survive without this thing.&lt;/</span>p&gt;</span><br><span class="line">                  &lt;p className=<span class="string">"subtitle"</span>&gt;- Gary Simon&lt;<span class="regexp">/p&gt;</span></span><br><span class="line"><span class="regexp">                &lt;/</span>div&gt;</span><br><span class="line">              &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">            &lt;/</span>div&gt;</span><br><span class="line">            &lt;div className=<span class="string">"column"</span>&gt;</span><br><span class="line">              &lt;div className=<span class="string">"card"</span>&gt;</span><br><span class="line">                &lt;div className=<span class="string">"card-content"</span>&gt;</span><br><span class="line">                  &lt;p className=<span class="string">"title"</span>&gt;I think it<span class="string">'s an absolutely excellent tool for our business. I can'</span>t survive without <span class="keyword">this</span> thing.&lt;<span class="regexp">/p&gt;</span></span><br><span class="line"><span class="regexp">                  &lt;p className="subtitle"&gt;- Gary Simon&lt;/</span>p&gt;</span><br><span class="line">                &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">              &lt;/</span>div&gt;</span><br><span class="line">            &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">          &lt;/</span>div&gt;</span><br><span class="line">        &lt;<span class="regexp">/section&gt;</span></span><br><span class="line"><span class="regexp">      &lt;/</span>div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> Home;</span><br></pre></td></tr></table></figure>
+
+<p>At last, delete the content in index.css to avoid the front getting affected.</p>
+<p>Now the home page should be the same as desinged!</p>
+<h2 id="7-FAQ-Page"><a href="#7-FAQ-Page" class="headerlink" title="7. FAQ Page"></a>7. FAQ Page</h2><p>We still need to use the same module as previous Vue project, so  firstly install it.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install axios --save</span><br></pre></td></tr></table></figure>
+
+
+<p>Create Faq.sass under /src/components/Faq, copy and paste the styling contents from previous VUE project.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">@import &#39;..&#x2F;..&#x2F;mq.sass&#39;</span><br><span class="line"></span><br><span class="line">.pd</span><br><span class="line">  padding: 2.5em 0 1.5em 0</span><br><span class="line"></span><br><span class="line">.answer</span><br><span class="line">  margin-top: 10px !important</span><br><span class="line">  color: gray</span><br><span class="line"></span><br><span class="line">.columns</span><br><span class="line">  flex-wrap: wrap</span><br></pre></td></tr></table></figure>
+
+<p>Then edit the Faq.js as follows. Data is fetched in componentDidMount() method and saved to faqs[], and then we use {this.state.faqs.map(faq =&gt; … )} to bind data to UI.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">'./Faq.css'</span>;</span><br><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">'axios'</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Faq</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(props) &#123;</span><br><span class="line">    <span class="keyword">super</span>(props);</span><br><span class="line">    <span class="keyword">this</span>.state = &#123;</span><br><span class="line">      faqs: []</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  componentDidMount() &#123;</span><br><span class="line">    axios.get(<span class="string">'https://jsonplaceholder.typicode.com/posts'</span>)</span><br><span class="line">      .then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">          <span class="keyword">const</span> faqs = res.data.slice(<span class="number">0</span>, <span class="number">10</span>);</span><br><span class="line">          <span class="keyword">this</span>.setState(&#123; faqs &#125;);</span><br><span class="line">      &#125;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;div className=<span class="string">"container"</span>&gt;</span><br><span class="line">          &lt;section className=<span class="string">"section"</span>&gt;</span><br><span class="line">            &lt;h1 className=<span class="string">"title"</span>&gt;FAQ&lt;<span class="regexp">/h1&gt;</span></span><br><span class="line"><span class="regexp">            &lt;h2 className="subtitle is-4"&gt;Lorum ipsum and all of that jazz.&lt;/</span>h2&gt;</span><br><span class="line"></span><br><span class="line">            &lt;div className=<span class="string">"columns"</span> v-<span class="keyword">if</span>=<span class="string">"faqs &amp;&amp; faqs.length"</span>&gt;</span><br><span class="line">              &#123;<span class="keyword">this</span>.state.faqs.map(<span class="function"><span class="params">faq</span> =&gt;</span></span><br><span class="line">                &lt;div className=<span class="string">"column is-one-third"</span> v-<span class="keyword">for</span>=<span class="string">"faq of faqs"</span>&gt;</span><br><span class="line">                  &lt;div className=<span class="string">"card"</span>&gt;</span><br><span class="line">                    &lt;div className=<span class="string">"card-content"</span>&gt;</span><br><span class="line">                      &lt;p className=<span class="string">"title"</span>&gt;&#123; faq.title &#125;&lt;<span class="regexp">/p&gt;</span></span><br><span class="line"><span class="regexp">                      &lt;p className="answer"&gt;&#123; faq.body &#125;&lt;/</span>p&gt;</span><br><span class="line">                    &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">                  &lt;/</span>div&gt;</span><br><span class="line">                &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">              )&#125;</span></span><br><span class="line"><span class="regexp">            &lt;/</span>div&gt;</span><br><span class="line"></span><br><span class="line">          &lt;<span class="regexp">/section&gt;</span></span><br><span class="line"><span class="regexp">        &lt;/</span>div&gt;</span><br><span class="line">      &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    );</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">export default Faq;</span></span><br></pre></td></tr></table></figure>
+
+<p>Now the FAQ page is also fully implemented!</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/tech/" rel="tag"># tech</a>
+              <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag"># 学习笔记</a>
+              <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+              <a href="/tags/React/" rel="tag"># React</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2017/07/30/build-web-with-vue/" rel="prev" title="Build Web App with Vue.js">
+      <i class="fa fa-chevron-left"></i> Build Web App with Vue.js
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2017/08/04/2017-weekly-8-basic-principles/" rel="next" title="生活基本法则">
+      生活基本法则 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Installing-React"><span class="nav-number">1.</span> <span class="nav-text">1. Installing React</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-React-Components"><span class="nav-number">2.</span> <span class="nav-text">2. React Components</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Integrating-a-CSS-Framework"><span class="nav-number">3.</span> <span class="nav-text">3. Integrating a CSS Framework</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Header-amp-Routing"><span class="nav-number">4.</span> <span class="nav-text">4. Header &amp; Routing</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-Header-UI"><span class="nav-number">4.1.</span> <span class="nav-text">4.1. Header UI</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-Header-Routing"><span class="nav-number">4.2.</span> <span class="nav-text">4.2. Header Routing</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-Footer-amp-Navigation"><span class="nav-number">5.</span> <span class="nav-text">5. Footer &amp; Navigation</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-Footer-UI"><span class="nav-number">5.1.</span> <span class="nav-text">5.1. Footer UI</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-Navigation"><span class="nav-number">5.2.</span> <span class="nav-text">5.2. Navigation</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-Home-Page"><span class="nav-number">6.</span> <span class="nav-text">6. Home Page</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-FAQ-Page"><span class="nav-number">7.</span> <span class="nav-text">7. FAQ Page</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Danny Zhang</p>
+  <div class="site-description" itemprop="description">Blogger/Software Engineer/Fitness Enthusiast</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">47</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">61</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Danny Zhang</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.7.2
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

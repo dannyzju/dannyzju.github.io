@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"dannyzhang.run","root":"/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="Class notes 1 for Cloud Computing Concepts by Indranil Gupta @ Coursera (初稿完成于 02&#x2F;25&#x2F;2017) Pre-RequirementsBasic Data Structures Queue: First-in First-out  Stack: First-in Last-out Process: A Program">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Orientation, Introduction to Clouds, MapReduce">
+<meta property="og:url" content="http://dannyzhang.run/2017/02/25/Cloud-Computing-Concepts-1/index.html">
+<meta property="og:site_name" content="D.Z. Notes (Beta)">
+<meta property="og:description" content="Class notes 1 for Cloud Computing Concepts by Indranil Gupta @ Coursera (初稿完成于 02&#x2F;25&#x2F;2017) Pre-RequirementsBasic Data Structures Queue: First-in First-out  Stack: First-in Last-out Process: A Program">
+<meta property="og:image" content="https://lh3.googleusercontent.com/GMfMsR3vkGyXLt45RnixisMvF_Ye2G23wlVecbaInkuFRZ3kBjQR6JgAdbllBIRzEBIPtrEWLBjVNfQ1jHR92PZ4TuSN9gz99H3P3GCPEiulcbjmTcsmJmlS5E8VPNnoKPnUtWvgJ8XNQPJ6l37_Ml6_jevJMrfOPSjM1dpYxKCLexbEUp80vtJG72QhcHlKVdrr6STCmlcBhz3I5oqnm89Yzyf2XWxvj3cguIL3Gw4XFE2z6oyps5lIu9ZhJycag2H1W1j9AYXwJYSPF-v3rjamBOK8pMuOYNSHEDyNc5lThL09dnp_D_nKFoUBQYinj67R0H33Sc3jsRaZi8f65sPcFu-DvL2tQ2A8FmWmQg4yoSkXtZJ3ilkmfZ4NkFErQXOWMJREyG1SZFI4zjTnS0_Ve22dlxoXPNmixIH59ZBLmEndkR65ET45fpvkuiHpyoDCuUaNW_eAeEkKSaoTZDMLxUGaksmm62K9XU_lWHEiR1YwVW24V_vDYXH-Shmhpnt_qzDnBYF9NJXb321wmNmIEatmQMoc6vNXHHkNqpvEtMUiXlXEWCwrpK3_AdyOI9sCRyXL47jswkxCCANfwW3MKHppX3kHJLRJd19qrQSh5RlJ11k8eYnbZCwopaDWVjM3pbgPoXog56JSLNEKALGsUu2fUW9hbzx_aCj3EQ=w792-h798-no">
+<meta property="og:image" content="https://lh3.googleusercontent.com/_klWna3gomnU7K_kdB-ZgaVgvJVJ5Fd4GxFPO6RykM7Gci83sUHWyZx_u3q0hbAbLsRIOmJjQTmfiwirgvUdR2BB5GY1bt0BVmX8n4WYzTU9Q3oDGtT6RZW0WCtvxeckOclLu9_VGWcD_0oM7UARN0kYFWNBTS7lV5ego1jyvS6hKheFJMOEHawHPDv5JtqBnE-Zy4T5OaOTqSnGhMa30TxMgtDrt-AyIg_nM4lF39dVEbHRX3xI7k1U80KU3GUXe3p7kXjMgXNmXh9VJhf8ybmuckFivZp8AVbV1cc876SHIcOSwseFuLZkgX7A2zPgyF-r9h29pwTKZl6jAe82zXr5XLSbVr6l9m2axZTOd7dwRWG-3aGSxoQexEfw8x7l9JszreA8HQyfN0VhWNt3hEqUCP1fjpr5LUVcO-p0l82mHug3wT3gDI5q7CXpWwA6HbggJjUx79dedUHM9AcNWL14VtUo81X8Q3gWnxAF86HkyZMSeF6Q_SGz9EyTyv6gaJhs6koP0NsrTyVso8cVp2YN6X-M1nD6sVrjMxhfiiSpUhnAdl_tZTZ1f0POZVEk_path5pCMNjswTkn-A-u5JemaImNoT4Mxb3NdUj4p4N4HQwZ6sRPiIiUAK_YY9otUl_dzvtT0SmK3ZrnXPrWKCeTqMYT8e5vHT6xIUkkaw=w915-h516-no">
+<meta property="og:image" content="https://lh3.googleusercontent.com/3qBz0i1ihRrboZWMiF0JXRt1OnW6G8sObd6p8n3v5fbTWQ7vgcuVNkCYXBWhxeGHvmG4ahd7VR_c_YnBpfDXjv5x_fflfzUCI9Um01TLRt0G_x6jPThN6drwTUHQGM88lsdxx3h28ef3fxrZTJUAzk-lKImn84ENuACf6Rh-Z8TEvyjDa1btfQzIONnSOGJJBiW52eQKmmZqfFgZpBqBZRd-0eRuK80h0kTNwgUJSe5xWDJf8D1tkfaeNCxM8I34QVY826nz58MRD3kmiQSnCht8QQdN92atO89h_uoyu8v8bMnvChVpn_KGGRNbGy99SGdulBcY5I8BquYMa4VBJsZ0vO5wrriIPmVS9Z0IkHQqER5fbWo7t95HLZmhzJhmFRsDylXuWHq22jBjIqUvutGRU_TYKivQ3mEmiaQbFZtO_xHC0V-omd49UTeRbWd2V1UbNhMTbMy9f8fpPwO_PvjHp3ENEMGFBjoNTbR4X2lWvlvF4qOsIE0F45dFZch-2SSkKX3jRH75BcnLVLZ1vYeUjYZM16JXV-2L6n8yWh7vDmbqjm_4bG70gYmIrAY_6Cd21IQvhZ9Qf5S48Es9WUv7P5xz9sFhEjSe7o9HUBXFS9XfjVnJnX5B01dfRd4G-FKDH9Sq9e3EOKvdXII-ibZbuKrth_etQWSWjAyjMA=w915-h428-no">
+<meta property="og:image" content="https://lh3.googleusercontent.com/DfWUkmMQ79PNd6tZDsgblL-iHF3qVFJr1hKI5yBDiGP_1274BtvxE8RhZsR9oGrDe93rNP_fR2YexJtw6iWb4ZlX6DVNBoiqPmZNVrNa6WLYGNnDZuRBXDHX8bqtDdqJrJYD0j0IdHiDwZNDd9rV7fscbWLaaVg75RSDJSb9c5uTlwDrqsV-Zod4JALW5ePcGKvpthf_paxOeK9Ahk6-d-IZma2SELKmSBp_5H1c64WU_dI-D91x1ddBUE7tl36ZlrYyKOp-u-PQkIF3wWszZEq7tls7RKaJ0CONDsf0s9uuD4rikXoTqPECkelROgRat3Ott1iT0Q-F4blAuHkR67CrsnUmqcdhSQ0xB_u2UNXGLpwPmAB_5rHDlwq1hJDel4GeoMNcg00e2Z_iNSMMBer11Rxw5Ho5qPn2LYA_4t2etHNMvUgcDI0CZ6ZjUYeFFxTP5gDi4nJ78yPLlQD8KpsHtJffIU7pcRPJlRqNtdix26rBj4vpOhtsdUvo5X6yzUj_RZbYfc2CxPFX3Wxdx9GjIYvIrNCaRrXY37FEUsPdAN6mKr-Z3mJK1gv7_lP2NdHy_ICQwZPA_EkxdGq39tFied4C6gRn51ijaek0CP5xO-16rjTufMNXYky8vH8117P4cWJ9YbtwbyBeCFvFaeqb5oDiy_Ei2lANSPsbMQ=w515-h221-no">
+<meta property="og:image" content="https://lh3.googleusercontent.com/Zzn05SvIEdGVi_2XrtRDz5y_znvh2fBbBUpif2gDg3-OiAW1f2kEBEgOBXon2j5zfYx44BIzMA-0-cfsQPQlBObbaguZp5HZnC5prLDDZ06U-JS-9kXT458I0SjNdRW_dvlTh8aV5Enlk1THmR9lyUlFcMomAL4UWhMiBVH9JdHvxYaPGSWkN2ZUH24NJXAf0ehDVtSTggcI_igtR9zJ2q4ktj5W12BxmTf6KAvpP8P37xKnO6NdubZDQbjQ7s5izpmXOMU3N8MY1BN3R6HEv6HkLW2Pw9CNhCDfQg21ETyPTTKMMZW5jEw6l_J1-K1U5OiW6ihns6zBSVogPslfkks2eVt68HegruksFs_0OUw6ZIYJ0ifwAF3Qegf4pMJgVduETukuFSv9yiVVskNR4QXDwQWfyyqsqQXIcyQ9QU2eoAHOUdbY6_dfa28oYz50XnnGsq74meNo7X0JovLI0t5bHya1Wo9gGuscMR2WBNdyvwS3zYMNOtBjoofuT4sVAI0-s1_BAlGlmoDrabZhMEIdV69QEVcLdA_-pGC1QwLRdw_T9YhMTNEUOeKnZ3MYzZQxGjiJY6wYHu1HUg_Y7ukj3mBZKW_xuJxlYtsClRR89WF6GPwwUX_-wtA1rq_2jc2APmzoMQ0rcFpP76oqv03kvyKe44Z42vC5wcQXzg=w550-h230-no">
+<meta property="og:image" content="https://lh3.googleusercontent.com/oIFVIxsAc2O8FUBhHcM53R_CbBjDvh_SuUJ2G_w3UGK1Jw-7vs6GnDlSRzpfeDt-kIplYHviiWvk19FtIjbTUBRQVd0MNkQsk-uw_OwyFPNFHrn1LrsTaQtNSqaRJLj4WE2jWrXiesYd3JHdZp3ZuKFYammv2KnCFgtD2VpA_TyrqmsT76-x9qZ5RlkGDJesQABTCgTzxQx0vCkaBtvl2dBb8ReNI9BeU0f1XUNaadXmYXUxU6x8cxpQGPPXJGy9CG1IXvI8a3CJpaqy9hxqNwvK-qTK0c5WONNF7BVzkOwHxFZvq4qBC8V5gm9gxxmyKBMZoeeRjC-vuYkF77nuU30-0B9PfNSz92i1xaNz0QzcT6sipacAzFmyXdxz4dBdLHriaiX8pZ3VSsHrIBQj8YxRcUWgdxSeAcnfCFyCs5Sjo7WfodDSFoz_Ow_0f7e2NurgmCQUP2jFk7wIRrqUls8cNsFcAZnfxrpnLplgnk-97U7kWK9IThQKvav8ugcFLcgReslCD0dZTZZQjHm3BxcQG9Lg0tcnMGGC2bp3cPG-KX85UlCs0rU5hQZCh9wykDwG80WDTcZb9tUVKK4_o_NORSZR7FFA-mrsz9sW5xjxMWcWLbjmZnT3ds29fYSyECWpgnupHTKQoR6BQ21lQHFnjZnzHewc6tFn62_YXA=w554-h211-no">
+<meta property="og:image" content="https://lh3.googleusercontent.com/mWsFpursi24LyePN_HIZ7LGSgLhYgwsDqyFV1-wVtAwszGvPCGs8f-oDjISRGMEqP_kzxM9SmTcB2wiC-gp5ThjbzuKi1a-kGZ5IBUogIMqfXUKqaRtd3XJOs8unXx10PoFCOGVhP4xgFtSqJ5xg5oGQl7cazW_Zn7sUhhnMoDK90sLKcE_ldYaXI9n_cIC3YxECaXVmRwWdPsro1m5ntflm0vth9-XnO8ILIUn-YgeC_jU1b9ucNY9t2pZAy6TpgTaf6ZU3y7LXpEyeJEtHVzYegqjfORaRVlri1_t9OL1O3Aft8AIgSK9w6cLcoQJAtiW6zizkke8OXkHrYuP-BDaJzzdiB_-NlNxZeGsHoIsGLkobJkLyLvJv6W9NQFdNTD3RN4dVpE0hcfDKWi1ofFo9FepvX_I0wZ6Ko0YZa8s8hpUDvJaqMiDKNGYJ1t_mmxwJyybSPBcKlnfIBENUjT2EUkZf27TH0qMHVoZfIWhpGSyz9ihN0pa6CYuEBIwjpMhDZY95vfnd_Qb-geNKFXkgeXvS5BcOK3Taw8Ah_Jy62ylqbWQ81gM726xQboMnuXaYW1ffGqRMB-wKkn9FIPWUXzurLfiwzOBHRaWLKLTvZQ0KaF6f9S9gLb3epaUbNQYzs7qXz8vQi2UBw_pGhVzLrx4ehrTX_M5nNC7zrA=w493-h214-no">
+<meta property="og:image" content="https://lh3.googleusercontent.com/YO_-BhfPsNjjotY8XInGVzHyqEt-r5n4wIuERO2L4eX1D-5cKBJd1A0Uw-XDIh7PRBqwijyQXcN0gj8Y69Bdkh1RXfNTjL58qgez1yCakVbr6Im-1dhHHWK-ooI5HPflgKi2JCULU7RHRFSpZzzzEGLnFQFxck9Gs57-s-ClWQbwTXUIDcbtmoVY3eG28fISvvLYu2H0Ix3zYudDOqaeoZW9T8ulLu8UDnv6QBFfx8qdKx_9cKqEdzjyiWyJ8Ta6JdbEVLiXeSSv2AjpDQBbttNrrDVr4UYZW-J26wX18UrwIXLVR-8Kze0Co1uDYSf4ty7hJ3NbSafsujDNLx4i8xJFprRzXAZGmfjloC9TOsSgKJkcyMnAISLUQZR05sOcrEimTXcsmaGjykh-j05ifeKFPxNYYr_DXVdo0PkfqHoM8KnqVEFV85LelPJJMUlYHre-FO7A416WdYF2QmwcggA1bouufP-mIVmuFAUKeGLdevIw8ZnDb9KmRL03wQPeoIhA1atABp27YBB4i-BHzF8MQkrp9CK6tGFkuBiK41z4JEKPgL_j6lQZ0delBfTGFDHfCNWLNg0l-yYkwn8s2D6JOUQE9IR1Z2UEFxmBX3cfEfcu7LVLGoaiuZ0kaS8_RHSLbCVGuccUKnWDCB63iasqFvcHcc31_rrGLHR05Q=w526-h155-no">
+<meta property="og:image" content="https://lh3.googleusercontent.com/_ggVQZTdJbYM9gypXn9lHrTL8ZuPSZc0m8XYAlwrZjwWzXjwXw3A2cfV11Zd3bFFHukHOyb2smo48yF6GLUBMB0O8FBIjJhvK4ewck6JXqj4t-7YtNPDwvYIygzwk_disv1n_cG0P-W8BmIk7Tl0R0nzrM6noBYVzV35P5MQ1LV_Wrml1ZUGnCWjs2Q0j-AZDSDEAGqEJMqj5jBQ8oQH0g0pdZGtZ_HrIt4zUxiUIwAJa4Hy2j78zydM_e6WB3bELNWwmYlU2EXqMPRaWz8luLejzmXoDB2wOFuTZD0M3-fgdMijGeHXBQWAc61oA1YlquU4ZHGruG9BLSRwYvdAufhJ0_x6BjTpsMcikGQGpUO8keVgGoEfxC6AssRIEp4wwEaqWTWk-OqKLuvuXzSXx4nhHMPYGYPHbR7WNtuY6ouEdBUWjOkD7h4xXJUVamO0tdCPhxdqgZOBIxsqPpEeqdoRE9N10_wx_7P3m8iSO3I7NK0od5IhYYrbUOOdsslQsZrDoWgB2se_cZywbKH6_UhOsb4EZKTxPOalb9l5AD0S3-9cs5wdR-i6trIRgbwWnIjU2MNFXcl4UBvd13bvkfvGMZk2aduRwmJJAnZk9gxNUgLSnA4vsN_9yreclNl8Ur2rp9XfqKEz7PkUX7I33LpVKd3de3FuD9p9ZbMNzg=w1237-h765-no">
+<meta property="article:published_time" content="2017-02-26T05:21:37.000Z">
+<meta property="article:modified_time" content="2017-03-21T15:57:46.000Z">
+<meta property="article:author" content="Danny Zhang">
+<meta property="article:tag" content="tech">
+<meta property="article:tag" content="学习笔记">
+<meta property="article:tag" content="MapReduce">
+<meta property="article:tag" content="Cloud Computing Concepts">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://lh3.googleusercontent.com/GMfMsR3vkGyXLt45RnixisMvF_Ye2G23wlVecbaInkuFRZ3kBjQR6JgAdbllBIRzEBIPtrEWLBjVNfQ1jHR92PZ4TuSN9gz99H3P3GCPEiulcbjmTcsmJmlS5E8VPNnoKPnUtWvgJ8XNQPJ6l37_Ml6_jevJMrfOPSjM1dpYxKCLexbEUp80vtJG72QhcHlKVdrr6STCmlcBhz3I5oqnm89Yzyf2XWxvj3cguIL3Gw4XFE2z6oyps5lIu9ZhJycag2H1W1j9AYXwJYSPF-v3rjamBOK8pMuOYNSHEDyNc5lThL09dnp_D_nKFoUBQYinj67R0H33Sc3jsRaZi8f65sPcFu-DvL2tQ2A8FmWmQg4yoSkXtZJ3ilkmfZ4NkFErQXOWMJREyG1SZFI4zjTnS0_Ve22dlxoXPNmixIH59ZBLmEndkR65ET45fpvkuiHpyoDCuUaNW_eAeEkKSaoTZDMLxUGaksmm62K9XU_lWHEiR1YwVW24V_vDYXH-Shmhpnt_qzDnBYF9NJXb321wmNmIEatmQMoc6vNXHHkNqpvEtMUiXlXEWCwrpK3_AdyOI9sCRyXL47jswkxCCANfwW3MKHppX3kHJLRJd19qrQSh5RlJ11k8eYnbZCwopaDWVjM3pbgPoXog56JSLNEKALGsUu2fUW9hbzx_aCj3EQ=w792-h798-no">
+
+<link rel="canonical" href="http://dannyzhang.run/2017/02/25/Cloud-Computing-Concepts-1/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true
+  };
+</script>
+
+  <title>Orientation, Introduction to Clouds, MapReduce | D.Z. Notes (Beta)</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">D.Z. Notes (Beta)</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">Be insensitive, and keep a lifelong growth mindset.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://dannyzhang.run/2017/02/25/Cloud-Computing-Concepts-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Danny Zhang">
+      <meta itemprop="description" content="Blogger/Software Engineer/Fitness Enthusiast">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="D.Z. Notes (Beta)">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Orientation, Introduction to Clouds, MapReduce
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2017-02-25 21:21:37" itemprop="dateCreated datePublished" datetime="2017-02-25T21:21:37-08:00">2017-02-25</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2017-03-21 08:57:46" itemprop="dateModified" datetime="2017-03-21T08:57:46-07:00">2017-03-21</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/tech/" itemprop="url" rel="index"><span itemprop="name">tech</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>Class notes 1 for Cloud Computing Concepts by Indranil Gupta @ Coursera</p>
+<p>(初稿完成于 02/25/2017)</p>
+<h2 id="Pre-Requirements"><a href="#Pre-Requirements" class="headerlink" title="Pre-Requirements"></a>Pre-Requirements</h2><h3 id="Basic-Data-Structures"><a href="#Basic-Data-Structures" class="headerlink" title="Basic Data Structures"></a>Basic Data Structures</h3><ul>
+<li><p>Queue: First-in First-out</p>
+</li>
+<li><p>Stack: First-in Last-out</p>
+<h3 id="Process-A-Program-in-Action"><a href="#Process-A-Program-in-Action" class="headerlink" title="Process: A Program in Action"></a>Process: A Program in Action</h3><h3 id="Computer-Architecture-Simplified"><a href="#Computer-Architecture-Simplified" class="headerlink" title="Computer Architecture (Simplified)"></a>Computer Architecture (Simplified)</h3><p><img src="https://lh3.googleusercontent.com/GMfMsR3vkGyXLt45RnixisMvF_Ye2G23wlVecbaInkuFRZ3kBjQR6JgAdbllBIRzEBIPtrEWLBjVNfQ1jHR92PZ4TuSN9gz99H3P3GCPEiulcbjmTcsmJmlS5E8VPNnoKPnUtWvgJ8XNQPJ6l37_Ml6_jevJMrfOPSjM1dpYxKCLexbEUp80vtJG72QhcHlKVdrr6STCmlcBhz3I5oqnm89Yzyf2XWxvj3cguIL3Gw4XFE2z6oyps5lIu9ZhJycag2H1W1j9AYXwJYSPF-v3rjamBOK8pMuOYNSHEDyNc5lThL09dnp_D_nKFoUBQYinj67R0H33Sc3jsRaZi8f65sPcFu-DvL2tQ2A8FmWmQg4yoSkXtZJ3ilkmfZ4NkFErQXOWMJREyG1SZFI4zjTnS0_Ve22dlxoXPNmixIH59ZBLmEndkR65ET45fpvkuiHpyoDCuUaNW_eAeEkKSaoTZDMLxUGaksmm62K9XU_lWHEiR1YwVW24V_vDYXH-Shmhpnt_qzDnBYF9NJXb321wmNmIEatmQMoc6vNXHHkNqpvEtMUiXlXEWCwrpK3_AdyOI9sCRyXL47jswkxCCANfwW3MKHppX3kHJLRJd19qrQSh5RlJ11k8eYnbZCwopaDWVjM3pbgPoXog56JSLNEKALGsUu2fUW9hbzx_aCj3EQ=w792-h798-no" alt="Simplified Computer Architecture"></p>
+</li>
+<li><p>A program you write (C++/Java etc.) gets compiled to low-level machine instructions</p>
+<ul>
+<li>Stored in file system on disk</li>
+</ul>
+</li>
+<li><p>CPU loads instructions in batches into memory(and cache, and registers)</p>
+</li>
+<li><p>As it executes each instruction, CPU loads data for instruction into memory (and cache, and registers)</p>
+<ul>
+<li>And does any necessary stores into memory</li>
+</ul>
+</li>
+<li><p>Memory can also be flushed to disk</p>
+<h3 id="Big-O-Notation"><a href="#Big-O-Notation" class="headerlink" title="Big O() Notation"></a>Big O() Notation</h3></li>
+<li><p>One of the most basic ways of analyzing algorithms</p>
+</li>
+<li><p>Describes <strong><em>upper bound</em></strong> on behavior of algorithm as some variable is scaled(increased) to infinity</p>
+</li>
+<li><p>Analyzes run-time (or another performance metric)</p>
+</li>
+<li><p>Worst-case performance</p>
+<h3 id="Basic-Probability"><a href="#Basic-Probability" class="headerlink" title="Basic Probability"></a>Basic Probability</h3><h3 id="DNS"><a href="#DNS" class="headerlink" title="DNS"></a>DNS</h3></li>
+<li><p>Domain Name Service</p>
+</li>
+<li><p>Collection of servers, throughout the world</p>
+</li>
+<li><p>Input to DNS: a domain name, e.g., coursera.org</p>
+</li>
+<li><p>Output from DNS: IP address of a web server(that hosts that content)</p>
+</li>
+<li><p>IP address may refer to either</p>
+<ul>
+<li>Web server actually hosting that content, or</li>
+<li>An indirect server, e.g., a CDN(content distribution network)server, e.g., from Akamai<h3 id="Graphs"><a href="#Graphs" class="headerlink" title="Graphs"></a>Graphs</h3></li>
+</ul>
+</li>
+</ul>
+<h2 id="Introduction-to-Clouds-MapReduce"><a href="#Introduction-to-Clouds-MapReduce" class="headerlink" title="Introduction to Clouds, MapReduce"></a>Introduction to Clouds, MapReduce</h2><h3 id="Introduction-to-Clouds"><a href="#Introduction-to-Clouds" class="headerlink" title="Introduction to Clouds"></a>Introduction to Clouds</h3><h4 id="Why-Cloud"><a href="#Why-Cloud" class="headerlink" title="Why Cloud?"></a>Why Cloud?</h4><p>Two Categories of Clouds</p>
+<ul>
+<li>Public Clouds: provides service to any paying customer<ul>
+<li>Amazon S3(Simple Storage Service): store arbitrary datasets, pay per GB-month stored</li>
+<li>Amazon EC2(Elastic Compute Cloud): upload and run arbitrary OS image, pay per CUP hour used</li>
+<li>Google App Engine/Compute Engine: develop applications within their App Engine framework, upload data that will be imported into their format, and run</li>
+</ul>
+</li>
+<li>Private Clouds: accessible only to company employees</li>
+</ul>
+<p>Customers save time and money by using clouds.</p>
+<h4 id="What-is-a-Cloud"><a href="#What-is-a-Cloud" class="headerlink" title="What is a Cloud?"></a>What is a Cloud?</h4><p>Cloud = Lots of storage + compute cycles nearby</p>
+<ul>
+<li>A single-site cloud (aka “Datacenter”) consists of<ul>
+<li>Compute nodes (grouped into racks)</li>
+<li>Switches, connecting the racks</li>
+<li>A network topology, e.g., hierarchical</li>
+<li>Storage (backend) nodes connected to the network</li>
+<li>Front-end for submitting jobs and receiving client requests</li>
+<li>Software Services</li>
+</ul>
+</li>
+<li>A geographically distributed cloud consists of<ul>
+<li>Multiple such sites</li>
+<li>Each site perhaps with a different structure and services</li>
+</ul>
+</li>
+</ul>
+<h4 id="Introduction-to-Clouds-History"><a href="#Introduction-to-Clouds-History" class="headerlink" title="Introduction to Clouds: History"></a>Introduction to Clouds: History</h4><p>Trends: Technology</p>
+<ul>
+<li>Doubling periods - storage: 12 months, bandwidth: 9 months（Moore’s law）</li>
+<li>Then and Now<ul>
+<li>Bandwidth<ul>
+<li>1985: mostly 56Kbps links nationwide</li>
+<li>2012: Tbps links widespread</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Disk capacity<ul>
+<li>Today’s PCs have TBs, far more than a 1990 super computer</li>
+</ul>
+</li>
+<li>Biologists<ul>
+<li>1990: were running small single-molecule simulations</li>
+<li>2012: CERN’s Large Hadron Collider producing many PB/year</li>
+</ul>
+</li>
+</ul>
+<p>In 1965, MIT’s Fernando Corbato and the other designers of the Multics operating system envisioned a computer facility operating “like a power company or water company.”</p>
+<p>Plug your thin client into the computing utility and play your favorite Intensive Compute &amp; Communicate Application</p>
+<ul>
+<li>Have today’s clouds brought us closer to this realty? ：）</li>
+</ul>
+<h4 id="Introduction-to-Clouds-What’s-New-in-Today’s-Clouds"><a href="#Introduction-to-Clouds-What’s-New-in-Today’s-Clouds" class="headerlink" title="Introduction to Clouds: What’s New in Today’s Clouds"></a>Introduction to Clouds: What’s New in Today’s Clouds</h4><p><img src="https://lh3.googleusercontent.com/_klWna3gomnU7K_kdB-ZgaVgvJVJ5Fd4GxFPO6RykM7Gci83sUHWyZx_u3q0hbAbLsRIOmJjQTmfiwirgvUdR2BB5GY1bt0BVmX8n4WYzTU9Q3oDGtT6RZW0WCtvxeckOclLu9_VGWcD_0oM7UARN0kYFWNBTS7lV5ego1jyvS6hKheFJMOEHawHPDv5JtqBnE-Zy4T5OaOTqSnGhMa30TxMgtDrt-AyIg_nM4lF39dVEbHRX3xI7k1U80KU3GUXe3p7kXjMgXNmXh9VJhf8ybmuckFivZp8AVbV1cc876SHIcOSwseFuLZkgX7A2zPgyF-r9h29pwTKZl6jAe82zXr5XLSbVr6l9m2axZTOd7dwRWG-3aGSxoQexEfw8x7l9JszreA8HQyfN0VhWNt3hEqUCP1fjpr5LUVcO-p0l82mHug3wT3gDI5q7CXpWwA6HbggJjUx79dedUHM9AcNWL14VtUo81X8Q3gWnxAF86HkyZMSeF6Q_SGz9EyTyv6gaJhs6koP0NsrTyVso8cVp2YN6X-M1nD6sVrjMxhfiiSpUhnAdl_tZTZ1f0POZVEk_path5pCMNjswTkn-A-u5JemaImNoT4Mxb3NdUj4p4N4HQwZ6sRPiIiUAK_YY9otUl_dzvtT0SmK3ZrnXPrWKCeTqMYT8e5vHT6xIUkkaw=w915-h516-no" alt="A Cloud History of Time(1)"></p>
+<p><img src="https://lh3.googleusercontent.com/3qBz0i1ihRrboZWMiF0JXRt1OnW6G8sObd6p8n3v5fbTWQ7vgcuVNkCYXBWhxeGHvmG4ahd7VR_c_YnBpfDXjv5x_fflfzUCI9Um01TLRt0G_x6jPThN6drwTUHQGM88lsdxx3h28ef3fxrZTJUAzk-lKImn84ENuACf6Rh-Z8TEvyjDa1btfQzIONnSOGJJBiW52eQKmmZqfFgZpBqBZRd-0eRuK80h0kTNwgUJSe5xWDJf8D1tkfaeNCxM8I34QVY826nz58MRD3kmiQSnCht8QQdN92atO89h_uoyu8v8bMnvChVpn_KGGRNbGy99SGdulBcY5I8BquYMa4VBJsZ0vO5wrriIPmVS9Z0IkHQqER5fbWo7t95HLZmhzJhmFRsDylXuWHq22jBjIqUvutGRU_TYKivQ3mEmiaQbFZtO_xHC0V-omd49UTeRbWd2V1UbNhMTbMy9f8fpPwO_PvjHp3ENEMGFBjoNTbR4X2lWvlvF4qOsIE0F45dFZch-2SSkKX3jRH75BcnLVLZ1vYeUjYZM16JXV-2L6n8yWh7vDmbqjm_4bG70gYmIrAY_6Cd21IQvhZ9Qf5S48Es9WUv7P5xz9sFhEjSe7o9HUBXFS9XfjVnJnX5B01dfRd4G-FKDH9Sq9e3EOKvdXII-ibZbuKrth_etQWSWjAyjMA=w915-h428-no" alt="A Cloud History of Time(2)"></p>
+<p>Four Features New in Today’s Clouds</p>
+<ol>
+<li><strong>Massive Scale</strong></li>
+</ol>
+<ul>
+<li>Facebook servers[GigaOM, 2012]:<ul>
+<li>30K in 2009 -&gt; 60K in 2010 -&gt; 180K in 2012</li>
+</ul>
+</li>
+<li>Microsoft[NYTimes, 2008]:<ul>
+<li>150K machines</li>
+<li>Growth rate of 10K per month</li>
+<li>80K total running Bing</li>
+</ul>
+</li>
+<li>Yahoo![2009]:<ul>
+<li>100K</li>
+<li>Split into clusters of 4000</li>
+</ul>
+</li>
+<li>AWS EC2[Randy Bias, 2009]<ul>
+<li>40,000 machines</li>
+<li>8 cores/machine</li>
+</ul>
+</li>
+<li>eBay[2012]: 50K machines</li>
+<li>HP[2012]: 380K in 180 DCs</li>
+<li>Google: A lot</li>
+</ul>
+<ol start="2">
+<li><strong>On-demand access</strong>: Pay-as-you-go, no upfront commitment</li>
+</ol>
+<ul>
+<li>Anyone can access it</li>
+</ul>
+<ol start="3">
+<li>Data-intensive Nature: What was MBs has now become TBs, PBs, and XBs.</li>
+</ol>
+<ul>
+<li>Daily logs, forensics, Web data, etc.</li>
+<li>Humans have data numbness: Wikipedia (large) compress is only about 10GB!</li>
+</ul>
+<ol start="4">
+<li>New Cloud Programming Paradigms: MapReduce/Hadoop, NoSQL/Cassandra/MongoDB and many others</li>
+</ol>
+<ul>
+<li>High in accessibility and ease of programmability</li>
+<li>Lots of open-source</li>
+</ul>
+<h4 id="Introduction-to-Clouds-New-Aspects-of-Clouds"><a href="#Introduction-to-Clouds-New-Aspects-of-Clouds" class="headerlink" title="Introduction to Clouds: New Aspects of Clouds"></a>Introduction to Clouds: New Aspects of Clouds</h4><p><strong>On-Demand Access: *AAS Classification</strong></p>
+<ul>
+<li>On-demand: renting a cab vs (previously) renting a car, or buying one. E.g.:<ul>
+<li>AWS Elastic Compute Cloud(EC2): a few cents to a few $ per CPU hour</li>
+<li>AWS Simple Storage Servie (S3): a few cents to a few &amp; per GB-month</li>
+</ul>
+</li>
+<li>HaaS: Hardware as a Service<ul>
+<li>You get access to barebones hardware machines, do whatever you want with them, Ex: your own cluster</li>
+<li>Not always a good idea because of security risks</li>
+</ul>
+</li>
+<li>IaaS: Infrastructure as a Service<ul>
+<li>You get access to flexible computing and storage infrastructure. Virtualization is one way of achieving this (what’s another way, e.g., using Linux). Often said to subsume HaaS.</li>
+<li>Ex: Amazon Web Service (AWS: EC2 and S3), Eucalyptus, Rightscale, Microsoft Azure.</li>
+</ul>
+</li>
+<li>PaaS: Platform as a Service<ul>
+<li>You get access to flexible computing and storage infrastructure, coupled with a software platform(often tightly)</li>
+<li>Ex: Google’s AppEngine (Python, Java, Go)</li>
+</ul>
+</li>
+<li>SaaS: Software as a Service<ul>
+<li>You get access to software services, when you need them. Often said to subsume SOA (Service Oriented Architectures)</li>
+<li>Ex: Google docs, MS Office on demand</li>
+</ul>
+</li>
+</ul>
+<p><strong>Data-Intensive Computing</strong></p>
+<ul>
+<li>Computation-Intensive Computing<ul>
+<li>Example areas: MPI-based, High-performance computing, Grids</li>
+<li>Typically run on supercomputers(e.g., NCSA Blue Waters)</li>
+</ul>
+</li>
+<li>Data-Intensive<ul>
+<li>Typically store data at datacenters</li>
+<li>Use compute nodes nearby</li>
+<li>Compute nodes run computation services</li>
+</ul>
+</li>
+<li>In data-intensive computing, the focus shifts from computation to the data: CPU utilization no longer the most important resource metric, instead I/O is (disk and/or network)</li>
+</ul>
+<p><strong>New Cloud Programming Paradigms</strong></p>
+<ul>
+<li>Easy to write and run highly parallel programs in new programming paradigms:<ul>
+<li>Google: MapReduce and Sawzall</li>
+<li>Amazon: Elastic MapReduce service(pay-as-you-go)</li>
+<li>Google(MapReduce)<ul>
+<li>Indexing: a chain of 24MapReduce jobs</li>
+<li>~200K jobs processing 50PB/month (in 2006)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Yahoo!(Hadoop + Pig)<ul>
+<li>WebMap: chain of 100 MapReduce jobs</li>
+<li>280TB of data, 2500 nodes, 73 hours</li>
+</ul>
+</li>
+<li>Facebook(Hadoop + Hive)<ul>
+<li>~300TB total, adding 2TB/day(in 2008)</li>
+<li>3K jobs processing 55TB/day</li>
+</ul>
+</li>
+<li>Similar numbers from other companies, e.g., Yieldex, harmony.com, etc.</li>
+<li>NoSQL: MySQL is an industry standard, but Cassandra is 2400 times faster!</li>
+</ul>
+<h4 id="Introduction-to-Clouds-Economics-of-Clouds"><a href="#Introduction-to-Clouds-Economics-of-Clouds" class="headerlink" title="Introduction to Clouds: Economics of Clouds"></a>Introduction to Clouds: Economics of Clouds</h4><ul>
+<li><p>Two Categories of Clouds</p>
+<ul>
+<li>Private clouds are accessible only to company employees</li>
+<li>Public clouds provide service to any paying customer</li>
+</ul>
+</li>
+<li><p>Singe Site Cloud: To Outsource or Own?</p>
+<ul>
+<li>Medium-sized organization: wishes to run a service for M months<ul>
+<li>Service requires 128 servers(1024 cores) and 524 TB</li>
+<li>Same as UIUC CCT cloud site</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><code>Outsource</code> (e.g., via AWS): monthly cost</p>
+<ul>
+<li>S3 costs: $0.12 per GB month. EC2 costs: $0.10 per CPU hour (costs from 2009)</li>
+<li>Storage = $0.12 x 524 x 1000 = $62 K</li>
+<li>Total = Storage + CPUs = $62K + $0.10 x 1024 x 24 x 30 = $136 K</li>
+</ul>
+</li>
+<li><p><code>Own</code>: monthly cost</p>
+<ul>
+<li>Storage ~ $349 K / M</li>
+<li>Total ~ $1555K / M + 7.5K(includes 1 sysadmin / 100 nodes)<ul>
+<li>Using 0.45:0.4:0.15 split for hardware:power:network and 3 year life time of hardware</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Breakdown analysis: more preferable to own if:</p>
+<ul>
+<li>$349 K / M &lt; $62 K (storage)</li>
+<li>$1555K / M + 7.5 K &lt; $136K (overall)</li>
+</ul>
+</li>
+<li><p>Break even points</p>
+<ul>
+<li>M &gt; 5.55 months (storage)</li>
+<li>M &gt; 12 months (overall)</li>
+</ul>
+</li>
+<li><p>As a result</p>
+<ul>
+<li>Startups use clouds a lot</li>
+<li>Cloud providers benefit monetarily most from storage</li>
+</ul>
+</li>
+<li><p>Summary</p>
+<ul>
+<li>Clouds build on many previous generations of distributed systems</li>
+<li>Especially the timesharing and data processing industry of the 1960-70s.</li>
+<li>Need to identify unique aspects of a problem to classify it as a new cloud computing problem<ul>
+<li>Scale, On-demand access, data-intensive, new programming</li>
+</ul>
+</li>
+<li>Otherwise, the solutions to your problem may already exist!</li>
+</ul>
+</li>
+</ul>
+<h3 id="Clouds-are-Distributed-Systems"><a href="#Clouds-are-Distributed-Systems" class="headerlink" title="Clouds are Distributed Systems"></a>Clouds are Distributed Systems</h3><h4 id="A-cloud-is-a-Distributed-System"><a href="#A-cloud-is-a-Distributed-System" class="headerlink" title="A cloud is a Distributed System"></a>A cloud is a Distributed System</h4><ul>
+<li>A cloud consists of<ul>
+<li>Hundreds to thousands of machines in a datacenter (server side)</li>
+<li>Thousands to millions of machines accessing these services (client side)</li>
+</ul>
+</li>
+<li>Servers communicate amongst one another -&gt; Distributed System</li>
+<li>Clients communicate with servers -&gt; Also a distributed system!</li>
+<li>Clients also communicate with each other<ul>
+<li>In peer-to-peer systems like BitTorrent</li>
+<li>Also a distributed system!</li>
+</ul>
+</li>
+</ul>
+<p><strong>Four Features of Clouds = All Distributed Systems Features!</strong></p>
+<ol>
+<li>Massive Scale: many servers</li>
+<li>On-demand nature: access (multiple) servers anywhere</li>
+<li>Data-Intensive Nature: lots of data =&gt; need a cluster (multiple machines) to store</li>
+<li>New Cloud Programming Paradigms: Hadoop/Mapreduce, NoSQL all need clusters</li>
+</ol>
+<p><strong>Cloud = A Fancy Word for a Distributed System</strong></p>
+<ul>
+<li>A “cloud” is the latest nickname for a distributed system</li>
+<li>Previous nicknames for “distributed system” have included<ul>
+<li>Peer-to-peer systems</li>
+<li>Grids</li>
+<li>Clusters</li>
+<li>Timeshared computers (Data Processing Industry)</li>
+</ul>
+</li>
+<li>Nicknames come and go, but the <code>core concepts</code> underlying distributed systems stay the same<ul>
+<li>And they are used decide after decade<ul>
+<li>E.g., Lamppost Timestamps were invented in the 1970s, and they are used in almost all distributed/cloud systems today</li>
+</ul>
+</li>
+<li>This course is about these distributed systems concepts</li>
+</ul>
+</li>
+<li>A few years from now, there may be a new nickname for distributed systems<ul>
+<li>The core concepts will remain the same, and they will continue to be used in real systems</li>
+</ul>
+</li>
+</ul>
+<h4 id="What-is-a-Distributed-System"><a href="#What-is-a-Distributed-System" class="headerlink" title="What is a Distributed System?"></a>What is a Distributed System?</h4><p><em>A distributed system is a collection of entities, each of which is <code>autonomous</code>, <code>programmable</code>, <code>asynchronous</code> and <code>failure-prone</code>, and which communicate through an <code>unreliable</code> communication medium</em>.</p>
+<p>Distributed System = Many Processes Sending and Receiving Messages through Unreliable Communication Network</p>
+<p>A range of interesting problems for distributed system designers</p>
+<ul>
+<li>P2P systems [Gnutella, Kazaa, BitTorrent]</li>
+<li>Cloud Infrastructures [AWS, Azure, Google Cloud]</li>
+<li>Cloud Storage [Key-value stores, NoSQL, Cassandra]</li>
+<li>Cloud Programming [MapReduce, Storm, Pregel]</li>
+<li>Coordination [Paxos, Leader Election, Snapshots]</li>
+<li>Managing Many Clients and Servers Concurrently [Concurrency Control, Replication Control]</li>
+<li>(and many more that you’ll see in this course!)</li>
+</ul>
+<p>Challenges in solving these problems</p>
+<ul>
+<li><strong>Failure</strong>: no longer the exception, but rather a norm</li>
+<li><strong>Scalability</strong>: 1000s of machines, Terabytes of data</li>
+<li><strong>Asynchrony</strong>: clock skew and clock drift</li>
+<li><strong>Concurrency</strong>: 1000s of machines interacting with each other accessing the same data</li>
+</ul>
+<h3 id="MapReduce"><a href="#MapReduce" class="headerlink" title="MapReduce"></a>MapReduce</h3><h4 id="MapReduce-Paradigm"><a href="#MapReduce-Paradigm" class="headerlink" title="MapReduce Paradigm"></a>MapReduce Paradigm</h4><ul>
+<li>Terms are borrowed from Functional Language(e.g., Lisp)</li>
+<li>Sample Application: <code>Wordcout</code></li>
+<li>Map:<ul>
+<li>Parallelly Process a large number of individual records to generate intermediate key/value pairs.</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://lh3.googleusercontent.com/DfWUkmMQ79PNd6tZDsgblL-iHF3qVFJr1hKI5yBDiGP_1274BtvxE8RhZsR9oGrDe93rNP_fR2YexJtw6iWb4ZlX6DVNBoiqPmZNVrNa6WLYGNnDZuRBXDHX8bqtDdqJrJYD0j0IdHiDwZNDd9rV7fscbWLaaVg75RSDJSb9c5uTlwDrqsV-Zod4JALW5ePcGKvpthf_paxOeK9Ahk6-d-IZma2SELKmSBp_5H1c64WU_dI-D91x1ddBUE7tl36ZlrYyKOp-u-PQkIF3wWszZEq7tls7RKaJ0CONDsf0s9uuD4rikXoTqPECkelROgRat3Ott1iT0Q-F4blAuHkR67CrsnUmqcdhSQ0xB_u2UNXGLpwPmAB_5rHDlwq1hJDel4GeoMNcg00e2Z_iNSMMBer11Rxw5Ho5qPn2LYA_4t2etHNMvUgcDI0CZ6ZjUYeFFxTP5gDi4nJ78yPLlQD8KpsHtJffIU7pcRPJlRqNtdix26rBj4vpOhtsdUvo5X6yzUj_RZbYfc2CxPFX3Wxdx9GjIYvIrNCaRrXY37FEUsPdAN6mKr-Z3mJK1gv7_lP2NdHy_ICQwZPA_EkxdGq39tFied4C6gRn51ijaek0CP5xO-16rjTufMNXYky8vH8117P4cWJ9YbtwbyBeCFvFaeqb5oDiy_Ei2lANSPsbMQ=w515-h221-no" alt="Map Task"></p>
+<p><img src="https://lh3.googleusercontent.com/Zzn05SvIEdGVi_2XrtRDz5y_znvh2fBbBUpif2gDg3-OiAW1f2kEBEgOBXon2j5zfYx44BIzMA-0-cfsQPQlBObbaguZp5HZnC5prLDDZ06U-JS-9kXT458I0SjNdRW_dvlTh8aV5Enlk1THmR9lyUlFcMomAL4UWhMiBVH9JdHvxYaPGSWkN2ZUH24NJXAf0ehDVtSTggcI_igtR9zJ2q4ktj5W12BxmTf6KAvpP8P37xKnO6NdubZDQbjQ7s5izpmXOMU3N8MY1BN3R6HEv6HkLW2Pw9CNhCDfQg21ETyPTTKMMZW5jEw6l_J1-K1U5OiW6ihns6zBSVogPslfkks2eVt68HegruksFs_0OUw6ZIYJ0ifwAF3Qegf4pMJgVduETukuFSv9yiVVskNR4QXDwQWfyyqsqQXIcyQ9QU2eoAHOUdbY6_dfa28oYz50XnnGsq74meNo7X0JovLI0t5bHya1Wo9gGuscMR2WBNdyvwS3zYMNOtBjoofuT4sVAI0-s1_BAlGlmoDrabZhMEIdV69QEVcLdA_-pGC1QwLRdw_T9YhMTNEUOeKnZ3MYzZQxGjiJY6wYHu1HUg_Y7ukj3mBZKW_xuJxlYtsClRR89WF6GPwwUX_-wtA1rq_2jc2APmzoMQ0rcFpP76oqv03kvyKe44Z42vC5wcQXzg=w550-h230-no" alt="Two Map Tasks"></p>
+<p><img src="https://lh3.googleusercontent.com/oIFVIxsAc2O8FUBhHcM53R_CbBjDvh_SuUJ2G_w3UGK1Jw-7vs6GnDlSRzpfeDt-kIplYHviiWvk19FtIjbTUBRQVd0MNkQsk-uw_OwyFPNFHrn1LrsTaQtNSqaRJLj4WE2jWrXiesYd3JHdZp3ZuKFYammv2KnCFgtD2VpA_TyrqmsT76-x9qZ5RlkGDJesQABTCgTzxQx0vCkaBtvl2dBb8ReNI9BeU0f1XUNaadXmYXUxU6x8cxpQGPPXJGy9CG1IXvI8a3CJpaqy9hxqNwvK-qTK0c5WONNF7BVzkOwHxFZvq4qBC8V5gm9gxxmyKBMZoeeRjC-vuYkF77nuU30-0B9PfNSz92i1xaNz0QzcT6sipacAzFmyXdxz4dBdLHriaiX8pZ3VSsHrIBQj8YxRcUWgdxSeAcnfCFyCs5Sjo7WfodDSFoz_Ow_0f7e2NurgmCQUP2jFk7wIRrqUls8cNsFcAZnfxrpnLplgnk-97U7kWK9IThQKvav8ugcFLcgReslCD0dZTZZQjHm3BxcQG9Lg0tcnMGGC2bp3cPG-KX85UlCs0rU5hQZCh9wykDwG80WDTcZb9tUVKK4_o_NORSZR7FFA-mrsz9sW5xjxMWcWLbjmZnT3ds29fYSyECWpgnupHTKQoR6BQ21lQHFnjZnzHewc6tFn62_YXA=w554-h211-no" alt="Many Map Tasks"></p>
+<ul>
+<li>Reduce:<ul>
+<li>Processes and merges all intermediate values associated per key</li>
+<li>Each key assigned to one Reduce</li>
+<li>Parallelly Processes and merges all intermediate values by partitioning keys</li>
+<li>Popular: Hash partitioning, i.e., key is assigned to reduce #= hash(key)% number of reduce servers</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://lh3.googleusercontent.com/mWsFpursi24LyePN_HIZ7LGSgLhYgwsDqyFV1-wVtAwszGvPCGs8f-oDjISRGMEqP_kzxM9SmTcB2wiC-gp5ThjbzuKi1a-kGZ5IBUogIMqfXUKqaRtd3XJOs8unXx10PoFCOGVhP4xgFtSqJ5xg5oGQl7cazW_Zn7sUhhnMoDK90sLKcE_ldYaXI9n_cIC3YxECaXVmRwWdPsro1m5ntflm0vth9-XnO8ILIUn-YgeC_jU1b9ucNY9t2pZAy6TpgTaf6ZU3y7LXpEyeJEtHVzYegqjfORaRVlri1_t9OL1O3Aft8AIgSK9w6cLcoQJAtiW6zizkke8OXkHrYuP-BDaJzzdiB_-NlNxZeGsHoIsGLkobJkLyLvJv6W9NQFdNTD3RN4dVpE0hcfDKWi1ofFo9FepvX_I0wZ6Ko0YZa8s8hpUDvJaqMiDKNGYJ1t_mmxwJyybSPBcKlnfIBENUjT2EUkZf27TH0qMHVoZfIWhpGSyz9ihN0pa6CYuEBIwjpMhDZY95vfnd_Qb-geNKFXkgeXvS5BcOK3Taw8Ah_Jy62ylqbWQ81gM726xQboMnuXaYW1ffGqRMB-wKkn9FIPWUXzurLfiwzOBHRaWLKLTvZQ0KaF6f9S9gLb3epaUbNQYzs7qXz8vQi2UBw_pGhVzLrx4ehrTX_M5nNC7zrA=w493-h214-no" alt="Reduce Task"></p>
+<p><img src="https://lh3.googleusercontent.com/YO_-BhfPsNjjotY8XInGVzHyqEt-r5n4wIuERO2L4eX1D-5cKBJd1A0Uw-XDIh7PRBqwijyQXcN0gj8Y69Bdkh1RXfNTjL58qgez1yCakVbr6Im-1dhHHWK-ooI5HPflgKi2JCULU7RHRFSpZzzzEGLnFQFxck9Gs57-s-ClWQbwTXUIDcbtmoVY3eG28fISvvLYu2H0Ix3zYudDOqaeoZW9T8ulLu8UDnv6QBFfx8qdKx_9cKqEdzjyiWyJ8Ta6JdbEVLiXeSSv2AjpDQBbttNrrDVr4UYZW-J26wX18UrwIXLVR-8Kze0Co1uDYSf4ty7hJ3NbSafsujDNLx4i8xJFprRzXAZGmfjloC9TOsSgKJkcyMnAISLUQZR05sOcrEimTXcsmaGjykh-j05ifeKFPxNYYr_DXVdo0PkfqHoM8KnqVEFV85LelPJJMUlYHre-FO7A416WdYF2QmwcggA1bouufP-mIVmuFAUKeGLdevIw8ZnDb9KmRL03wQPeoIhA1atABp27YBB4i-BHzF8MQkrp9CK6tGFkuBiK41z4JEKPgL_j6lQZ0delBfTGFDHfCNWLNg0l-yYkwn8s2D6JOUQE9IR1Z2UEFxmBX3cfEfcu7LVLGoaiuZ0kaS8_RHSLbCVGuccUKnWDCB63iasqFvcHcc31_rrGLHR05Q=w526-h155-no" alt="Two Reduce Tasks"></p>
+<h4 id="MapReduce-Examples"><a href="#MapReduce-Examples" class="headerlink" title="MapReduce Examples"></a>MapReduce Examples</h4><p>Distributed Grep</p>
+<ul>
+<li>Input: large set of files</li>
+<li>Output: lines that match pattern</li>
+<li>Map: Emits a line if it matches the supplied pattern</li>
+<li>Reduce: Copies the intermediate data to output</li>
+</ul>
+<p>Reverse Web-Link Graph</p>
+<ul>
+<li>Input: Web graph: tuples(a, b) where (page a -&gt; pageb)</li>
+<li>Output: For each page list of pages that link to it</li>
+<li>Map: process web log and for each input &lt;source, target&gt;, it outputs &lt;target, source&gt;</li>
+<li>Reduce: emits &lt;target, list<source>&gt;</li>
+</ul>
+<p>Count of URL access frequency</p>
+<ul>
+<li>Input: Log of accessed URLs, e.g., from proxy server</li>
+<li>Output: For each URL, % of total accesses for that URL</li>
+<li>Map: Process web log and outputs &lt;URL, 1&gt;</li>
+<li>Multiple Reducers : Emits [URL, URL_count]<br>(So far, like Wordcount. But still need %)</li>
+<li>Chain another MapReduce job after above one</li>
+<li>Map: Process &lt;URL, URL_count&gt; and outputs &lt;1, (&lt;URL, URL_count&gt;)&gt;</li>
+<li>1 Reducer: Sums up URL_count’s to calculate overall_count.<ul>
+<li>Emits multiple &lt;URL, URL_count/overall_count&gt;</li>
+</ul>
+</li>
+</ul>
+<p>Sort<br>Map task’s output is sorted (e.g., quicksort)<br>Reduce task’s input is sorted (e.g., mergesort)</p>
+<ul>
+<li>Input: Series of (key, value) pairs</li>
+<li>Output: Sorted <value>s</li>
+<li>Map: &lt;key, value&gt; -&gt; &lt;value, _&gt; (identity)</li>
+<li>Reducer: &lt;key, value&gt; -&gt; &lt;key, value&gt; (identity)</li>
+<li>Partitioning function - partition keys across reducers based on ranges<ul>
+<li>Take data distribution into account to balance reducer tasks</li>
+</ul>
+</li>
+</ul>
+<h4 id="MapReduce-Scheduling"><a href="#MapReduce-Scheduling" class="headerlink" title="MapReduce Scheduling"></a>MapReduce Scheduling</h4><p>Externally: For user</p>
+<ul>
+<li>Write a Map program (short), write a Reduce program(short)</li>
+<li>Submit job, wait for result</li>
+<li>Need to know nothing about parallel/distributed programming!</li>
+</ul>
+<p>Internally: For the Paradigm and Scheduler</p>
+<ul>
+<li>Parallelize Map</li>
+<li>Transfer data from Map to Reduce</li>
+<li>Parallelize Reduce</li>
+<li>Implement Storage for Map input, Map output, Reduce input, and Reduce output</li>
+</ul>
+<p>(Ensure that no Reduce starts before all Maps are finished. That is, ensure the <strong><em>barrier</em></strong> between the Map phase and Reduce phase)</p>
+<p>For the cloud:</p>
+<ul>
+<li>Parallelize Map: easy! each map task is independent of the other!<ul>
+<li>All Map output records with same key assigned to same Reduce</li>
+</ul>
+</li>
+<li>Transfer data from Map to Reduce<ul>
+<li>All Map output records with same key assigned to same Reduce task</li>
+<li>Use partitioning function, e.g., hash(key) % number of reducers</li>
+</ul>
+</li>
+<li>Parallelize Reduce: easy! each reduce task is independent of the other!</li>
+<li>Implement Storage for Map input, Map output, Reduce input, and Reduce output.<ul>
+<li>Map input: from distributed file system</li>
+<li>Map output: to local disk (at Map node); uses local file system</li>
+<li>Reduce input: from (multiple) remote disks; uses local file systems</li>
+<li>Reduce output: to distributed file system</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>local file system = Linux FS, etc.</li>
+<li>distributed file system = GFS (Google File System), HDFS (Hadoop Distributed File System)</li>
+</ul>
+<p>The YARN Scheduler</p>
+<ul>
+<li>Used in Hadoop 2.x +</li>
+<li>YARN = Yet Another Resource Negotiator</li>
+<li>Treats each server as a collection of <em>containers</em><ul>
+<li>Container = some CPU + some memory</li>
+</ul>
+</li>
+<li>Has 3 main components<ul>
+<li>Global Resource Manager (RM)<ul>
+<li>Scheduling</li>
+</ul>
+</li>
+<li>Pre-server Node Manager(NM)<ul>
+<li>Daemon and server-specific functions</li>
+</ul>
+</li>
+<li>Per-application (job) Application Master (AM)<ul>
+<li>Container negotiation with RM and NMs</li>
+<li>Detecting task failures of that job</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://lh3.googleusercontent.com/_ggVQZTdJbYM9gypXn9lHrTL8ZuPSZc0m8XYAlwrZjwWzXjwXw3A2cfV11Zd3bFFHukHOyb2smo48yF6GLUBMB0O8FBIjJhvK4ewck6JXqj4t-7YtNPDwvYIygzwk_disv1n_cG0P-W8BmIk7Tl0R0nzrM6noBYVzV35P5MQ1LV_Wrml1ZUGnCWjs2Q0j-AZDSDEAGqEJMqj5jBQ8oQH0g0pdZGtZ_HrIt4zUxiUIwAJa4Hy2j78zydM_e6WB3bELNWwmYlU2EXqMPRaWz8luLejzmXoDB2wOFuTZD0M3-fgdMijGeHXBQWAc61oA1YlquU4ZHGruG9BLSRwYvdAufhJ0_x6BjTpsMcikGQGpUO8keVgGoEfxC6AssRIEp4wwEaqWTWk-OqKLuvuXzSXx4nhHMPYGYPHbR7WNtuY6ouEdBUWjOkD7h4xXJUVamO0tdCPhxdqgZOBIxsqPpEeqdoRE9N10_wx_7P3m8iSO3I7NK0od5IhYYrbUOOdsslQsZrDoWgB2se_cZywbKH6_UhOsb4EZKTxPOalb9l5AD0S3-9cs5wdR-i6trIRgbwWnIjU2MNFXcl4UBvd13bvkfvGMZk2aduRwmJJAnZk9gxNUgLSnA4vsN_9yreclNl8Ur2rp9XfqKEz7PkUX7I33LpVKd3de3FuD9p9ZbMNzg=w1237-h765-no" alt="How a Job Gets a Container"></p>
+<h4 id="MapReduce-Fault-Tolerance"><a href="#MapReduce-Fault-Tolerance" class="headerlink" title="MapReduce Fault-Tolerance"></a>MapReduce Fault-Tolerance</h4><p>Fault Tolerance</p>
+<ul>
+<li>Server Failure<ul>
+<li>NM heartbeats to RM<ul>
+<li>If server fails, RM lets all affected Ams know, and Ams take action.</li>
+</ul>
+</li>
+<li>NM keeps track of each task running at its server<ul>
+<li>If task fails while in-progress, mark the task as idle and restart it</li>
+</ul>
+</li>
+<li>AM heartbeats to RM<ul>
+<li>On failure, RM restarts AM, which then syncs up with its running tasks</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>RM Failure<ul>
+<li>Use old checkpoints and bring up secondary RM</li>
+</ul>
+</li>
+<li>Heartbeats also used to piggyback container requests</li>
+</ul>
+<p>Stragglers (slow nodes)</p>
+<ul>
+<li>The slowest machine slows the entire job down (why?)</li>
+<li>Due to Bad Disk, Network Bandwidth, CPU, or Memory</li>
+<li>Keep track of “progress” of each task (%done)</li>
+<li>Perform backup (replicated) execution of straggler task: task considered done when first replica completed. Called <code>Speculative Execution</code>.</li>
+</ul>
+<p>Locality</p>
+<ul>
+<li>Since cloud has hierarchical topology (e.g., racks)</li>
+<li>GFS/HDFS stores 3 replicas of each of chins (e.g., 64 MB in size)<ul>
+<li>Maybe on different racks, e.g., 2 on a rack, 1 on a different rack</li>
+<li>Mapreduce attempts to schedule a map task on<ul>
+<li>a machine that contains a replica of corresponding input data, or failing that.</li>
+<li>on the same rack as a machine containing the input, or failing that.</li>
+<li>Anywhere</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>Summary</p>
+<ul>
+<li>Mapreduce uses parallelization + aggregation to schedule applications across clusters</li>
+<li>Need to deal with failure</li>
+<li>Plenty of ongoing research work in scheduling and fault-tolerance for Mapreduce and Hadoop</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/tech/" rel="tag"># tech</a>
+              <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag"># 学习笔记</a>
+              <a href="/tags/MapReduce/" rel="tag"># MapReduce</a>
+              <a href="/tags/Cloud-Computing-Concepts/" rel="tag"># Cloud Computing Concepts</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2017/02/18/%E8%87%AA%E6%88%91%E6%88%90%E9%95%BF%E7%9A%84%E6%AD%A3%E7%A1%AE%E6%89%93%E5%BC%80%E6%96%B9%E5%BC%8F/" rel="prev" title="自我成长的正确打开方式">
+      <i class="fa fa-chevron-left"></i> 自我成长的正确打开方式
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2017/03/11/2017BlogUpdate/" rel="next" title="博客重大升级啦!">
+      博客重大升级啦! <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Pre-Requirements"><span class="nav-number">1.</span> <span class="nav-text">Pre-Requirements</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Basic-Data-Structures"><span class="nav-number">1.1.</span> <span class="nav-text">Basic Data Structures</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Process-A-Program-in-Action"><span class="nav-number">1.2.</span> <span class="nav-text">Process: A Program in Action</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Computer-Architecture-Simplified"><span class="nav-number">1.3.</span> <span class="nav-text">Computer Architecture (Simplified)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Big-O-Notation"><span class="nav-number">1.4.</span> <span class="nav-text">Big O() Notation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Basic-Probability"><span class="nav-number">1.5.</span> <span class="nav-text">Basic Probability</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DNS"><span class="nav-number">1.6.</span> <span class="nav-text">DNS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Graphs"><span class="nav-number">1.7.</span> <span class="nav-text">Graphs</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction-to-Clouds-MapReduce"><span class="nav-number">2.</span> <span class="nav-text">Introduction to Clouds, MapReduce</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Introduction-to-Clouds"><span class="nav-number">2.1.</span> <span class="nav-text">Introduction to Clouds</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Why-Cloud"><span class="nav-number">2.1.1.</span> <span class="nav-text">Why Cloud?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#What-is-a-Cloud"><span class="nav-number">2.1.2.</span> <span class="nav-text">What is a Cloud?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Introduction-to-Clouds-History"><span class="nav-number">2.1.3.</span> <span class="nav-text">Introduction to Clouds: History</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Introduction-to-Clouds-What’s-New-in-Today’s-Clouds"><span class="nav-number">2.1.4.</span> <span class="nav-text">Introduction to Clouds: What’s New in Today’s Clouds</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Introduction-to-Clouds-New-Aspects-of-Clouds"><span class="nav-number">2.1.5.</span> <span class="nav-text">Introduction to Clouds: New Aspects of Clouds</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Introduction-to-Clouds-Economics-of-Clouds"><span class="nav-number">2.1.6.</span> <span class="nav-text">Introduction to Clouds: Economics of Clouds</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Clouds-are-Distributed-Systems"><span class="nav-number">2.2.</span> <span class="nav-text">Clouds are Distributed Systems</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#A-cloud-is-a-Distributed-System"><span class="nav-number">2.2.1.</span> <span class="nav-text">A cloud is a Distributed System</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#What-is-a-Distributed-System"><span class="nav-number">2.2.2.</span> <span class="nav-text">What is a Distributed System?</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MapReduce"><span class="nav-number">2.3.</span> <span class="nav-text">MapReduce</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#MapReduce-Paradigm"><span class="nav-number">2.3.1.</span> <span class="nav-text">MapReduce Paradigm</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MapReduce-Examples"><span class="nav-number">2.3.2.</span> <span class="nav-text">MapReduce Examples</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MapReduce-Scheduling"><span class="nav-number">2.3.3.</span> <span class="nav-text">MapReduce Scheduling</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MapReduce-Fault-Tolerance"><span class="nav-number">2.3.4.</span> <span class="nav-text">MapReduce Fault-Tolerance</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Danny Zhang</p>
+  <div class="site-description" itemprop="description">Blogger/Software Engineer/Fitness Enthusiast</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">47</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">61</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Danny Zhang</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.7.2
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

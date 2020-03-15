@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"dannyzhang.run","root":"/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="在一个给定长度的数组中随机等概率抽取一个数据很容易，但如果面对的是长度未知的海量数据流呢？蓄水池采样(Reservoir Sampling)算法就是来解决这个问题的, 它在分析一些大数据集的时候非常有用。 1. 算法描述 先选取数据流中的前k个元素，保存在集合A中； 从第j（k + 1 &lt;&#x3D; j &lt;&#x3D; n）个元素开始，每次先以概率p &#x3D; k&#x2F;j选择是否让第j个元素留下。若j被选中，则从">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Data Structure &amp; Algorithms Notes: Reservoir Sampling">
+<meta property="og:url" content="http://dannyzhang.run/2016/10/09/reservoir-sampling/index.html">
+<meta property="og:site_name" content="D.Z. Notes (Beta)">
+<meta property="og:description" content="在一个给定长度的数组中随机等概率抽取一个数据很容易，但如果面对的是长度未知的海量数据流呢？蓄水池采样(Reservoir Sampling)算法就是来解决这个问题的, 它在分析一些大数据集的时候非常有用。 1. 算法描述 先选取数据流中的前k个元素，保存在集合A中； 从第j（k + 1 &lt;&#x3D; j &lt;&#x3D; n）个元素开始，每次先以概率p &#x3D; k&#x2F;j选择是否让第j个元素留下。若j被选中，则从">
+<meta property="article:published_time" content="2016-10-09T07:34:55.000Z">
+<meta property="article:modified_time" content="2016-10-09T07:37:39.000Z">
+<meta property="article:author" content="Danny Zhang">
+<meta property="article:tag" content="Data Structure &amp; Algorithms">
+<meta property="article:tag" content="Reservoir Sampling">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://dannyzhang.run/2016/10/09/reservoir-sampling/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true
+  };
+</script>
+
+  <title>Data Structure & Algorithms Notes: Reservoir Sampling | D.Z. Notes (Beta)</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">D.Z. Notes (Beta)</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">Be insensitive, and keep a lifelong growth mindset.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://dannyzhang.run/2016/10/09/reservoir-sampling/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Danny Zhang">
+      <meta itemprop="description" content="Blogger/Software Engineer/Fitness Enthusiast">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="D.Z. Notes (Beta)">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Data Structure & Algorithms Notes: Reservoir Sampling
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2016-10-09 00:34:55 / Modified: 00:37:39" itemprop="dateCreated datePublished" datetime="2016-10-09T00:34:55-07:00">2016-10-09</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>在一个给定长度的数组中随机等概率抽取一个数据很容易，但如果面对的是长度未知的海量数据流呢？蓄水池采样(Reservoir Sampling)算法就是来解决这个问题的, 它在分析一些大数据集的时候非常有用。</p>
+<h2 id="1-算法描述"><a href="#1-算法描述" class="headerlink" title="1. 算法描述"></a>1. 算法描述</h2><ol>
+<li>先选取数据流中的前k个元素，保存在集合A中；</li>
+<li>从第j（k + 1 &lt;= j &lt;= n）个元素开始，每次先以概率p = k/j选择是否让第j个元素留下。若j被选中，则从A中随机选择一个元素并用该元素j替换它；否则直接淘汰该元素；</li>
+<li>重复步骤2直到结束，最后集合A中剩下的就是保证随机抽取的k个元素。</li>
+</ol>
+<h2 id="2-算法证明"><a href="#2-算法证明" class="headerlink" title="2. 算法证明"></a>2. 算法证明</h2><p>算法的证明可以参照: <a href="http://sobuhu.com/algorithm/2012/11/01/reservoir.html" target="_blank" rel="noopener">蓄水池抽样算法证明</a></p>
+<h2 id="3-LeetCode例题"><a href="#3-LeetCode例题" class="headerlink" title="3. LeetCode例题"></a>3. LeetCode例题</h2><h3 id="3-1-Linked-List-Random-Node"><a href="#3-1-Linked-List-Random-Node" class="headerlink" title="3.1. Linked List Random Node"></a>3.1. Linked List Random Node</h3><p>Given a singly linked list, return a random node’s value from the linked list. Each node must have the same probability of being chosen.</p>
+<p><strong>Follow up:</strong><br>What if the linked list is extremely large and its length is unknown to you? Could you solve this efficiently without using extra space?</p>
+<p><strong>Example:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; Init a singly linked list [1,2,3].</span><br><span class="line">ListNode head &#x3D; new ListNode(1);</span><br><span class="line">head.next &#x3D; new ListNode(2);</span><br><span class="line">head.next.next &#x3D; new ListNode(3);</span><br><span class="line">Solution solution &#x3D; new Solution(head);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; getRandom() should return either 1, 2, or 3 randomly. Each element should have equal probability of returning.</span><br><span class="line">solution.getRandom();</span><br></pre></td></tr></table></figure>
+<p>利用蓄水池采样原理，无需事先计算list长度即可求解，具体代码如下:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    Random r;</span><br><span class="line">    ListNode head;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Solution</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.r = <span class="keyword">new</span> Random();</span><br><span class="line">        <span class="keyword">this</span>.head = head;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getRandom</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> count = <span class="number">1</span>;</span><br><span class="line">        ListNode nodeVal = head;</span><br><span class="line">        ListNode curr = head;</span><br><span class="line">        <span class="keyword">while</span> (curr != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (r.nextInt(count++) == <span class="number">0</span>) &#123;</span><br><span class="line">                nodeVal = curr;</span><br><span class="line">            &#125;</span><br><span class="line">            curr = curr.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> nodeVal.val;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="3-2-Random-Pick-Index"><a href="#3-2-Random-Pick-Index" class="headerlink" title="3.2. Random Pick Index"></a>3.2. Random Pick Index</h3><p>Given an array of integers with possible duplicates, randomly output the index of a given target number. You can assume that the given target number must exist in the array.</p>
+<p><strong>Note:</strong><br>The array size can be very large. Solution that uses too much extra space will not pass the judge.</p>
+<p><strong>Example:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">int[] nums &#x3D; new int[] &#123;1,2,3,3,3&#125;;</span><br><span class="line">Solution solution &#x3D; new Solution(nums);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; pick(3) should return either index 2, 3, or 4 randomly. Each index should have equal probability of returning.</span><br><span class="line">solution.pick(3);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; pick(1) should return 0. Since in the array only nums[0] is equal to 1.</span><br><span class="line">solution.pick(1);</span><br></pre></td></tr></table></figure>
+<p>若采用常规算法，我们需要用HashMap把对应的数值及所处的位置一一关联，这样则违背了题目的空间限制。使用蓄水池采样则避免了这个问题。具体代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span>[] nums;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Solution</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.nums = nums;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">pick</span><span class="params">(<span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> index = -<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> count = <span class="number">1</span>;</span><br><span class="line">        Random random = <span class="keyword">new</span> Random();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (nums[i] == target) &#123;</span><br><span class="line">                <span class="keyword">if</span> (random.nextInt(count++) == <span class="number">0</span>) &#123;</span><br><span class="line">                    index = i;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> index;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Data-Structure-Algorithms/" rel="tag"># Data Structure & Algorithms</a>
+              <a href="/tags/Reservoir-Sampling/" rel="tag"># Reservoir Sampling</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2016/08/30/RxJavaIntro/" rel="prev" title="RxJava极简入门">
+      <i class="fa fa-chevron-left"></i> RxJava极简入门
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2016/12/17/soft-abilities-reading-notes/" rel="next" title="《软技能：代码之外的生存指南》读书笔记">
+      《软技能：代码之外的生存指南》读书笔记 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-算法描述"><span class="nav-number">1.</span> <span class="nav-text">1. 算法描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-算法证明"><span class="nav-number">2.</span> <span class="nav-text">2. 算法证明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-LeetCode例题"><span class="nav-number">3.</span> <span class="nav-text">3. LeetCode例题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-Linked-List-Random-Node"><span class="nav-number">3.1.</span> <span class="nav-text">3.1. Linked List Random Node</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-Random-Pick-Index"><span class="nav-number">3.2.</span> <span class="nav-text">3.2. Random Pick Index</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Danny Zhang</p>
+  <div class="site-description" itemprop="description">Blogger/Software Engineer/Fitness Enthusiast</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">47</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">61</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Danny Zhang</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.7.2
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

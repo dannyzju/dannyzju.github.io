@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"dannyzhang.run","root":"/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="1. The DOM and DOM Manipulation DOM: Document Object Model; Structured representation of an HTML document; The DOM is used to connect webpages to scripts like JavaScript; For each HTML box, there is a">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript in the Browser: DOM Manipulation and Events">
+<meta property="og:url" content="http://dannyzhang.run/2017/04/05/JavaScript-in-the-Browser-DOM-Manipulation-and-Events/index.html">
+<meta property="og:site_name" content="D.Z. Notes (Beta)">
+<meta property="og:description" content="1. The DOM and DOM Manipulation DOM: Document Object Model; Structured representation of an HTML document; The DOM is used to connect webpages to scripts like JavaScript; For each HTML box, there is a">
+<meta property="og:image" content="https://lh3.googleusercontent.com/opF1GsIL8wI2VAPukMjRs_qVBbUa2SFB7IcszMYq4Y4Rhm31n4gtbs1dJZAwrziMJS4-wQn4OxbYBzN3_jLw8J7Fi4XG43rFJSnO6s1ODZG9r1vRMGqLybAWUzggx4lbGhzPJy_NZ6iwhv29W8Ko0mk-im0KsEg0ChQOH9Haxup8w-jkv2mRGqUQy01uUcWsEWU1SjMge3SqI3giiUh-0j9l2OVf8BDW6rKY6yvWyqeTdOYHnVma0D9MCuFcmJCInlpOAtaTXiiRkRJNuZAoVeOvSN0GsblKPvxS_lsoiJiA4WEnq-Y73Ud2OtGlC-_m0iE67Atr1i5Skm1x0kIVy-jpGxPFj0RKiVGlha2saK9izFfFK5-a0KSg_W0DxfjESVcSboe4xZO5JMeHdb6RnZIugIFRi2Q_UHxQtuqw5s3R7LXXRdQktEidCrIz3QnFGMm4D07Lx6fO6jKflunl30_do5_0aaOaitVKy_AV5EEc-luK8X5EAPyB8PzuWQaT_6rfdK7TbuRuob3JmrFzvBmxglZjxb6tY-LACSogxScpISC5MoYyUEP9HIzOkt-LprxJ0R19VN01FEyTrkpEU7TbX0D0qQwEDDGxb8tSnTBpdzUwzDfHUNMJijQjxlnfQ1HL8knMIyhz0ZPQoAmcrpARr1W9N9N5UkVMpv_kMQ=w1192-h1019-no">
+<meta property="article:published_time" content="2017-04-05T13:44:25.000Z">
+<meta property="article:modified_time" content="2017-07-22T15:51:40.000Z">
+<meta property="article:author" content="Danny Zhang">
+<meta property="article:tag" content="tech">
+<meta property="article:tag" content="学习笔记">
+<meta property="article:tag" content="JavaScript">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://lh3.googleusercontent.com/opF1GsIL8wI2VAPukMjRs_qVBbUa2SFB7IcszMYq4Y4Rhm31n4gtbs1dJZAwrziMJS4-wQn4OxbYBzN3_jLw8J7Fi4XG43rFJSnO6s1ODZG9r1vRMGqLybAWUzggx4lbGhzPJy_NZ6iwhv29W8Ko0mk-im0KsEg0ChQOH9Haxup8w-jkv2mRGqUQy01uUcWsEWU1SjMge3SqI3giiUh-0j9l2OVf8BDW6rKY6yvWyqeTdOYHnVma0D9MCuFcmJCInlpOAtaTXiiRkRJNuZAoVeOvSN0GsblKPvxS_lsoiJiA4WEnq-Y73Ud2OtGlC-_m0iE67Atr1i5Skm1x0kIVy-jpGxPFj0RKiVGlha2saK9izFfFK5-a0KSg_W0DxfjESVcSboe4xZO5JMeHdb6RnZIugIFRi2Q_UHxQtuqw5s3R7LXXRdQktEidCrIz3QnFGMm4D07Lx6fO6jKflunl30_do5_0aaOaitVKy_AV5EEc-luK8X5EAPyB8PzuWQaT_6rfdK7TbuRuob3JmrFzvBmxglZjxb6tY-LACSogxScpISC5MoYyUEP9HIzOkt-LprxJ0R19VN01FEyTrkpEU7TbX0D0qQwEDDGxb8tSnTBpdzUwzDfHUNMJijQjxlnfQ1HL8knMIyhz0ZPQoAmcrpARr1W9N9N5UkVMpv_kMQ=w1192-h1019-no">
+
+<link rel="canonical" href="http://dannyzhang.run/2017/04/05/JavaScript-in-the-Browser-DOM-Manipulation-and-Events/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true
+  };
+</script>
+
+  <title>JavaScript in the Browser: DOM Manipulation and Events | D.Z. Notes (Beta)</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">D.Z. Notes (Beta)</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">Be insensitive, and keep a lifelong growth mindset.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://dannyzhang.run/2017/04/05/JavaScript-in-the-Browser-DOM-Manipulation-and-Events/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Danny Zhang">
+      <meta itemprop="description" content="Blogger/Software Engineer/Fitness Enthusiast">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="D.Z. Notes (Beta)">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          JavaScript in the Browser: DOM Manipulation and Events
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2017-04-05 06:44:25" itemprop="dateCreated datePublished" datetime="2017-04-05T06:44:25-07:00">2017-04-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2017-07-22 08:51:40" itemprop="dateModified" datetime="2017-07-22T08:51:40-07:00">2017-07-22</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="1-The-DOM-and-DOM-Manipulation"><a href="#1-The-DOM-and-DOM-Manipulation" class="headerlink" title="1. The DOM and DOM Manipulation"></a>1. The DOM and DOM Manipulation</h2><ul>
+<li>DOM: Document Object Model;</li>
+<li>Structured representation of an HTML document;</li>
+<li>The DOM is used to connect webpages to scripts like JavaScript;</li>
+<li>For each HTML box, there is an object in the DOM that we can access and interact with.</li>
+</ul>
+<p><img src="https://lh3.googleusercontent.com/opF1GsIL8wI2VAPukMjRs_qVBbUa2SFB7IcszMYq4Y4Rhm31n4gtbs1dJZAwrziMJS4-wQn4OxbYBzN3_jLw8J7Fi4XG43rFJSnO6s1ODZG9r1vRMGqLybAWUzggx4lbGhzPJy_NZ6iwhv29W8Ko0mk-im0KsEg0ChQOH9Haxup8w-jkv2mRGqUQy01uUcWsEWU1SjMge3SqI3giiUh-0j9l2OVf8BDW6rKY6yvWyqeTdOYHnVma0D9MCuFcmJCInlpOAtaTXiiRkRJNuZAoVeOvSN0GsblKPvxS_lsoiJiA4WEnq-Y73Ud2OtGlC-_m0iE67Atr1i5Skm1x0kIVy-jpGxPFj0RKiVGlha2saK9izFfFK5-a0KSg_W0DxfjESVcSboe4xZO5JMeHdb6RnZIugIFRi2Q_UHxQtuqw5s3R7LXXRdQktEidCrIz3QnFGMm4D07Lx6fO6jKflunl30_do5_0aaOaitVKy_AV5EEc-luK8X5EAPyB8PzuWQaT_6rfdK7TbuRuob3JmrFzvBmxglZjxb6tY-LACSogxScpISC5MoYyUEP9HIzOkt-LprxJ0R19VN01FEyTrkpEU7TbX0D0qQwEDDGxb8tSnTBpdzUwzDfHUNMJijQjxlnfQ1HL8knMIyhz0ZPQoAmcrpARr1W9N9N5UkVMpv_kMQ=w1192-h1019-no" alt="DOM"></p>
+<h2 id="2-DOM-Access-and-Manipulation"><a href="#2-DOM-Access-and-Manipulation" class="headerlink" title="2. DOM Access and Manipulation"></a>2. DOM Access and Manipulation</h2><p>To get a random number from 1 to 6:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> dice = <span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random() * <span class="number">6</span>) + <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+
+<p>Select an element using query selector:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.querySelector(<span class="string">'#current-'</span> + activePlayer).textContent;</span><br><span class="line"><span class="built_in">document</span>.querySelector(<span class="string">'#current-'</span> + activePlayer).innerHTML;</span><br><span class="line"><span class="built_in">document</span>.querySelector(<span class="string">'.dice'</span>).style.display;</span><br></pre></td></tr></table></figure>
+
+<p>Select an element using getElementById: (faster!)</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">'score-0'</span>).textContent = <span class="string">'0'</span>;</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-Events-and-Event-Handling"><a href="#3-Events-and-Event-Handling" class="headerlink" title="3. Events and Event Handling"></a>3. Events and Event Handling</h2><ul>
+<li><strong>Events</strong>: Notifications that are sent to notify the code that something happened on the webpage;</li>
+<li>Examples: clicking a button, resizing a window, scrolling down or pressing a key;</li>
+<li><strong>Event listener</strong>: A function that performs an action based on a certain event. It waits for a specific event to happen.</li>
+</ul>
+<p>Add an event listener for an element:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.querySelector(<span class="string">'.btn-roll'</span>).addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="comment">//An anonymous function, which does not have a name, and can not be used elsewhere.</span></span><br><span class="line">	<span class="comment">//Do something.</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-DRY-Don’t-Repeat-Yourself-Principle"><a href="#4-DRY-Don’t-Repeat-Yourself-Principle" class="headerlink" title="4. DRY(Don’t Repeat Yourself) Principle"></a>4. DRY(Don’t Repeat Yourself) Principle</h2><p>For the same code used in different places, wrap it up with a function, like the init() and nextPlayer() in the project.</p>
+<h2 id="5-State-Variables"><a href="#5-State-Variables" class="headerlink" title="5. State Variables"></a>5. State Variables</h2><p>In this example, use <code>gamePlaying</code> as a state variable to stop the game after a win.</p>
+<h2 id="6-Complete-JavaScript-Code"><a href="#6-Complete-JavaScript-Code" class="headerlink" title="6. Complete JavaScript Code"></a>6. Complete JavaScript Code</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">GAME RULES:</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">- The game has 2 players, playing in rounds</span></span><br><span class="line"><span class="comment">- In each turn, a player rolls a dice as many times as he whishes. Each result get added to his ROUND score</span></span><br><span class="line"><span class="comment">- BUT, if the player rolls a 1, all his ROUND score gets lost. After that, it's the next player's turn</span></span><br><span class="line"><span class="comment">- The player can choose to 'Hold', which means that his ROUND score gets added to his GLBAL score. After that, it's the next player's turn</span></span><br><span class="line"><span class="comment">- The first player to reach 100 points on GLOBAL score wins the game</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> scores, roundScore, activePlayer, gamePlaying;</span><br><span class="line"></span><br><span class="line">init();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">document</span>.querySelector(<span class="string">'.btn-roll'</span>).addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(gamePlaying) &#123;</span><br><span class="line">        <span class="comment">// 1. Random number</span></span><br><span class="line">        <span class="keyword">var</span> dice = <span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random() * <span class="number">6</span>) + <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//2. Display the result</span></span><br><span class="line">        <span class="keyword">var</span> diceDOM = <span class="built_in">document</span>.querySelector(<span class="string">'.dice'</span>);</span><br><span class="line">        diceDOM.style.display = <span class="string">'block'</span>;</span><br><span class="line">        diceDOM.src = <span class="string">'dice-'</span> + dice + <span class="string">'.png'</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="comment">//3. Update the round score IF the rolled number was NOT a 1</span></span><br><span class="line">        <span class="keyword">if</span> (dice !== <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="comment">//Add score</span></span><br><span class="line">            roundScore += dice;</span><br><span class="line">            <span class="built_in">document</span>.querySelector(<span class="string">'#current-'</span> + activePlayer).textContent = roundScore;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">//Next player</span></span><br><span class="line">            nextPlayer();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;    </span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">document</span>.querySelector(<span class="string">'.btn-hold'</span>).addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (gamePlaying) &#123;</span><br><span class="line">        <span class="comment">// Add CURRENT score to GLOBAL score</span></span><br><span class="line">        scores[activePlayer] += roundScore;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Update the UI</span></span><br><span class="line">        <span class="built_in">document</span>.querySelector(<span class="string">'#score-'</span> + activePlayer).textContent = scores[activePlayer];</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Check if player won the game</span></span><br><span class="line">        <span class="keyword">if</span> (scores[activePlayer] &gt;= <span class="number">100</span>) &#123;</span><br><span class="line">            <span class="built_in">document</span>.querySelector(<span class="string">'#name-'</span> + activePlayer).textContent = <span class="string">'Winner!'</span>;</span><br><span class="line">            <span class="built_in">document</span>.querySelector(<span class="string">'.dice'</span>).style.display = <span class="string">'none'</span>;</span><br><span class="line">            <span class="built_in">document</span>.querySelector(<span class="string">'.player-'</span> + activePlayer + <span class="string">'-panel'</span>).classList.add(<span class="string">'winner'</span>);</span><br><span class="line">            <span class="built_in">document</span>.querySelector(<span class="string">'.player-'</span> + activePlayer + <span class="string">'-panel'</span>).classList.remove(<span class="string">'active'</span>);</span><br><span class="line">            gamePlaying = <span class="literal">false</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">//Next player</span></span><br><span class="line">            nextPlayer();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">nextPlayer</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">//Next player</span></span><br><span class="line">    activePlayer === <span class="number">0</span> ? activePlayer = <span class="number">1</span> : activePlayer = <span class="number">0</span>;</span><br><span class="line">    roundScore = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">document</span>.getElementById(<span class="string">'current-0'</span>).textContent = <span class="string">'0'</span>;</span><br><span class="line">    <span class="built_in">document</span>.getElementById(<span class="string">'current-1'</span>).textContent = <span class="string">'0'</span>;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">document</span>.querySelector(<span class="string">'.player-0-panel'</span>).classList.toggle(<span class="string">'active'</span>);</span><br><span class="line">    <span class="built_in">document</span>.querySelector(<span class="string">'.player-1-panel'</span>).classList.toggle(<span class="string">'active'</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//document.querySelector('.player-0-panel').classList.remove('active');</span></span><br><span class="line">    <span class="comment">//document.querySelector('.player-1-panel').classList.add('active');</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">document</span>.querySelector(<span class="string">'.dice'</span>).style.display = <span class="string">'none'</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">document</span>.querySelector(<span class="string">'.btn-new'</span>).addEventListener(<span class="string">'click'</span>, init);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">init</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    scores = [<span class="number">0</span>, <span class="number">0</span>];</span><br><span class="line">    activePlayer = <span class="number">0</span>;</span><br><span class="line">    roundScore = <span class="number">0</span>;</span><br><span class="line">    gamePlaying = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">document</span>.querySelector(<span class="string">'.dice'</span>).style.display = <span class="string">'none'</span>;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">document</span>.getElementById(<span class="string">'score-0'</span>).textContent = <span class="string">'0'</span>;</span><br><span class="line">    <span class="built_in">document</span>.getElementById(<span class="string">'score-1'</span>).textContent = <span class="string">'0'</span>;</span><br><span class="line">    <span class="built_in">document</span>.getElementById(<span class="string">'current-0'</span>).textContent = <span class="string">'0'</span>;</span><br><span class="line">    <span class="built_in">document</span>.getElementById(<span class="string">'current-1'</span>).textContent = <span class="string">'0'</span>;</span><br><span class="line">    <span class="built_in">document</span>.getElementById(<span class="string">'name-0'</span>).textContent = <span class="string">'Player 1'</span>;</span><br><span class="line">    <span class="built_in">document</span>.getElementById(<span class="string">'name-1'</span>).textContent = <span class="string">'Player 2'</span>;</span><br><span class="line">    <span class="built_in">document</span>.querySelector(<span class="string">'.player-0-panel'</span>).classList.remove(<span class="string">'winner'</span>);</span><br><span class="line">    <span class="built_in">document</span>.querySelector(<span class="string">'.player-1-panel'</span>).classList.remove(<span class="string">'winner'</span>);</span><br><span class="line">    <span class="built_in">document</span>.querySelector(<span class="string">'.player-0-panel'</span>).classList.remove(<span class="string">'active'</span>);</span><br><span class="line">    <span class="built_in">document</span>.querySelector(<span class="string">'.player-1-panel'</span>).classList.remove(<span class="string">'active'</span>);</span><br><span class="line">    <span class="built_in">document</span>.querySelector(<span class="string">'.player-0-panel'</span>).classList.add(<span class="string">'active'</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//document.querySelector('#current-' + activePlayer).textContent = dice;</span></span><br><span class="line"><span class="comment">//document.querySelector('#current-' + activePlayer).innerHTML = '&lt;em&gt;' + dice + '&lt;/em&gt;';</span></span><br><span class="line"><span class="comment">//var x = document.querySelector('#score-0').textContent;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="7-Project-Demo"><a href="#7-Project-Demo" class="headerlink" title="7. Project Demo"></a>7. Project Demo</h2><p><a href="http://dannyzhang.run/projects/pigGame">Demo</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/tech/" rel="tag"># tech</a>
+              <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag"># 学习笔记</a>
+              <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2017/04/03/How-JavaScript-works-Behind-the-Scenes/" rel="prev" title="How JavaScript Works Behind the Scenes?">
+      <i class="fa fa-chevron-left"></i> How JavaScript Works Behind the Scenes?
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2017/04/06/Advanced-JavaScript-Objects-and-Functions/" rel="next" title="Advanced JavaScript: Objects and Functions">
+      Advanced JavaScript: Objects and Functions <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-The-DOM-and-DOM-Manipulation"><span class="nav-number">1.</span> <span class="nav-text">1. The DOM and DOM Manipulation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-DOM-Access-and-Manipulation"><span class="nav-number">2.</span> <span class="nav-text">2. DOM Access and Manipulation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Events-and-Event-Handling"><span class="nav-number">3.</span> <span class="nav-text">3. Events and Event Handling</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-DRY-Don’t-Repeat-Yourself-Principle"><span class="nav-number">4.</span> <span class="nav-text">4. DRY(Don’t Repeat Yourself) Principle</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-State-Variables"><span class="nav-number">5.</span> <span class="nav-text">5. State Variables</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-Complete-JavaScript-Code"><span class="nav-number">6.</span> <span class="nav-text">6. Complete JavaScript Code</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-Project-Demo"><span class="nav-number">7.</span> <span class="nav-text">7. Project Demo</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Danny Zhang</p>
+  <div class="site-description" itemprop="description">Blogger/Software Engineer/Fitness Enthusiast</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">47</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">61</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Danny Zhang</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.7.2
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
