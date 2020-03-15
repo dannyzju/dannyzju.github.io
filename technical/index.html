@@ -17,7 +17,7 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"dannyzhang.run","root":"/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    var CONFIG = {"hostname":"dannyzhang.run","root":"/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
   <meta name="description" content="技术方面成长是一个长期的积累过程，在这里集合了我的所有技术类相关博文，并且按照类别进行了整理，不定期更新。 Cloud Computing ConceptsCoursera上Cloud Computing Concepts课程的笔记整理，计划分为10个部分，持续更新中。  Cloud Computing Concepts Notes 1: Orientation, Introduction to">
@@ -116,12 +116,42 @@
   <ul id="menu" class="menu">
         <li class="menu-item menu-item-home">
 
-    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+    <a href="/" rel="section">Home</a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+    <a href="/archives/" rel="section">Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-technical">
+
+    <a href="/technical" rel="section">technical</a>
+
+  </li>
+        <li class="menu-item menu-item-essays">
+
+    <a href="/essays" rel="section">essays</a>
+
+  </li>
+        <li class="menu-item menu-item-readings">
+
+    <a href="/readings" rel="section">readings</a>
+
+  </li>
+        <li class="menu-item menu-item-workout">
+
+    <a href="/workout" rel="section">workout</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags" rel="section">Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about" rel="section">About</a>
 
   </li>
   </ul>
@@ -280,7 +310,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Cloud-Computing-Concepts"><span class="nav-number">1.</span> <span class="nav-text">Cloud Computing Concepts</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#The-Complete-JavaScript-Course"><span class="nav-number">2.</span> <span class="nav-text">The Complete JavaScript Course</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#React-vs-Angular-vs-Vue-js-by-Example"><span class="nav-number">3.</span> <span class="nav-text">React vs Angular vs Vue.js by Example</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Data-Structure-amp-Algorithm"><span class="nav-number">4.</span> <span class="nav-text">Data Structure &amp; Algorithm</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#搭建Hexo博客相关"><span class="nav-number">5.</span> <span class="nav-text">搭建Hexo博客相关</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Generals"><span class="nav-number">6.</span> <span class="nav-text">Generals</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Cloud-Computing-Concepts"><span class="nav-text">Cloud Computing Concepts</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#The-Complete-JavaScript-Course"><span class="nav-text">The Complete JavaScript Course</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#React-vs-Angular-vs-Vue-js-by-Example"><span class="nav-text">React vs Angular vs Vue.js by Example</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Data-Structure-amp-Algorithm"><span class="nav-text">Data Structure &amp; Algorithm</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#搭建Hexo博客相关"><span class="nav-text">搭建Hexo博客相关</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Generals"><span class="nav-text">Generals</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -303,7 +333,8 @@
         <span class="site-state-item-name">categories</span>
       </div>
       <div class="site-state-item site-state-tags">
-            <a href="/tags/">
+            <a href="/tags">
+          
         <span class="site-state-item-count">61</span>
         <span class="site-state-item-name">tags</span></a>
       </div>

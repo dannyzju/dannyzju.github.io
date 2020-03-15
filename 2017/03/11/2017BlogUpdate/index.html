@@ -17,7 +17,7 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"dannyzhang.run","root":"/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    var CONFIG = {"hostname":"dannyzhang.run","root":"/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
   <meta name="description" content="喜大普奔，博客迎来重大升级啦！ 更换Next主题其实也还是挺喜欢原来maupassant主题的极简风格的，不过同样是主打简约风格的Next主题对于文章内目录的支持上大大好过了maupassant, 同时Next还是hexo主题页中Star最高的，作者的配置说明也非常完善，因此最终决定转投Next。 具体的安装和使用说明官方文档已经写得很清楚了，在此就不再赘述。 域名更新在使用了进一年的github">
@@ -120,12 +120,42 @@
   <ul id="menu" class="menu">
         <li class="menu-item menu-item-home">
 
-    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+    <a href="/" rel="section">Home</a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+    <a href="/archives/" rel="section">Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-technical">
+
+    <a href="/technical" rel="section">technical</a>
+
+  </li>
+        <li class="menu-item menu-item-essays">
+
+    <a href="/essays" rel="section">essays</a>
+
+  </li>
+        <li class="menu-item menu-item-readings">
+
+    <a href="/readings" rel="section">readings</a>
+
+  </li>
+        <li class="menu-item menu-item-workout">
+
+    <a href="/workout" rel="section">workout</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags" rel="section">Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about" rel="section">About</a>
 
   </li>
   </ul>
@@ -294,7 +324,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#更换Next主题"><span class="nav-number">1.</span> <span class="nav-text">更换Next主题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#域名更新"><span class="nav-number">2.</span> <span class="nav-text">域名更新</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#购买域名"><span class="nav-number">2.1.</span> <span class="nav-text">购买域名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更新Blog-Repository"><span class="nav-number">2.2.</span> <span class="nav-text">更新Blog Repository</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置Google-Domains"><span class="nav-number">2.3.</span> <span class="nav-text">配置Google Domains</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#板块更新"><span class="nav-number">3.</span> <span class="nav-text">板块更新</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#新功能"><span class="nav-number">4.</span> <span class="nav-text">新功能</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#评论系统"><span class="nav-number">4.1.</span> <span class="nav-text">评论系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Baidu-Analytics"><span class="nav-number">4.2.</span> <span class="nav-text">Baidu Analytics</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo常见问题解决"><span class="nav-number">5.</span> <span class="nav-text">Hexo常见问题解决</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#更换Next主题"><span class="nav-text">更换Next主题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#域名更新"><span class="nav-text">域名更新</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#购买域名"><span class="nav-text">购买域名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更新Blog-Repository"><span class="nav-text">更新Blog Repository</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置Google-Domains"><span class="nav-text">配置Google Domains</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#板块更新"><span class="nav-text">板块更新</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#新功能"><span class="nav-text">新功能</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#评论系统"><span class="nav-text">评论系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Baidu-Analytics"><span class="nav-text">Baidu Analytics</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo常见问题解决"><span class="nav-text">Hexo常见问题解决</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -317,7 +347,8 @@
         <span class="site-state-item-name">categories</span>
       </div>
       <div class="site-state-item site-state-tags">
-            <a href="/tags/">
+            <a href="/tags">
+          
         <span class="site-state-item-count">61</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
