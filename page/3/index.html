@@ -177,6 +177,91 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://dannyzhang.run/2017/04/26/2017-weekly-5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Danny Zhang">
+      <meta itemprop="description" content="Blogger/Software Engineer/Fitness Enthusiast">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="D.Z. Notes (Beta)">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/04/26/2017-weekly-5/" class="post-title-link" itemprop="url">初晴</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2017-04-26 22:37:17" itemprop="dateCreated datePublished" datetime="2017-04-26T22:37:17-07:00">2017-04-26</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2017-05-01 22:45:40" itemprop="dateModified" datetime="2017-05-01T22:45:40-07:00">2017-05-01</time>
+              </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2017/04/26/2017-weekly-5/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/04/26/2017-weekly-5/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="1"><a href="#1" class="headerlink" title="1"></a>1</h2><p>这周从一个印度大客户那边得到了关于在产品Performance方面进一步提升的需求，于是花了不少时间重新梳理和分析了之前的code，的确是发现了不少潜在的可以通过重构进一步提高的地方。反观之前在开发新feature的过程中，往往总只是过于专注功能本身的实现，而缺乏了宏观上对于代码结构和性能的优化。</p>
+<p>Martin Fowler专门有一本书叫做《重构:改善既有代码的设计》(Refactoring: Improving the Design of Existing Code)，就是来解释了重构的原理和最佳实践方式，并且指出了何时何地应该开始挖掘的你的代码并且以求改善。</p>
+<p>其实在实际工作中，项目经理往往并不会主动要求开发者进行重构，甚至当开发者提出重构需求时还会招来反对。比如一个项目还剩一个礼拜，但还有N个需求没完成，现在你请求花费两天时间，“什么都不做”，开发者几乎都无法承受这样的压力。但是，比延误工期更严重的是，一个臃肿不堪，难以修改的项目，最终将面临添加需求困难，运行效率低下，以至于达不到可用的性能，因此最终失败几乎无可避免。</p>
+<p>因此作为开发者来说，如何处理好这个矛盾呢？一个比较可行的方法是，把重构当做开发的一部分，一边开发一边重构，先快速的堆叠代码，实现功能，然后在功能不变的基础上(写好单元测试)，逐步重构。</p>
+<h2 id="2"><a href="#2" class="headerlink" title="2"></a>2</h2><p>周六一早，从湾区万里无云飞到了西雅图烟雨朦胧，无论是在《北京遇见西雅图》，《西雅图不眠夜》还是《晚秋》，西雅图给人的印象一直是个被文艺和浪漫笼罩着的城市，和这烟雨倒也恰好相得益彰。</p>
+<p>雨并不算大，街上的人也不多，还真是很久没有一个人到一个陌生的城市了，一个人打着伞漫步在Downtown，就这么一路走走停停看看，经历了静寂的Pioneer Square, 造型特异的City Library，Waterfront的摩天轮，繁忙的Pike’s Market，第一家星巴克，还有Chihuly玻璃艺术馆，最后登顶Space Needle，整个西雅图的美景净收眼底。此时天气竟然也出乎意料地开始放晴，不远处一抹惊艳的彩虹横跨于城市上空，美不胜收。</p>
+<p>风雨后的初晴往往更为可贵和迷人。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://dannyzhang.run/2017/04/19/2017-weekly-4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1733,96 +1818,11 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://dannyzhang.run/2017/03/20/2017-weekly-1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Danny Zhang">
-      <meta itemprop="description" content="Blogger/Software Engineer/Fitness Enthusiast">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="D.Z. Notes (Beta)">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2017/03/20/2017-weekly-1/" class="post-title-link" itemprop="url">好久不见的周记君</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2017-03-20 22:47:23" itemprop="dateCreated datePublished" datetime="2017-03-20T22:47:23-07:00">2017-03-20</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2017-03-21 08:57:55" itemprop="dateModified" datetime="2017-03-21T08:57:55-07:00">2017-03-21</time>
-              </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2017/03/20/2017-weekly-1/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/03/20/2017-weekly-1/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>周末和不同的三拨朋友有了不同的三场聚会，主题也是各不相同，分别是Hiking, 生日趴以及给已经回国，短期过来开会的学长接风聚餐 + 桌游，感觉还真是很久没有同一个周末参加这么多聚会了，和大家在一起非常开心，有幸能和这么多优秀的人在一起，也是激励自己继续努力的动力。</p>
-<p>除去聚会之外，这周继续完善了博客的方方面面。先是给不同的版面都加上了索引页，借此机会也对之前文章进行了分类和整理。在接下来的更新中，相应的内容也会被整理到对应的板块分类，一来方便了文章查找，另一方面也可以让接下来的博文更新更有针对性。</p>
-<p>虽然说目前自己还是挺有意愿坚持博客写作的，觉得这是一个非常好的记录和促进自己学习和思考的方式，不过三分钟热度这样的事情实在是屡见不鲜了。于是呢，决定在博客名后加入(Beta)，也就是试行版的意思。能有Beta版推出至少代表了一个好的开始，任何产品的不都是始于Beta的么？坚持做下去，什么时候当写博客能够真正成为自己的习惯时，那就什么时候升级为正式版。</p>
-<p>从某种程度上来说，写博客其实很像计算机算法里的Dynamic Programming, 当你学到或者想到什么东西时，记下来，下次再遇到同样的问题，就很容易快速提取。Life is short, so I need dynamic programming.</p>
-<p>此外呢，这周利用早起的时间继续学习Cloud Computing Concepts的内容，每天学一点，一周下来也顺利完成了一周要求的课程量，并且已经把笔记以博文的形式发布了。自今年年初第一次尝试早睡早起开始，到现在已经坚持两个多月了，经过这一段时间的体验，真的发现生活规律了很多，也能更从容地安排学习和生活了。很庆幸自己在2017年伊始有了这一次尝试，如同写作一样，接下来依然是贵在坚持。</p>
-<p>最后爆几张周末聚会照吧：）</p>
-<p><img src="https://lh3.googleusercontent.com/gVLOLVPPe09wyoiQtQ-XK7T5N_JL5Wv_QP43BXtMgdf6kyXcUmtBzddsLVYiLtCXIEdj57u_5kx2mGqvBmkTVpKJJO55b_FsAwGcf_lfe0Gsm3MZqICo5Ob1TWvmRHfdAbQNH2vm2a6f6AhROksAitsqGfL_KQAiVUIrDlCxGrSGksqH2jaLZzsAwDBlXAeKFaQ21INlXyA2ayIYPww_TASJCvnf3dA7oX1ZRIhE8xzV_G093kZbq404VR1mfIDWiteCeBMEamtk0uN65_uQMDCgA0h1OEQwWJ4tlOWo6QIq1xs50yPuK7qJj-PKUx0bX4cocGALB-kF53ZhqrEkkggXqkY4R9kJI2pjBuJ7Y6kKyPSUxlqmd1sJVF9D2hlyVYdOsh2h32o2KKb73jZc0MLS7m4pWJBnjKaOVXePQ9sQPn7Z1Jt8qkgrTzGRbBgBEQYgIFvqmVOQXjygM55dtlGoOu11ZP5dDsCaN6b0wZW7JQt32_nsSP1-x_aH2jTJXUvc3PHsFw2IPhK770NV3_22OC6Y8SvZu7zEpHHjiuhsfC2pBOoSS9KaDgzWtQBMJfuDNpS4rCkt-mKyCXvubK5H5RfluuLfY6EaQqsyYP_aIHaCwXWZFqBwRIHfTs32631ibj3wz8mCdVPbwVijbduNNU5plzQyZtB0x3hziQ=w388-h1356-no" alt="周末照"></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -1888,7 +1888,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">50</span>
+          <span class="site-state-item-count">51</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
