@@ -195,6 +195,104 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://dannyzhang.run/2016/08/25/androidThreads/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Danny Zhang">
+      <meta itemprop="description" content="Blogger/Software Engineer/Fitness Enthusiast">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="D.Z. Notes (Beta)">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2016/08/25/androidThreads/" class="post-title-link" itemprop="url">Android中的Threads的实现</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2016-08-25 00:33:19 / Modified: 00:38:46" itemprop="dateCreated datePublished" datetime="2016-08-25T00:33:19-07:00">2016-08-25</time>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2016/08/25/androidThreads/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/08/25/androidThreads/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>在Android想要创建后台任务时该怎么做呢？最简单粗暴的方法就是通过创建一个background thread来实现，这里我们以后台下载音乐为例。</p>
+<p>首先建立一个Playlist的类，添加需要下载的曲目:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Playlist</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> String[] songs = &#123;<span class="string">"He’s the Greatest Dancer"</span>, <span class="string">"Cut the Cake"</span>, <span class="string">"The Groove Line"</span>, <span class="string">"Stayin’ Alive"</span>, <span class="string">"Give Up the Funk"</span>&#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="1-通过Runnable实现"><a href="#1-通过Runnable实现" class="headerlink" title="1. 通过Runnable实现"></a>1. 通过Runnable实现</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">mDownloadButton.setOnClickListener(<span class="keyword">new</span> View.OnClickListener() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View view)</span> </span>&#123;</span><br><span class="line">        Runnable runnable = <span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                downloadSong();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line">        Thread thread = <span class="keyword">new</span> Thread(runnable);</span><br><span class="line">        thread.setName(<span class="string">"DownloadThread"</span>);</span><br><span class="line">        thread.start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="2-通过继承Thread实现"><a href="#2-通过继承Thread实现" class="headerlink" title="2. 通过继承Thread实现"></a>2. 通过继承Thread实现</h3><p>首先创建一个DownloadThread如下所示：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DownloadThread</span> <span class="keyword">extends</span> <span class="title">Thread</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        downloadSong();</span><br><span class="line">    &#125;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然后再创建一个新的DownloadThread实例，调用start()方法即可。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">mDownloadButton.setOnClickListener(<span class="keyword">new</span> View.OnClickListener() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View view)</span> </span>&#123;</span><br><span class="line">        DownloadThread thread = <span class="keyword">new</span> DownloadThread();</span><br><span class="line">        thread.setName(<span class="string">"DownloadThread"</span>);</span><br><span class="line">        thread.start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>通过以上两种形式，我们成功实现了在background thread下载歌曲。然而新的潜在问题是，若开始下载后Playlist中的曲目被误改，则很可能错误的曲目会被下载下来。那么如何避免这种情况呢？</p>
+<h3 id="3-Handler-Looper和Message"><a href="#3-Handler-Looper和Message" class="headerlink" title="3. Handler, Looper和Message"></a>3. Handler, Looper和Message</h3><p>首先创建一个DownloadHandler类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> android.os.Handler;</span><br><span class="line"><span class="function"><span class="keyword">public</span> class <span class="title">DownloadHandler</span> <span class="params">()</span> extends Handler </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">handleMessage</span><span class="params">(Message msg)</span> </span>&#123;</span><br><span class="line">        downloadSong(msg.obj.toString());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">downloadSong</span><span class="params">(String song)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">long</span> endTime = System.currentTimeMillis() + <span class="number">10</span> * <span class="number">1000</span>;</span><br><span class="line">        <span class="keyword">while</span> (System.currentTimeMillis() &lt; endTime) &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        Log.d(TAG, song + <span class="string">" downloaded!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>其次修改DownloadThread中的run 方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> android.os.Looper;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DownloadThread</span> <span class="keyword">extends</span> <span class="title">Thread</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> DownloadHandler mHandler;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        Looper.prepare();</span><br><span class="line">        mHandler = <span class="keyword">new</span> DownloadHandler();</span><br><span class="line">        Looper.loop();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>最后在点击Button时把要下载的曲目通过Message的形式送到DownloadThread的handler中即可。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">DownloadThread thread = <span class="keyword">new</span> DownloadThread();</span><br><span class="line">thread.setName(<span class="string">"DownloadThread"</span>);</span><br><span class="line">thread.start();</span><br><span class="line">mDownloadButton = (Button) findViewById(R.id.downloadButton);</span><br><span class="line">mDownloadButton.setOnClickListener(<span class="keyword">new</span> View.OnClickListener() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View view)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (String song : Playlist.songs) &#123;</span><br><span class="line">            Message message = Message.obtain();</span><br><span class="line">            message.obj = song;</span><br><span class="line">            thread.mHandler.sendMessage(message);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>当app被关掉之后，我们创建的DownloadThread也就同时被kill了。但如果我们想要在app被关闭之还能在后台继续下载歌曲怎么办呢？这就要引入Android Service了，且看下回分解。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://dannyzhang.run/2016/08/15/androidTestSummary/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1207,103 +1305,6 @@ result2 = str2[0] * 31 ^ 0 + str2[1] * 31 ^ 1 + str2[2] * 31 ^ 2</code></pre><h3
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://dannyzhang.run/2016/03/24/codeReview/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Danny Zhang">
-      <meta itemprop="description" content="Blogger/Software Engineer/Fitness Enthusiast">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="D.Z. Notes (Beta)">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2016/03/24/codeReview/" class="post-title-link" itemprop="url">Best Practice for Code Review</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2016-03-24 20:27:34 / Modified: 20:32:29" itemprop="dateCreated datePublished" datetime="2016-03-24T20:27:34-07:00">2016-03-24</time>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2016/03/24/codeReview/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/03/24/codeReview/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="Why-Code-Review"><a href="#Why-Code-Review" class="headerlink" title="Why Code Review?"></a>Why Code Review?</h4><ul>
-<li>Developers know their code will be evaluated, so they work harder.</li>
-<li>It improves a developer’s own programming skills.</li>
-<li>It’s an opportunity for mentoring, so the programmers you work with get smarter (and thus, more fun to hang around with).</li>
-<li>It creates consistency and a culture of quality across the project.</li>
-<li>It encourages team bonding.</li>
-</ul>
-<h4 id="How-to-run-an-effective-code-review"><a href="#How-to-run-an-effective-code-review" class="headerlink" title="How to run an effective code review?"></a>How to run an effective code review?</h4><ul>
-<li>Review fewer than 200–400 lines of code at a time</li>
-<li>Aim for an inspection rate of fewer than 300–500 LOC per hour</li>
-<li>Take enough time for a proper, slow review, but not more than 60–90 minutes</li>
-<li>Be sure that authors annotate source code before the review begins</li>
-<li>Establish quantifiable goals for code review, and capture metrics so you can improve your processes</li>
-<li>Use checklists, because they substantially improve results for both authors and reviewers</li>
-<li>Verify that the defects are actually fixed</li>
-<li>Foster a good code review culture in which finding defects is viewed positively</li>
-<li>Beware of the Big Brother effect</li>
-<li>Review at least part of the code, even if you can’t do all of it, to benefit from The Ego Effect</li>
-<li>Adopt lightweight, tool-assisted code reviews</li>
-</ul>
-<h4 id="More-Reference"><a href="#More-Reference" class="headerlink" title="More Reference:"></a>More Reference:</h4><ul>
-<li><a href="http://www.cio.com/article/472377" target="_blank" rel="noopener">5 Reasons for Software Developers to Do Code Reviews (Even If You Think They’re a Waste of Time)</a></li>
-<li><a href="http://www.ibm.com/developerworks/rational/library/11-proven-practices-for-peer-review/" target="_blank" rel="noopener">11 proven practices for more effective, efficient peer code review</a></li>
-<li><a href="http://www.cio.com/article/2431557/developer/running-an-effective-code-review.html?page=2" target="_blank" rel="noopener">Running an Effective Code Review</a></li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1374,7 +1375,7 @@ result2 = str2[0] * 31 ^ 0 + str2[1] * 31 ^ 1 + str2[2] * 31 ^ 2</code></pre><h3
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">51</span>
+          <span class="site-state-item-count">52</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
