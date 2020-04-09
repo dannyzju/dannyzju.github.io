@@ -195,6 +195,112 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://dannyzhang.run/2016/08/30/RxJavaIntro/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Danny Zhang">
+      <meta itemprop="description" content="Blogger/Software Engineer/Fitness Enthusiast">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="D.Z. Notes (Beta)">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2016/08/30/RxJavaIntro/" class="post-title-link" itemprop="url">RxJava极简入门</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2016-08-30 01:02:51 / Modified: 01:11:26" itemprop="dateCreated datePublished" datetime="2016-08-30T01:02:51-07:00">2016-08-30</time>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2016/08/30/RxJavaIntro/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/08/30/RxJavaIntro/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>RxJava是在Android开发者中非常热门的函数库。刚上手会感觉比较难理解，但一旦理解了它，你会感觉开启了一扇全新的大门。网上关于RxJava的文章很多，这里也只是略窥门径，对其有个最最基本的概念。</p>
+<h3 id="1-RxJava是什么"><a href="#1-RxJava是什么" class="headerlink" title="1. RxJava是什么?"></a>1. RxJava是什么?</h3><p>先来看看别的开发者怎么说的：</p>
+<blockquote>
+<p>“RxJava is a library of code used to handle data using a push and pull mechanism. Just like a notification on your phone, some data will be pushed to a receiver of that data. It’s a different way to think about existing coding patterns you know.” </p>
+</blockquote>
+<p>RxJava官网上的定义:</p>
+<blockquote>
+<p>A library for composing asynchronous and event-based programs using observable sequences for the Java VM.</p>
+</blockquote>
+<h3 id="2-RxJava基本模型"><a href="#2-RxJava基本模型" class="headerlink" title="2. RxJava基本模型"></a>2. RxJava基本模型</h3><p>RxJava最核心的两个东西是Observables（被观察者，事件源）和Subscribers（观察者）。Observables发出一系列事件，Subscribers处理这些事件。这里的事件可以是任何你感兴趣的东西，如触摸事件，web接口调用返回的数据等等。<br>这里我们以一个简单的Todo List的app为例来解释RxJava的基本工作原理。<br>首先假设我们有一个todo list：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">toDoList = &#123;<span class="string">"Sweep"</span>, <span class="string">"Mop"</span>, <span class="string">"Vacuum"</span>&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>第一步先创建一个Observable: </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Observable.just(todoList)</span><br></pre></td></tr></table></figure>
+<p>这里用了just方法创建了一个Observable，表示了Observable 每次会发(emit)出todoList中的一项。</p>
+<p>接下来是subscribe Observer, 代码和注释如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">Subscription s = Observable.just(todoList)</span><br><span class="line">.subscribe(<span class="keyword">new</span> Observer&lt;Todo&gt;() &#123; <span class="comment">//Type is the data type being emitted</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onNext</span><span class="params">(Todo t)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//onNext is called for each item emitted.</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCompleted</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">//onCompleted is called when the Observable has no more items to admit</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onError</span><span class="params">(Throwable e)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//onError is called if an error occurs.</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//It is important to note that onCompleted and onError are only ever called once.</span></span><br><span class="line">    <span class="comment">//And after they are called, onNext will not be called again.</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>调用subscribe方法会返回一个Subscription的对象, 有了它我们可以在关闭app的时候unsubscribe, 比如:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onDestroy</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">super</span>.onDestroy();</span><br><span class="line">    s.unsubscribe();</span><br><span class="line">&#125;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p>以上就是RxJava的基本模型。</p>
+<p>RxJava中包含了一些非常有用的类，可以使得在特定情况下代码写起来更简单。<br>比如说有时候我们并不需要onCompleted和onError的callback，只想知道Observable是否发出了item。这种情况下我们只需要在subscribe方法中传入一个Action1对象即可。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Observable.just(todoList)</span><br><span class="line">.subscribe(<span class="keyword">new</span> Action1&lt;Todo&gt;() &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">call</span><span class="params">(Todo todo)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//Get called for each item emitted.</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><ul>
+<li><a href="https://github.com/ReactiveX/RxJava/wiki" target="_blank" rel="noopener">RxJava Home</a></li>
+<li><a href="http://rxmarbles.com" target="_blank" rel="noopener">RxMarbles</a></li>
+<li><a href="http://blog.danlew.net/2014/09/15/grokking-rxjava-part-1/" target="_blank" rel="noopener">Grokking RxJava, Part 1: The Basics</a></li>
+<li><a href="http://blog.danlew.net/2014/09/22/grokking-rxjava-part-2/" target="_blank" rel="noopener">Grokking RxJava, Part 2: Operator, Operator</a></li>
+<li><a href="http://blog.danlew.net/2014/09/30/grokking-rxjava-part-3/" target="_blank" rel="noopener">Grokking RxJava, Part 3: Reactive with Benefits</a></li>
+<li><a href="http://blog.danlew.net/2014/10/08/grokking-rxjava-part-4/" target="_blank" rel="noopener">Grokking RxJava, Part 4: Reactive Android</a></li>
+<li><a href="https://www.gitbook.com/book/asce1885/android-rd-senior-advanced/details" target="_blank" rel="noopener">更上一层楼－Android研发工程师高级进阶</a></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://dannyzhang.run/2016/08/25/androidThreads/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1219,92 +1325,6 @@ result2 = str2[0] * 31 ^ 0 + str2[1] * 31 ^ 1 + str2[2] * 31 ^ 2</code></pre><h3
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://dannyzhang.run/2016/03/29/whyDoWeNeedReadingNotes/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Danny Zhang">
-      <meta itemprop="description" content="Blogger/Software Engineer/Fitness Enthusiast">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="D.Z. Notes (Beta)">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2016/03/29/whyDoWeNeedReadingNotes/" class="post-title-link" itemprop="url">为什么要写读书笔记？</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2016-03-29 22:17:36" itemprop="dateCreated datePublished" datetime="2016-03-29T22:17:36-07:00">2016-03-29</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2016-07-30 14:23:56" itemprop="dateModified" datetime="2016-07-30T14:23:56-07:00">2016-07-30</time>
-              </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2016/03/29/whyDoWeNeedReadingNotes/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/03/29/whyDoWeNeedReadingNotes/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <blockquote>
-<p>不动笔墨不读书 。</p>
-</blockquote>
-<p>在过去相当长的一段时间，发现在读书的时候只是快速扫过，当时会有一些感悟，但一段时间之后再回想便发现头脑中只剩下些残存的干瘪印象，并没有留下什么实质性的内容，于是乎，痛定思痛，决定通过写读书笔记的方式提高阅读质量。</p>
-<p>总结下来，写读书笔记的好处无外乎有三点：</p>
-<p>首先，写读书笔记可以加深对书籍的理解，哪怕仅仅是摘录些好句子，好段落。因为即使是摘录，也总的有个选择的过程，摘什么，怎么摘，必须动一番脑筋，进行一次深入思考，这个过程就加深了对文章的理解。若要写一篇读书心得，则更需要弄懂弄通所读书籍，如果觉得写不出来，或者写得不好，就说明对文章的理解不够。总之，通过写读书笔记，头脑中模糊和凌乱的东西就会清晰、有条理起来，你的思维就会想纵深发展。</p>
-<p>其次，写读书笔记可以系统地整理和记忆知识。有人会说，书上都有了，自己何必去整理？其实这个过程是相当于有针对性地把你需要的知识从书中归纳整理出来，按照你的知识系统编辑起来。还记得以前在本科期末复习的时候， 不少成绩很好的同学都会把整本书的内容归纳梳理一遍，最后浓缩成几页纸内容，这个过程完成的同时也会有种豁然开朗的感觉，这和单纯地只是阅读一本书是完全不同的。</p>
-<p>第三，写读书笔记，还可以在研究别人的观点中，形成你自己的见解和观点，这就是对知识的再创造。历史上很多有成就的人物，也都十分重视利用读书笔记积累和整理知识。比如列宁的《哲学笔记》是一部很重要的书，这部著作就是列宁在学习和研究哲学时所做的读书笔记。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1375,7 +1395,7 @@ result2 = str2[0] * 31 ^ 0 + str2[1] * 31 ^ 1 + str2[2] * 31 ^ 2</code></pre><h3
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">52</span>
+          <span class="site-state-item-count">53</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
